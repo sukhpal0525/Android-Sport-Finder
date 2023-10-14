@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.aston.sportsfinder.fragment.common.home.HomeFragment"
+        android:name="com.aston.sportsfinder.fragment.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
@@ -19,7 +19,13 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.aston.sportsfinder.fragment.nav.notifications.NotificationsFragment"
+        android:name="com.aston.sportsfinder.fragment.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.aston.sportsfinder.fragment.profile.ProfileFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
