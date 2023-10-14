@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Welcome Message -->
+        <TextView
+            android:id="@+id/welcomeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Sports Match Finder!"
+            android:textSize="24sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Quick Action Buttons -->
+        <Button
+            android:id="@+id/findMatchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find a Match"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/profileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Upcoming Matches Summary -->
+        <TextView
+            android:id="@+id/upcomingMatchesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upcoming Matches:"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+
+        <!-- Sample Match (can be replaced by a RecyclerView in the future) -->
+        <TextView
+            android:id="@+id/sampleMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Match 1: Basketball at City Park"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Notifications or Updates -->
+        <TextView
+            android:id="@+id/notificationsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications:"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/sampleNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update: New feature added!"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</ScrollView>
