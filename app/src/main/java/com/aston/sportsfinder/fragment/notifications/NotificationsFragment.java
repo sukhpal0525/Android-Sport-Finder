@@ -1,4 +1,4 @@
-package com.aston.sportsfinder.fragment.nav.notifications;
+package com.aston.sportsfinder.fragment.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.aston.sportsfinder.databinding.FragmentDashboardBinding;
-import com.aston.sportsfinder.databinding.FragmentHomeBinding;
 import com.aston.sportsfinder.databinding.FragmentNotificationsBinding;
-import com.aston.sportsfinder.model.dashboard.DashboardViewModel;
-import com.aston.sportsfinder.model.home.HomeViewModel;
 import com.aston.sportsfinder.model.notifications.NotificationsViewModel;
 
 public class NotificationsFragment extends Fragment {
