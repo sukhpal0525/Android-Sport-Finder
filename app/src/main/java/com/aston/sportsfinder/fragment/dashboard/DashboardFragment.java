@@ -1,4 +1,4 @@
-package com.aston.sportsfinder.fragment.nav.dashboard;
+package com.aston.sportsfinder.fragment.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
