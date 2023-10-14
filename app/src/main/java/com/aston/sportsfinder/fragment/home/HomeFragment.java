@@ -1,4 +1,4 @@
-package com.aston.sportsfinder.fragment.common.home;
+package com.aston.sportsfinder.fragment.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
