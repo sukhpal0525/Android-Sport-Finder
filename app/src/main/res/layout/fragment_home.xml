@@ -35,14 +35,15 @@
             android:text="Profile"
             android:layout_marginBottom="8dp" />
 
+        <!-- Upcoming Matches Summary -->
+
         <Button
             android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:text="Search" />
 
-        <!-- Upcoming Matches Summary -->
         <TextView
             android:id="@+id/upcomingMatchesTitle"
             android:layout_width="wrap_content"
