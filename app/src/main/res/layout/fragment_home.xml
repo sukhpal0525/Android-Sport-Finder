@@ -11,16 +11,31 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Welcome Message -->
+
+        <!--                                       WELCOME                                       -->
+
+        <!-- Title -->
         <TextView
             android:id="@+id/welcomeMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to Sports Match Finder!"
+            android:text="Welcome to SportsFinder"
             android:textSize="24sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Body -->
+        <TextView
+            android:id="@+id/welcomeMessageBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="A local sports event finding application designed to help you find your available events for your favourite sports with an emphasis on usability and user-centered design."
+            android:textSize="16sp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Quick Action Buttons -->
+
+        <!--                                   QUICK NAVIGATION                                  -->
+
         <Button
             android:id="@+id/findMatchButton"
             android:layout_width="wrap_content"
@@ -35,14 +50,15 @@
             android:text="Profile"
             android:layout_marginBottom="8dp" />
 
-        <!-- Upcoming Matches Summary -->
-
         <Button
             android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Search" />
+
+
+        <!--                                        YOUR UPCOMING MATCHES                                        -->
 
         <TextView
             android:id="@+id/upcomingMatchesTitle"
@@ -57,25 +73,26 @@
             android:id="@+id/sampleMatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Match 1: Basketball at City Park"
+            android:text="Match 1: FootballCity Park"
             android:textSize="16sp"
             android:layout_marginTop="8dp" />
 
-        <!-- Notifications or Updates -->
-        <TextView
-            android:id="@+id/notificationsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notifications:"
-            android:textSize="20sp"
-            android:layout_marginTop="16dp" />
+        <!--                                        NOTIFICATIONS                                        -->
 
-        <TextView
-            android:id="@+id/sampleNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update: New feature added!"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/notificationsTitle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Notifications:"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_marginTop="16dp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/sampleNotification"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Update: New feature added!"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginTop="8dp" />-->
     </LinearLayout>
 </ScrollView>
