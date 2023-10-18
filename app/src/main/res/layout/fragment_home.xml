@@ -1,98 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!--    TITLE: Welcome    -->
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:text="Welcome"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!--    TEXT: Welcome Description    -->
+    <TextView
+        android:id="@+id/welcomeMessageBody"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="An application designed to help you find available local events for your favourite sports with an emphasis on usability and user-centered design."
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:justificationMode="inter_word"
+        app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!--                                       WELCOME                                       -->
+    <!--    MAP: Static preview    -->
+    <FrameLayout
+        android:id="@+id/mapBox"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_background"
+        app:layout_constraintTop_toBottomOf="@id/welcomeMessageBody"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/welcomeMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome to SportsFinder"
-            android:textSize="24sp"
-            android:layout_marginBottom="8dp" />
+        <ImageView
+            android:id="@+id/staticMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/static_map"
+            android:scaleType="centerCrop" />
+    </FrameLayout>
 
-        <!-- Body -->
-        <TextView
-            android:id="@+id/welcomeMessageBody"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="A local sports event finding application designed to help you find your available events for your favourite sports with an emphasis on usability and user-centered design."
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
-
-
-        <!--                                   QUICK NAVIGATION                                  -->
-
+        <!--    BUTTON: Get Started    -->
         <Button
-            android:id="@+id/findMatchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Find a Match"
-            android:layout_marginBottom="8dp" />
+        android:id="@+id/searchButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Get Started"
+        android:background="@drawable/border_background"
+        app:layout_constraintTop_toBottomOf="@id/mapBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:id="@+id/profileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Search" />
-
-
-        <!--                                        YOUR UPCOMING MATCHES                                        -->
-
-        <TextView
-            android:id="@+id/upcomingMatchesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upcoming Matches:"
-            android:textSize="20sp"
-            android:layout_marginTop="16dp" />
-
-        <!-- Sample Match (can be replaced by a RecyclerView in the future) -->
-        <TextView
-            android:id="@+id/sampleMatch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Match 1: FootballCity Park"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp" />
-
-        <!--                                        NOTIFICATIONS                                        -->
-
-<!--        <TextView-->
-<!--            android:id="@+id/notificationsTitle"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Notifications:"-->
-<!--            android:textSize="20sp"-->
-<!--            android:layout_marginTop="16dp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/sampleNotification"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Update: New feature added!"-->
-<!--            android:textSize="16sp"-->
-<!--            android:layout_marginTop="8dp" />-->
-    </LinearLayout>
-</ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
