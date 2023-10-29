@@ -1,32 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!--    TITLE: Welcome    -->
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:text="Welcome"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
 
-        <!-- Welcome Message -->
-        <TextView
-            android:id="@+id/welcomeMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:textSize="24sp"
-            android:layout_marginBottom="16dp" />
+    <!--    TEXT: Welcome Description    -->
+    <TextView
+        android:id="@+id/welcomeMessageBody"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="An application designed to help you find available local events for your favourite sports with an emphasis on usability and user-centered design."
+        android:textSize="16sp"
+        android:layout_marginTop="32dp"
+        android:justificationMode="inter_word"
+        app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/sampleNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update: New feature added!"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp" />
+    <!--    MAP: Static preview    -->
+    <FrameLayout
+        android:id="@+id/mapBox"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_background"
+        app:layout_constraintTop_toBottomOf="@id/welcomeMessageBody"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    </LinearLayout>
-</ScrollView>
+        <ImageView
+            android:id="@+id/staticMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/static_map"
+            android:scaleType="centerCrop" />
+    </FrameLayout>
+
+    <!--    BUTTON: Get Started    -->
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="FIND A MATCH"
+        android:background="@drawable/border_background"
+        app:layout_constraintTop_toBottomOf="@id/mapBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

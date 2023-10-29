@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <!--    TITLE: Welcome    -->
     <TextView
@@ -15,7 +16,8 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
 
     <!--    TEXT: Welcome Description    -->
     <TextView
@@ -24,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="An application designed to help you find available local events for your favourite sports with an emphasis on usability and user-centered design."
         android:textSize="16sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:justificationMode="inter_word"
         app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,16 +51,16 @@
             android:scaleType="centerCrop" />
     </FrameLayout>
 
-        <!--    BUTTON: Get Started    -->
-        <Button
+    <!--    BUTTON: Get Started    -->
+    <Button
         android:id="@+id/searchButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Get Started"
+        android:text="FIND A MATCH"
         android:background="@drawable/border_background"
         app:layout_constraintTop_toBottomOf="@id/mapBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
