@@ -23,7 +23,7 @@ public class ProfileFragment extends Fragment {
         ProfileViewModel profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
 
-        final TextView textView = binding.welcomeMessage; profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        final TextView textView = binding.welcomeMessage; profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
