@@ -4,23 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.aston.sportsfinder.R;
-import com.aston.sportsfinder.databinding.FragmentHomeBinding;
-import com.aston.sportsfinder.model.home.HomeViewModel;
-import com.aston.sportsfinder.util.NavigationUtil;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 
 public class HomeFragment extends Fragment {
 
