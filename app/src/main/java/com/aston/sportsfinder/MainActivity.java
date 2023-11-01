@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNav, navController);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            Log.d("NAVIGATION", "Navigated to: " + destination.getLabel());
+            Log.d("ASTON", "Navigated to: " + destination.getLabel());
         });
     }
 }
