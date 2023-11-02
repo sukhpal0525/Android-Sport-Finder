@@ -1,6 +1,6 @@
 package com.aston.sportsfinder.model;
 
-import com.aston.sportsfinder.service.WeatherAPI;
+//import com.aston.sportsfinder.service.WeatherAPI;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ public class Game implements Serializable {
     private Location location;
     private String date;
     private String dateTime;
-    private WeatherAPI weather;
+//    private WeatherAPI weather;
 
     public int getId() {
         return id;
@@ -71,13 +71,13 @@ public class Game implements Serializable {
         this.dateTime = dateTime;
     }
 
-    public WeatherAPI getWeather() {
-        return weather;
-    }
-
-    public void setWeather(WeatherAPI weather) {
-        this.weather = weather;
-    }
+//    public WeatherAPI getWeather() {
+//        return weather;
+//    }
+//
+//    public void setWeather(WeatherAPI weather) {
+//        this.weather = weather;
+//    }
 
     public enum GameType {
         FOOTBALL;
