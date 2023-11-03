@@ -28,7 +28,6 @@ public class Game implements Serializable {
 
 //  private WeatherAPI weather;
 
-
     public int getId() {
         return id;
     }
@@ -94,4 +93,11 @@ public class Game implements Serializable {
     }
 
     public enum GameType { FOOTBALL; }
-}
+
+//    public WeatherAPI getWeather() {
+//        return weather;
+//    }
+//
+//    public void setWeather(WeatherAPI weather) {
+//        this.weather = weather;
+//    }
