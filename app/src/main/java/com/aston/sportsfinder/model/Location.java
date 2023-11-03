@@ -1,14 +1,17 @@
 package com.aston.sportsfinder.model;
 
+import androidx.room.Embedded;
+
 import java.io.Serializable;
 
 public class Location implements Serializable {
 
-    //    private Street street;
+//  private Street street;
     private String city;
     private String state;
     private String country;
     private String postcode;
+    @Embedded
     private Coordinates coordinates;
 
     public String getCity() {

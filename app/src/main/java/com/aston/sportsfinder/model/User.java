@@ -1,12 +1,18 @@
 package com.aston.sportsfinder.model;
 
-import java.util.ArrayList;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "User")
 public class User {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
-    private String firstName;
-    private String lastName;
-    private ArrayList<Game> games;
 
+    @ColumnInfo(name = "FirstName")
+    private String firstName;
+
+    @ColumnInfo(name = "LastName")
+    private String lastName;
 }
