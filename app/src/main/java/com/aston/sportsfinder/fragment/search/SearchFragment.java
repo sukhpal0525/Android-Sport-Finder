@@ -42,8 +42,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        }
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
