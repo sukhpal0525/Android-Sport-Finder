@@ -1,19 +1,33 @@
 package com.aston.sportsfinder.model;
 
-import com.aston.sportsfinder.service.WeatherAPI;
+//import com.aston.sportsfinder.service.WeatherAPI;
+
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity(tableName = "Game")
 public class Game implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String gameType;
     private String team1;
     private String team2;
+    private boolean isJoined;
+
+    @Embedded
     private Location location;
     private String date;
     private String dateTime;
-    private WeatherAPI weather;
+
+//  Foreign key (Game --> User)
+//  private int userId;
+
+//  private WeatherAPI weather;
+
 
     public int getId() {
         return id;
@@ -47,6 +61,14 @@ public class Game implements Serializable {
         this.team2 = team2;
     }
 
+    public boolean isJoined() {
+        return isJoined;
+    }
+
+    public void setJoined(boolean joined) {
+        isJoined = joined;
+    }
+
     public Location getLocation() {
         return location;
     }
@@ -71,15 +93,5 @@ public class Game implements Serializable {
         this.dateTime = dateTime;
     }
 
-    public WeatherAPI getWeather() {
-        return weather;
-    }
-
-    public void setWeather(WeatherAPI weather) {
-        this.weather = weather;
-    }
-
-    public enum GameType {
-        FOOTBALL;
-    }
+    public enum GameType { FOOTBALL; }
 }
