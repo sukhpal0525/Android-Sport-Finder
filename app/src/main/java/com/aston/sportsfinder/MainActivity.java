@@ -3,6 +3,7 @@ package com.aston.sportsfinder;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.aston.sportsfinder.util.DatabaseClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DatabaseClient.getInstance(this);
 
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
