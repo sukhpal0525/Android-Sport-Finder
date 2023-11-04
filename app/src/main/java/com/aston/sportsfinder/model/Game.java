@@ -16,17 +16,23 @@ public class Game implements Serializable {
     private String gameType;
     private String team1;
     private String team2;
-    private boolean isJoined;
+    private int isJoined;
 
-    @Embedded
-    private Location location;
+    private String street;
+    private String city;
+    private String state;
+    private String country;
+    private double latitude;
+    private double longitude;
+
     private String date;
-    private String dateTime;
+    private String time;
 
 //  Foreign key (Game --> User)
 //  private int userId;
 
 //  private WeatherAPI weather;
+
 
     public int getId() {
         return id;
@@ -60,20 +66,60 @@ public class Game implements Serializable {
         this.team2 = team2;
     }
 
-    public boolean isJoined() {
+    public int getIsJoined() {
         return isJoined;
     }
 
-    public void setJoined(boolean joined) {
-        isJoined = joined;
+    public void setIsJoined(int isJoined) {
+        this.isJoined = isJoined;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getStreet() {
+        return street;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getDate() {
@@ -84,15 +130,18 @@ public class Game implements Serializable {
         this.date = date;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getTime() {
+        return time;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public enum GameType { FOOTBALL; }
+    public enum GameType {
+        FOOTBALL;
+    }
+}
 
 //    public WeatherAPI getWeather() {
 //        return weather;
