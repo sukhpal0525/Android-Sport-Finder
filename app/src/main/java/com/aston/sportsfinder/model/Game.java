@@ -33,7 +33,6 @@ public class Game implements Serializable {
 
 //  private WeatherAPI weather;
 
-
     public int getId() {
         return id;
     }
@@ -135,6 +134,22 @@ public class Game implements Serializable {
     }
 
     public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Game(int id, String gameType, String team1, String team2, int isJoined, String street, String city, String state, String country, double latitude, double longitude, String date, String time) {
+        this.id = id;
+        this.gameType = gameType;
+        this.team1 = team1;
+        this.team2 = team2;
+        this.isJoined = isJoined;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.date = date;
         this.time = time;
     }
 
