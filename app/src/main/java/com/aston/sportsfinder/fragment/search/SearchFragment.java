@@ -18,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -26,7 +27,6 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentSearchBinding binding;
     private GoogleMap mMap;
-    private Game game;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,17 +39,27 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//      initializeGame();
-
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
-    @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
+
+        mMap.setOnMarkerClickListener(marker -> {
+            Game game = (Game) marker.getTag();
+            if (game != null) {
+                showGameDetailsBottomSheet(game);
+            }
+            return false;
+        });
         getGamesFromDatabase();
+    }
+
+    private void showGameDetailsBottomSheet(Game game) {
+        GameDetailsBottomSheet bottomSheet = GameDetailsBottomSheet.newInstance(game);
+        bottomSheet.show(getChildFragmentManager(), "GameDetailsBottomSheet");
     }
 
     private void getGamesFromDatabase() {
@@ -65,9 +75,10 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     private void showGamesOnMap(List<Game> games) {
         for (Game game : games) {
             LatLng loc = new LatLng(game.getLatitude(), game.getLongitude());
-            mMap.addMarker(new MarkerOptions()
+            Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(loc)
                     .title(game.getTeam1() + " vs " + game.getTeam2()));
+            marker.setTag(game);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 10));
         }
         mMap.getUiSettings().setZoomControlsEnabled(true);

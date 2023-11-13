@@ -16,6 +16,8 @@ public class Game implements Serializable {
     private String gameType;
     private String team1;
     private String team2;
+    private int score1;
+    private int score2;
     private int isJoined;
 
     private String street;
@@ -63,6 +65,23 @@ public class Game implements Serializable {
 
     public void setTeam2(String team2) {
         this.team2 = team2;
+    }
+
+
+    public int getScore1() {
+        return score1;
+    }
+
+    public void setScore1(int score1) {
+        this.score1 = score1;
+    }
+
+    public int getScore2() {
+        return score2;
+    }
+
+    public void setScore2(int score2) {
+        this.score2 = score2;
     }
 
     public int getIsJoined() {
@@ -137,11 +156,13 @@ public class Game implements Serializable {
         this.time = time;
     }
 
-    public Game(int id, String gameType, String team1, String team2, int isJoined, String street, String city, String state, String country, double latitude, double longitude, String date, String time) {
+    public Game(int id, String gameType, String team1, String team2, int score1, int score2, int isJoined, String street, String city, String state, String country, double latitude, double longitude, String date, String time) {
         this.id = id;
         this.gameType = gameType;
         this.team1 = team1;
         this.team2 = team2;
+        this.score1 = score1;
+        this.score2 = score2;
         this.isJoined = isJoined;
         this.street = street;
         this.city = city;
