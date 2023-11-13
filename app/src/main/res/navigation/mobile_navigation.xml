@@ -68,7 +68,7 @@
 
     <fragment
             android:id="@+id/navigation_notifications"
-            android:name="com.aston.sportsfinder.fragment.notifications.NotificationsFragment"
+            android:name="com.aston.sportsfinder.fragment.notifications.AccessibilityFragment"
             android:label="@string/title_notifications"
             tools:layout="@layout/fragment_notifications">
 
@@ -121,7 +121,12 @@
 
 
 
-
+    <!--                DASHBOARD                -->
+    <fragment
+        android:id="@+id/navigation_accessibility"
+        android:name="com.aston.sportsfinder.fragment.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_dashboard"/>
 
 
 
