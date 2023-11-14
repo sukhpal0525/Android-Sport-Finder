@@ -28,7 +28,6 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         return fragment;
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bottom_sheet_game_details, container, false);
