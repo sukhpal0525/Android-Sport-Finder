@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="16dp"
     android:layout_marginBottom="56dp">
 
-    <TextView
+    <View
+        android:id="@+id/viewHandle"
+        android:layout_width="80dp"
+        android:layout_height="4dp"
+        android:background="@drawable/handle_bottom_sheet"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_outline_close_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/viewHandle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/viewHandle"
+        android:layout_marginTop="32dp" >
+
+        <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +74,24 @@
         android:text="Additional Info: Weather, Audience, etc."
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
-    <!-- Add more views as needed to represent other details -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Status: Not started"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Join Game"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
