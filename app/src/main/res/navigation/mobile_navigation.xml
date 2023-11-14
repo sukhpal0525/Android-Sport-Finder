@@ -66,11 +66,11 @@
 
     <!--                NOTIFICATIONS                -->
 
-    <fragment
-            android:id="@+id/navigation_notifications"
-            android:name="com.aston.sportsfinder.fragment.notifications.AccessibilityFragment"
-            android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_notifications">
+<!--    <fragment-->
+<!--            android:id="@+id/navigation_notifications"-->
+<!--            android:name="com.aston.sportsfinder.fragment.settings.SettingsFragment"-->
+<!--            android:label="@string/title_notifications"-->
+<!--            tools:layout="@layout/fragment_notifications">-->
 
     <!--        &lt;!&ndash; Actions to other fragments &ndash;&gt;-->
     <!--        <action-->
@@ -88,7 +88,6 @@
     <!--        <action-->
     <!--            android:id="@+id/action_navigation_notifications_to_search"-->
     <!--            app:destination="@id/navigation_search" />-->
-        </fragment>
 
 
 
@@ -121,12 +120,12 @@
 
 
 
-    <!--                DASHBOARD                -->
+    <!--                SETTINGS                -->
     <fragment
-        android:id="@+id/navigation_accessibility"
+        android:id="@+id/navigation_settings"
         android:name="com.aston.sportsfinder.fragment.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_dashboard"/>
+        tools:layout="@layout/fragment_notifications"/>
 
 
 
