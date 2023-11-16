@@ -13,6 +13,7 @@ public class Game implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+    private int userId;
     private String gameType;
     private String team1;
     private String team2;
@@ -42,6 +43,22 @@ public class Game implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public boolean isJoined() {
+        return isJoined;
+    }
+
+    public void setJoined(boolean joined) {
+        isJoined = joined;
     }
 
     public String getGameType() {
