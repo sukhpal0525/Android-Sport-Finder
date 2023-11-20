@@ -32,11 +32,6 @@ public class Game implements Serializable {
     private String date;
     private String time;
 
-//  Foreign key (Game --> User)
-//  private int userId;
-
-//  private WeatherAPI weather;
-
     public int getId() {
         return id;
     }
@@ -51,14 +46,6 @@ public class Game implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public boolean isJoined() {
-        return isJoined;
-    }
-
-    public void setJoined(boolean joined) {
-        isJoined = joined;
     }
 
     public String getGameType() {
@@ -101,12 +88,12 @@ public class Game implements Serializable {
         this.score2 = score2;
     }
 
-    public boolean getIsJoined() {
+    public boolean isJoined() {
         return isJoined;
     }
 
-    public void setIsJoined(boolean isJoined) {
-        this.isJoined = isJoined;
+    public void setJoined(boolean joined) {
+        isJoined = joined;
     }
 
     public boolean isStarted() {
@@ -181,8 +168,7 @@ public class Game implements Serializable {
         this.time = time;
     }
 
-    public Game(int id, String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time) {
-        this.id = id;
+    public Game(String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time) {
         this.gameType = gameType;
         this.team1 = team1;
         this.team2 = team2;
@@ -204,6 +190,11 @@ public class Game implements Serializable {
         FOOTBALL;
     }
 }
+//  Foreign key (Game --> User)
+//  private int userId;
+
+//  private WeatherAPI weather;
+
 
 //    public WeatherAPI getWeather() {
 //        return weather;
