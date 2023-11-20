@@ -6,6 +6,8 @@ import androidx.room.Room;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.aston.sportsfinder.AppDatabase;
+import com.aston.sportsfinder.dao.GameDao;
+import com.aston.sportsfinder.dao.NotificationDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,7 +21,7 @@ public class DatabaseClient {
     private DatabaseClient(Context context) {
         appDatabase = Room.databaseBuilder(context, AppDatabase.class, "SportsApp")
                 .fallbackToDestructiveMigration()
-                .addCallback(new DatabaseCallback())
+                .addCallback(new DatabaseCallback(executorService))
                 .build();
 
         resetDatabase();
@@ -38,9 +40,8 @@ public class DatabaseClient {
 
     private void resetDatabase() {
         executorService.execute(() -> {
-            appDatabase.clearAllTables();
-            DatabaseCallback callback = new DatabaseCallback();
-            callback.insertTestData(appDatabase.gameDao());
+            DatabaseCallback callback = new DatabaseCallback(executorService);
+            callback.insertTestData(appDatabase.gameDao(), appDatabase.userDao(), appDatabase.notificationDao());
         });
     }
 }
