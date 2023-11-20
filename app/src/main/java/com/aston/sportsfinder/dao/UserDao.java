@@ -1,5 +1,6 @@
 package com.aston.sportsfinder.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,8 +14,8 @@ import java.util.List;
 @Dao
 public interface UserDao {
 
-    @Query("SELECT * FROM User")
-    List<User> getAll();
+    @Query("SELECT COUNT(id) FROM User")
+    int countUsers();
 
     @Insert
     void insertUser(User user);
@@ -23,5 +24,5 @@ public interface UserDao {
     void deleteUser(User user);
 
     @Query("SELECT id from User LIMIT 1")
-    int getCurrentUserId();
+    Integer getCurrentUserId();
 }

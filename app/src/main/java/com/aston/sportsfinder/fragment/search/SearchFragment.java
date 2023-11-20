@@ -17,21 +17,25 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentSearchBinding binding;
     private GoogleMap mMap;
+    private ExecutorService executorService;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
+        executorService = DatabaseClient.getInstance(getContext()).executorService;
         return binding.getRoot();
     }
 
@@ -63,23 +67,29 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void getGamesFromDatabase() {
-        DatabaseClient.getInstance(getContext()).executorService.execute(() -> {
+        executorService.execute(() -> {
             List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().getAllGames();
-            getActivity().runOnUiThread(() -> {
-                showGamesOnMap(games);
-                Log.d("ASTON", "Number of games fetched: " + games.size());
-            });
+            if(getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    showGamesOnMap(games);
+                    Log.d("TEST", "Number of games fetched: " + games.size());
+                });
+            }
         });
     }
 
-    private void showGamesOnMap(List<Game> games) {
+    public void showGamesOnMap(List<Game> games) {
         for (Game game : games) {
             LatLng loc = new LatLng(game.getLatitude(), game.getLongitude());
-            Marker marker = mMap.addMarker(new MarkerOptions()
+            MarkerOptions markerOptions = new MarkerOptions()
                     .position(loc)
-                    .title(game.getTeam1() + " vs " + game.getTeam2()));
-            marker.setTag(game);
+                    .title(game.getTeam1() + " vs " + game.getTeam2());
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 10));
+
+            if (game.isJoined()) {
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            }
+            mMap.addMarker(markerOptions).setTag(game);
         }
         mMap.getUiSettings().setZoomControlsEnabled(true);
     }
