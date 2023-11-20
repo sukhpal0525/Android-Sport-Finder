@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,21 +12,24 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Welcome Message -->
+        <!--    TITLE: Notifications    -->
         <TextView
             android:id="@+id/welcomeMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dashboard"
+            android:text="Your Notifications"
             android:textSize="24sp"
-            android:layout_marginBottom="16dp" />
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp" />
 
-        <TextView
-            android:id="@+id/sampleNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="- Notification 1"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notificationsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp" />
+
     </LinearLayout>
 </ScrollView>
