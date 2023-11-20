@@ -8,7 +8,6 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 
 import com.aston.sportsfinder.model.Game;
-import com.aston.sportsfinder.model.GameNotifications;
 
 import java.util.List;
 
@@ -24,12 +23,11 @@ public interface GameDao {
     @Delete
     void deleteGame(Game game);
 
+    @Query("SELECT COUNT(id) FROM Game")
+    int countGames();
+
     @Query("SELECT * FROM Game WHERE userId = :userId")
     List<Game> getGamesForUser(int userId);
-
-    @Transaction
-    @Query("SELECT * FROM Game WHERE id = :gameId")
-    GameNotifications getGameNotifications(int gameId);
 
     @Query("UPDATE Game SET isJoined = :isJoined WHERE id = :gameId")
     void updateGameJoinStatus(int gameId, boolean isJoined);
@@ -39,4 +37,7 @@ public interface GameDao {
 
     @Query("UPDATE Game SET isJoined = :isJoined, userId = :userId WHERE id = :gameId")
     void updateGameJoinStatus(int gameId, boolean isJoined, int userId);
+
+    @Query("SELECT COUNT(id) FROM Game WHERE id = :gameId AND userId = :userId AND isJoined = 1")
+    boolean isGameJoinedByUser(int gameId, int userId);
 }
