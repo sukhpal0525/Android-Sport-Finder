@@ -52,6 +52,12 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
             btnAction.setEnabled(false);
             btnAction.setBackgroundColor(Color.GRAY);
             btnAction.setTextColor(Color.DKGRAY);
+        } else if (game.isJoined()) {
+            tvStatus.setText("Status: Joined");
+            btnAction.setText("Already Joined");
+            btnAction.setEnabled(false);
+            btnAction.setBackgroundColor(Color.GRAY);
+            btnAction.setTextColor(Color.DKGRAY);
         } else {
             tvStatus.setText("Status: Not started");
             btnAction.setText("Join Game");
@@ -62,7 +68,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         if (!game.isStarted()) {
             btnAction.setOnClickListener(v -> {
                 dismiss();
-                JoinGameBottomSheet joinGameBottomSheet = JoinGameBottomSheet.newInstance();
+                JoinGameBottomSheet joinGameBottomSheet = JoinGameBottomSheet.newInstance(game);
                 joinGameBottomSheet.show(getParentFragmentManager(), "JoinGameBottomSheet");
             });
         }
