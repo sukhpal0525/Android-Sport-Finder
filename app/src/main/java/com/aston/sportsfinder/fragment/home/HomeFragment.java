@@ -25,13 +25,13 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        NavController navController = Navigation.findNavController(view);
-        view.findViewById(R.id.searchButton).setOnClickListener(v -> {
-            NavOptions navOptions = new NavOptions.Builder()
-                    .setPopUpTo(R.id.navigation_home, true)
-                    .build();
-            navController.navigate(R.id.action_navigation_home_to_search, null, navOptions);
-        });
+//        NavController navController = Navigation.findNavController(view);
+//        view.findViewById(R.id.searchButton).setOnClickListener(v -> {
+//            NavOptions navOptions = new NavOptions.Builder()
+//                    .setPopUpTo(R.id.navigation_home, true)
+//                    .build();
+//            navController.navigate(R.id.action_navigation_home_to_search, null, navOptions);
+//        });
     }
 }
 
