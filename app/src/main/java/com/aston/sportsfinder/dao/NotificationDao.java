@@ -27,6 +27,9 @@ public interface NotificationDao {
     @Query("SELECT * FROM Notification WHERE userId = :userId ORDER BY timestamp DESC")
     List<Notification> getNotificationsForUserSync(int userId);
 
-    @Query("UPDATE Notification SET isRead = 1 WHERE id = :notificationId")
-    void markNotificationAsRead(int notificationId);
+    @Query("UPDATE Notification SET isRead = 1 WHERE userId = :userId")
+    void markNotificationsAsRead(int userId);
+
+    @Query("SELECT COUNT(*) FROM Notification WHERE userId = :userId AND isRead = 0")
+    int getUnreadNotificationCount(int userId);
 }

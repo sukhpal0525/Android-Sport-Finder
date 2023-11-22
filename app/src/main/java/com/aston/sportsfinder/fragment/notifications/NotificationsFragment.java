@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.aston.sportsfinder.databinding.FragmentNotificationsBinding;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsAdapter;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
+import com.aston.sportsfinder.util.DatabaseClient;
 
 public class NotificationsFragment extends Fragment {
 
@@ -47,8 +48,11 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        viewModel.refreshNotifications();;
+        viewModel.loadNotifications();
+        viewModel.markNotificationsAsRead();
+
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

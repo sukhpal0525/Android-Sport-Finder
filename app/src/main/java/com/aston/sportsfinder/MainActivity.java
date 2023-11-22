@@ -3,10 +3,14 @@ package com.aston.sportsfinder;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.aston.sportsfinder.model.Notification;
+import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
 import com.aston.sportsfinder.util.DatabaseClient;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,5 +34,18 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             Log.d("TEST", "Navigated to: " + destination.getLabel());
         });
+        NotificationsViewModel viewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
+        viewModel.getUnreadNotificationsCount().observe(this, this::updateNotificationsBadge);
+    }
+
+    private void updateNotificationsBadge(Integer notificationAmount) {
+        BottomNavigationView bottomNav = findViewById(R.id.nav_view);
+        BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.navigation_notifications);
+        if (notificationAmount > 0) {
+            badge.setVisible(true);
+            badge.setNumber(notificationAmount);
+        } else {
+            badge.setVisible(false);
+        }
     }
 }

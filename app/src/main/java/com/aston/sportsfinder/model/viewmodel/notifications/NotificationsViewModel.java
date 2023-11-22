@@ -21,6 +21,7 @@ import java.util.concurrent.ExecutorService;
 public class NotificationsViewModel extends AndroidViewModel {
 
     private final MediatorLiveData<List<Notification>> notificationsLiveData = new MediatorLiveData<>();
+    private final MutableLiveData<Integer> unreadNotificationsCount = new MutableLiveData<>();
     private final NotificationDao notificationDao;
     private final UserDao userDao;
     private final ExecutorService executorService;
@@ -38,19 +39,40 @@ public class NotificationsViewModel extends AndroidViewModel {
         loadNotifications();
     }
 
-    private void loadNotifications() {
+    public void loadNotifications() {
         executorService.execute(() -> {
-            Integer currentUserId = userDao.getCurrentUserId();
-            if (currentUserId != null) {
-                List<Notification> notifications = notificationDao.getNotificationsForUserSync(currentUserId);
+            Integer userId = userDao.getCurrentUserId();
+            if (userId != null) {
+                List<Notification> notifications = notificationDao.getNotificationsForUserSync(userId);
                 notificationsLiveData.postValue(notifications);
+                updateUnreadNotificationsCount(userId);
             } else {
                 notificationsLiveData.postValue(new ArrayList<>());
             }
         });
     }
 
+    public void markNotificationsAsRead() {
+        executorService.execute(() -> {
+            Integer userId = userDao.getCurrentUserId();
+            if (userId != null) {
+                notificationDao.markNotificationsAsRead(userId);
+                int notificationCount = notificationDao.getUnreadNotificationCount(userId);
+                unreadNotificationsCount.postValue(notificationCount);
+            }
+        });
+    }
+
+    private void updateUnreadNotificationsCount(int userId) {
+        int notificationCount = notificationDao.getUnreadNotificationCount(userId);
+        unreadNotificationsCount.postValue(notificationCount);
+    }
+
     public LiveData<List<Notification>> getNotifications() {
         return notificationsLiveData;
+    }
+
+    public LiveData<Integer> getUnreadNotificationsCount() {
+        return unreadNotificationsCount;
     }
 }
