@@ -31,7 +31,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         Notification notification = notifications.get(position);
         holder.bind(notification);
-        Log.d("TEST", "Binding notification: " + notification.getMessage());
+        Log.d("SSS", "Notification: " + notification.getMessage());
 
         if (position == notifications.size() - 1) {
             holder.bottomDivider.setVisibility(View.VISIBLE);

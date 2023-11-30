@@ -38,7 +38,7 @@ public class NotificationsFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication())).get(NotificationsViewModel.class);
         viewModel.getNotifications().observe(getViewLifecycleOwner(), notifications -> {
-            Log.d("TEST", "Notifications received: " + notifications.size());
+            Log.d("SSS", "Notifications received: " + notifications.size());
             if (notifications != null && !notifications.isEmpty()) {
                 adapter.setNotifications(notifications);
             }

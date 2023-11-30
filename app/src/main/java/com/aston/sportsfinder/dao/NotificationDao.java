@@ -15,9 +15,6 @@ public interface NotificationDao {
     @Insert
     void insertNotification(Notification notification);
 
-    @Query("SELECT COUNT(id) FROM Notification")
-    int countNotifications();
-
     @Query("SELECT * FROM Notification ORDER BY timestamp DESC")
     LiveData<List<Notification>> getAllNotificationsAt();
 

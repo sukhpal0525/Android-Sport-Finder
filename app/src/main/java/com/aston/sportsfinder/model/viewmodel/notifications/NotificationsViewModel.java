@@ -24,13 +24,13 @@ public class NotificationsViewModel extends AndroidViewModel {
     private final MutableLiveData<Integer> unreadNotificationsCount = new MutableLiveData<>();
     private final NotificationDao notificationDao;
     private final UserDao userDao;
-    private final ExecutorService executorService;
+    private final ExecutorService asyncTaskExecutor;
 
     public NotificationsViewModel(@NonNull Application application) {
         super(application);
         notificationDao = DatabaseClient.getInstance(application).getAppDatabase().notificationDao();
         userDao = DatabaseClient.getInstance(application).getAppDatabase().userDao();
-        executorService = DatabaseClient.getInstance(application).executorService;
+        asyncTaskExecutor = DatabaseClient.getInstance(application).executorService;
 
         loadNotifications();
     }
@@ -40,7 +40,7 @@ public class NotificationsViewModel extends AndroidViewModel {
     }
 
     public void loadNotifications() {
-        executorService.execute(() -> {
+        asyncTaskExecutor.execute(() -> {
             Integer userId = userDao.getCurrentUserId();
             if (userId != null) {
                 List<Notification> notifications = notificationDao.getNotificationsForUserSync(userId);
@@ -53,7 +53,7 @@ public class NotificationsViewModel extends AndroidViewModel {
     }
 
     public void markNotificationsAsRead() {
-        executorService.execute(() -> {
+        asyncTaskExecutor.execute(() -> {
             Integer userId = userDao.getCurrentUserId();
             if (userId != null) {
                 notificationDao.markNotificationsAsRead(userId);

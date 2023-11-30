@@ -29,13 +29,13 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentSearchBinding binding;
     private GoogleMap mMap;
-    private ExecutorService executorService;
+    private ExecutorService asyncTaskExecutor;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
-        executorService = DatabaseClient.getInstance(getContext()).executorService;
+        asyncTaskExecutor = DatabaseClient.getInstance(getContext()).executorService;
         return binding.getRoot();
     }
 
@@ -67,7 +67,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void getGamesFromDatabase() {
-        executorService.execute(() -> {
+        asyncTaskExecutor.execute(() -> {
             List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().getAllGames();
             if(getActivity() != null) {
                 getActivity().runOnUiThread(() -> {

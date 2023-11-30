@@ -15,6 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.aston.sportsfinder.R;
+import com.aston.sportsfinder.api.RetrofitClient;
+import com.aston.sportsfinder.api.WeatherResponse;
+import com.aston.sportsfinder.api.WeatherService;
 import com.aston.sportsfinder.dao.GameDao;
 import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.Notification;
@@ -23,12 +26,11 @@ import com.aston.sportsfinder.util.DatabaseClient;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
     private Game selectedGame;
-    private ExecutorService executorService;
+    private ExecutorService asyncTaskExecutor;
 
     public static JoinGameBottomSheet newInstance(Game game) {
         JoinGameBottomSheet fragment = new JoinGameBottomSheet();
@@ -39,7 +41,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        executorService = DatabaseClient.getInstance(requireContext()).executorService;
+        asyncTaskExecutor = DatabaseClient.getInstance(requireContext()).executorService;
     }
 
     @Override
@@ -60,14 +62,14 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
     }
 
     private void insertNotification(int userId) {
-        executorService.execute(() -> {
+        asyncTaskExecutor.execute(() -> {
             String message = "Joined game: " + selectedGame.getTeam1() + " vs " + selectedGame.getTeam2() +
                     "\nDate: " + selectedGame.getDate() +
                     "\nTime: " + selectedGame.getTime();
 
             Notification notification = new Notification(0, userId, message, System.currentTimeMillis(), false, selectedGame.getId());
             DatabaseClient.getInstance(getContext()).getAppDatabase().notificationDao().insertNotification(notification);
-            Log.d("TEST-NOTIFICATION", "Notification created for game ID: " + selectedGame.getId());
+            Log.d("SSS", "Notification created for game ID: " + selectedGame.getId());
 
             NotificationsViewModel viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
             viewModel.refreshNotifications();
@@ -75,9 +77,9 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
     }
 
     private void joinGame() {
-        executorService.execute(() -> {
+        asyncTaskExecutor.execute(() -> {
             try {
-                Log.d("TEST-NOTIFICATION", "Confirm button clicked for game ID: " + selectedGame.getId());
+                Log.d("SSS", "Button clicked for game ID: " + selectedGame.getId());
                 Integer userId = DatabaseClient.getInstance(getContext()).getAppDatabase().userDao().getCurrentUserId();
 
                 if (userId != null && !selectedGame.isStarted()) {
@@ -86,7 +88,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
                     notify("Cannot join, game already started or User ID is null");
                 }
             } catch (Exception e) {
-                Log.e("TEST-NOTIFICATION", "Error joining game", e);
+                Log.e("SSS", "Error joining game", e);
                 notify("Error joining game");
             }
             dismiss();

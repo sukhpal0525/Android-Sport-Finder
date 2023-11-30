@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNav, navController);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            Log.d("TEST", "Navigated to: " + destination.getLabel());
+            Log.d("SSS", "Navigated to: " + destination.getLabel());
         });
         NotificationsViewModel viewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
         viewModel.getUnreadNotificationsCount().observe(this, this::updateNotificationsBadge);

@@ -3,64 +3,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:padding="16dp">
 
-    <!--    TITLE: Welcome    -->
+    <!-- Welcome Title -->
     <TextView
-        android:id="@+id/welcomeMessage"
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome"
         android:textSize="24sp"
-        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="16dp"/>
 
-    <!--    TEXT: Welcome Description    -->
+    <!-- Location Text -->
     <TextView
-        android:id="@+id/welcomeMessageBody"
-        android:layout_width="0dp"
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="An application designed to help you find available local events for your favourite sports with an emphasis on usability and user-centered design."
-        android:textSize="16sp"
-        android:layout_marginTop="32dp"
-        android:justificationMode="inter_word"
-        app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="USA, New York"
+        android:textSize="14sp"
+        android:textColor="#424242"
+        app:layout_constraintStart_toStartOf="@+id/tvWelcome"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+        android:layout_marginTop="8dp"/>
 
-    <!--    MAP: Static preview    -->
-    <FrameLayout
-        android:id="@+id/mapBox"
+    <!-- Card 1 -->
+    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/border_background"
-        app:layout_constraintTop_toBottomOf="@id/welcomeMessageBody"
+        android:layout_height="120dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvLocation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toStartOf="@+id/card2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp">
 
-        <ImageView
-            android:id="@+id/staticMap"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/static_map"
-            android:scaleType="centerCrop" />
-    </FrameLayout>
+            android:gravity="center"
+            android:text="Card 1 Content"/>
+    </androidx.cardview.widget.CardView>
 
-    <!--    BUTTON: Get Started    -->
+    <!-- Card 2 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toTopOf="@+id/card1"
+        app:layout_constraintStart_toEndOf="@+id/card1"
+        app:layout_constraintEnd_toStartOf="@+id/card3"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Card 2 Content"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Card 3 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card3"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toTopOf="@+id/card2"
+        app:layout_constraintStart_toEndOf="@+id/card2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Card 3 Content"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Find a Game Button -->
     <Button
-        android:id="@+id/searchButton"
+        android:id="@+id/btnFindGame"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="FIND A MATCH"
-        android:background="@drawable/border_background"
-        app:layout_constraintTop_toBottomOf="@id/mapBox"
+        android:text="FIND A GAME"
+        app:layout_constraintTop_toBottomOf="@+id/card3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
