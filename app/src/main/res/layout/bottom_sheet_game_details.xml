@@ -56,9 +56,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Score: 0 - 0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:gravity="center"/>
 
-    <TextView
+        <TextView
         android:id="@+id/tvGameDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,11 +68,11 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <TextView
-        android:id="@+id/tvAdditionalInfo"
+        android:id="@+id/tvWeatherInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Additional Info: Weather, Audience, etc."
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <TextView

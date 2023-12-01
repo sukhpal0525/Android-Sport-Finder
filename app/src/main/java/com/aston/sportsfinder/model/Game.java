@@ -32,6 +32,10 @@ public class Game implements Serializable {
     private String date;
     private String time;
 
+    public enum GameType {
+        FOOTBALL;
+    }
+
     public int getId() {
         return id;
     }
@@ -184,10 +188,6 @@ public class Game implements Serializable {
         this.longitude = longitude;
         this.date = date;
         this.time = time;
-    }
-
-    public enum GameType {
-        FOOTBALL;
     }
 }
 //  Foreign key (Game --> User)
