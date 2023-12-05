@@ -32,10 +32,6 @@ public class Game implements Serializable {
     private String date;
     private String time;
 
-    public enum GameType {
-        FOOTBALL;
-    }
-
     public int getId() {
         return id;
     }
