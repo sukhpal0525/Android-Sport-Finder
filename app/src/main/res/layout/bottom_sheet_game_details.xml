@@ -59,6 +59,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:gravity="center"/>
 
+    <TextView
+        android:id="@+id/tvGameType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:gravity="left"/>
+
         <TextView
         android:id="@+id/tvGameDetails"
         android:layout_width="match_parent"

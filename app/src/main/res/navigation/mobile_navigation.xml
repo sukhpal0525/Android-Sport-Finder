@@ -14,12 +14,12 @@
     </fragment>
 
     <!--                   DASHBOARD                 -->
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.aston.sportsfinder.fragment.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard">
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_dashboard"-->
+<!--        android:name="com.aston.sportsfinder.fragment.dashboard.DashboardFragment"-->
+<!--        android:label="@string/title_dashboard"-->
+<!--        tools:layout="@layout/fragment_dashboard">-->
+<!--    </fragment>-->
 
     <!--                    SEARCH                   -->
     <fragment
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.aston.sportsfinder.fragment.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_my_games"
         tools:layout="@layout/fragment_notifications"/>
 
     <!--                  SETTINGS                   -->

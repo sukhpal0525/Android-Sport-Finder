@@ -2,7 +2,7 @@
     <string name="app_name">SportsApp</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Alerts</string>
+    <string name="title_my_games">My Games</string>
     <string name="title_profile">Profile</string>
     <string name="title_search">Search</string>
     <string name="title_settings">Settings</string>

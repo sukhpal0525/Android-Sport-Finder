@@ -2,8 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:padding="16dp">
 
     <!-- Dashboard Title -->
     <TextView
@@ -13,66 +12,50 @@
         android:text="Dashboard"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="16dp"/>
 
-    <!-- Button 1 -->
-    <Button
-        android:id="@+id/btn_1"
+    <!-- Total Games Joined -->
+    <TextView
+        android:id="@+id/totalGamesJoined"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        android:text="Button 1"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/border_background"
-        app:layout_constraintTop_toBottomOf="@+id/dashboardTitle"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="Total Games Joined: 5"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/dashboardTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:background="@drawable/grey_border"/>
 
-    <!-- Button 2 -->
-    <Button
-        android:id="@+id/btn_2"
+    <!-- Your Next Game -->
+    <TextView
+        android:id="@+id/nextGame"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        android:text="Button 2"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/border_background"
-        app:layout_constraintTop_toBottomOf="@+id/btn_1"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="Your Next Game: Tomorrow"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/totalGamesJoined"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:background="@drawable/grey_border"/>
 
-    <!-- Button 3 -->
-    <Button
-        android:id="@+id/btn_3"
+    <!-- Recently Joined -->
+    <TextView
+        android:id="@+id/recentlyJoined"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        android:text="Button 3"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/border_background"
-        app:layout_constraintTop_toBottomOf="@+id/btn_2"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="Recently Joined: Game XYZ"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/nextGame"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:background="@drawable/grey_border"/>
 
-    <!-- Button 4 -->
-    <Button
-        android:id="@+id/btn_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        android:text="Button 4"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/border_background"
-        app:layout_constraintTop_toBottomOf="@+id/btn_3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+    <!-- More Dashboard Items... -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

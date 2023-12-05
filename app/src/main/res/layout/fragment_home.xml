@@ -3,96 +3,208 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
-    <!-- Welcome Title -->
+    <!-- Large title "Welcome" -->
     <TextView
-        android:id="@+id/tvWelcome"
+        android:id="@+id/welcomeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome"
-        android:textSize="24sp"
+        android:textSize="28sp"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"/>
 
-    <!-- Location Text -->
+    <!-- Smaller grey text "USA, New York" -->
     <TextView
-        android:id="@+id/tvLocation"
+        android:id="@+id/locationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="USA, New York"
         android:textSize="14sp"
-        android:textColor="#424242"
-        app:layout_constraintStart_toStartOf="@+id/tvWelcome"
-        app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
-        android:layout_marginTop="8dp"/>
+        android:textColor="#787878"
+        app:layout_constraintStart_toStartOf="@+id/welcomeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTitle"
+        android:layout_marginTop="4dp"/>
 
-    <!-- Card 1 -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvLocation"
+    <!-- Downwards Arrow Icon -->
+    <ImageView
+        android:id="@+id/downArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_keyboard_arrow_down_24"
+        app:layout_constraintStart_toEndOf="@id/locationText"
+        app:layout_constraintBottom_toBottomOf="@id/locationText"
+        app:layout_constraintTop_toTopOf="@id/locationText"
+        android:layout_marginStart="4dp"/>
+
+        <!-- Search Bar -->
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_for_events"
+            android:background="@drawable/border_background"
+            android:padding="12dp"
+            android:layout_marginTop="32dp"
+            android:textSize="14sp"
+            android:drawableEnd="@drawable/ic_search_black_24dp"
+            app:layout_constraintTop_toBottomOf="@id/locationText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/callToActionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find your perfect game"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/card2"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp">
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        android:layout_marginTop="32dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Card 1 Content"/>
-    </androidx.cardview.widget.CardView>
+    <!-- ACTION: TEXT -->
+    <TextView
+        android:id="@+id/callToActionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a sport below:"
+        android:textSize="14sp"
+        android:textColor="#787878"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/callToActionTitle"
+        android:layout_marginTop="4dp"/>
 
-    <!-- Card 2 -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card2"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toTopOf="@+id/card1"
-        app:layout_constraintStart_toEndOf="@+id/card1"
-        app:layout_constraintEnd_toStartOf="@+id/card3"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Card 2 Content"/>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Card 3 -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card3"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toTopOf="@+id/card2"
-        app:layout_constraintStart_toEndOf="@+id/card2"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Card 3 Content"/>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Find a Game Button -->
-    <Button
-        android:id="@+id/btnFindGame"
+    <!-- Horizontal ScrollView for Cards -->
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="FIND A GAME"
-        app:layout_constraintTop_toBottomOf="@+id/card3"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/callToActionText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Card 1 -->
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="160dp"
+                android:background="@drawable/border_background_card"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/card1Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upcoming Match"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/card1Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Soccer: Local League"
+                    android:layout_gravity="center"
+                    android:padding="8dp"/>
+
+                <TextView
+                    android:id="@+id/card1Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="July 20, 2023"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="16dp"/>
+            </FrameLayout>
+
+            <!-- Card 2 -->
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="160dp"
+                android:background="@drawable/border_background_card"
+                android:layout_marginEnd="8dp">
+                <!-- Add content inside each card -->
+            </FrameLayout>
+
+            <!-- Card 3 -->
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="160dp"
+                android:background="@drawable/border_background_card">
+                <!-- Add content inside each card -->
+            </FrameLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="FIND A MATCH"
+        android:background="@drawable/border_background"
+        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchButton"
+        android:layout_marginTop="32dp"
+        android:background="#D3D3D3"/>
+
+
+    <TextView
+        android:id="@+id/yourNextGameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your next game"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/yourNextGameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have a game starting soon:"
+        android:textSize="14sp"
+        android:textColor="#787878"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yourNextGameTitle"
+        android:layout_marginTop="4dp"/>
+
+
+
+    <TextView
+        android:id="@+id/gameType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sport: "
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yourNextGameText"
         android:layout_marginTop="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
