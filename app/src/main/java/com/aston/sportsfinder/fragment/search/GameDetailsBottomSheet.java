@@ -36,6 +36,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bottom_sheet_game_details, container, false);
 
+        TextView tvGameType = view.findViewById(R.id.tvGameType);
         TextView tvGameDetails = view.findViewById(R.id.tvGameDetails);
         TextView tvTeamInfo = view.findViewById(R.id.tvTeamInfo);
         TextView tvScore = view.findViewById(R.id.tvScore);
@@ -43,6 +44,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         TextView tvStatus = view.findViewById(R.id.tvStatus);
         Button btnAction = view.findViewById(R.id.btnAction);
 
+        tvGameType.setText("Type: " + game.getGameType());
         tvTeamInfo.setText(game.getTeam1() + " vs " + game.getTeam2());
         tvScore.setText("(Score: " + game.getScore1() + " - " + game.getScore2() + ")");
         tvGameDetails.setText("Location: " + game.getStreet() + ", " + game.getCity() + "\nDate: " + game.getDate() + "\nTime: " + game.getTime());
@@ -99,7 +101,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         ivClose.setOnClickListener(v -> dismiss());
     }
 
-    private void displayWeatherInfo(WeatherResponse weatherResponse) {
+    public void displayWeatherInfo(WeatherResponse weatherResponse) {
         TextView tvWeatherInfo = getView().findViewById(R.id.tvWeatherInfo);
 
         // Update text view with weather data

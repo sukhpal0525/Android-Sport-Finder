@@ -61,7 +61,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
         btnConfirm.setOnClickListener(v -> joinGame());
     }
 
-    private void insertNotification(int userId) {
+    public void insertNotification(int userId) {
         asyncTaskExecutor.execute(() -> {
             String message = "Joined game: " + selectedGame.getTeam1() + " vs " + selectedGame.getTeam2() +
                     "\nDate: " + selectedGame.getDate() +
@@ -76,7 +76,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
         });
     }
 
-    private void joinGame() {
+    public void joinGame() {
         asyncTaskExecutor.execute(() -> {
             try {
                 Log.d("SSS", "Button clicked for game ID: " + selectedGame.getId());
@@ -95,9 +95,9 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
         });
     }
 
-    private void processGameJoin(int userId) {
+    public void processGameJoin(int userId) {
         GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
-        if (!gameDao.isGameJoinedByUser(selectedGame.getId(), userId)) {
+        if (!gameDao.isGameJoined(selectedGame.getId(), userId)) {
             gameDao.updateGameJoinStatus(selectedGame.getId(), true, userId);
             insertNotification(userId);
             notify("Joined game successfully!");
@@ -106,7 +106,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
         }
     }
 
-    private void notify(String message) {
+    public void notify(String message) {
         getActivity().runOnUiThread(() -> Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show());
     }
 }

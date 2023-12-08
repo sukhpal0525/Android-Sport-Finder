@@ -15,14 +15,8 @@ public interface NotificationDao {
     @Insert
     void insertNotification(Notification notification);
 
-    @Query("SELECT * FROM Notification ORDER BY timestamp DESC")
-    LiveData<List<Notification>> getAllNotificationsAt();
-
     @Query("SELECT * FROM Notification WHERE userId = :userId ORDER BY timestamp DESC")
-    LiveData<List<Notification>> getNotificationsForUser(int userId);
-
-    @Query("SELECT * FROM Notification WHERE userId = :userId ORDER BY timestamp DESC")
-    List<Notification> getNotificationsForUserSync(int userId);
+    List<Notification> getNotifications(int userId);
 
     @Query("UPDATE Notification SET isRead = 1 WHERE userId = :userId")
     void markNotificationsAsRead(int userId);

@@ -20,24 +20,15 @@ public interface GameDao {
     @Insert
     void insertGame(Game game);
 
-    @Delete
-    void deleteGame(Game game);
-
     @Query("SELECT COUNT(id) FROM Game")
     int countGames();
-
-    @Query("SELECT * FROM Game WHERE userId = :userId")
-    List<Game> getGamesForUser(int userId);
-
-    @Query("UPDATE Game SET isJoined = :isJoined WHERE id = :gameId")
-    void updateGameJoinStatus(int gameId, boolean isJoined);
-
-    @Query("SELECT * FROM Game WHERE isJoined = 1")
-    LiveData<List<Game>> getJoinedGames();
 
     @Query("UPDATE Game SET isJoined = :isJoined, userId = :userId WHERE id = :gameId")
     void updateGameJoinStatus(int gameId, boolean isJoined, int userId);
 
     @Query("SELECT COUNT(id) FROM Game WHERE id = :gameId AND userId = :userId AND isJoined = 1")
-    boolean isGameJoinedByUser(int gameId, int userId);
+    boolean isGameJoined(int gameId, int userId);
+
+    @Query("SELECT * FROM Game WHERE userId = :userId ORDER BY date, time LIMIT 2")
+    List<Game> getUpcomingGames(int userId);
 }

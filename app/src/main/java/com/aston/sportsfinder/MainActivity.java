@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getUnreadNotificationsCount().observe(this, this::updateNotificationsBadge);
     }
 
-    private void updateNotificationsBadge(Integer notificationAmount) {
+    public void updateNotificationsBadge(Integer notificationAmount) {
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
         BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.navigation_notifications);
         if (notificationAmount > 0) {

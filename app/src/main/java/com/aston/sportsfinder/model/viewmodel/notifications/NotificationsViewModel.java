@@ -43,7 +43,7 @@ public class NotificationsViewModel extends AndroidViewModel {
         asyncTaskExecutor.execute(() -> {
             Integer userId = userDao.getCurrentUserId();
             if (userId != null) {
-                List<Notification> notifications = notificationDao.getNotificationsForUserSync(userId);
+                List<Notification> notifications = notificationDao.getNotifications(userId);
                 notificationsLiveData.postValue(notifications);
                 updateUnreadNotificationsCount(userId);
             } else {
@@ -63,7 +63,7 @@ public class NotificationsViewModel extends AndroidViewModel {
         });
     }
 
-    private void updateUnreadNotificationsCount(int userId) {
+    public void updateUnreadNotificationsCount(int userId) {
         int notificationCount = notificationDao.getUnreadNotificationCount(userId);
         unreadNotificationsCount.postValue(notificationCount);
     }
