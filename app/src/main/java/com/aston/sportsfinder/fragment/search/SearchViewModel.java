@@ -1,11 +1,13 @@
 package com.aston.sportsfinder.fragment.search;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.aston.sportsfinder.api.RetrofitClient;
+import com.aston.sportsfinder.api.WeatherData;
 import com.aston.sportsfinder.api.WeatherResponse;
 import com.aston.sportsfinder.api.WeatherService;
 import com.aston.sportsfinder.model.Game;
@@ -21,5 +23,21 @@ public class SearchViewModel extends ViewModel {
 
     public LiveData<WeatherResponse> fetchWeatherData(Game game) {
         return searchRepository.fetchWeatherData(game.getLatitude(), game.getLongitude(), API_KEY);
+    }
+
+    public void displayWeatherInfo(WeatherResponse weatherResponse, TextView tvWeatherInfo) {
+        // Update text view with weather data
+        if (weatherResponse != null && weatherResponse.getWeatherData() != null) {
+            WeatherData weatherData = weatherResponse.getWeatherData().get(0);
+            WeatherData.WeatherMain main = weatherData.getMain();
+            WeatherData.WeatherDescription description = weatherData.getWeather().get(0);
+
+            String weatherInfo =
+                    main.getTemp() + "°C " + "(" + description.getMainDescription() + ")";
+
+            tvWeatherInfo.setText(weatherInfo);
+        } else {
+            tvWeatherInfo.setText("Weather data not available.");
+        }
     }
 }
