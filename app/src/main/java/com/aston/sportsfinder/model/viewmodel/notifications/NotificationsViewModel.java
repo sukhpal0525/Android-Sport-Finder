@@ -35,6 +35,16 @@ public class NotificationsViewModel extends AndroidViewModel {
         loadNotifications();
     }
 
+    public void insertNotifications(Notification newNotification) {
+        asyncTaskExecutor.execute(() -> {
+            notificationDao.insertNotification(newNotification);
+            Integer userId = userDao.getCurrentUserId();
+            if (userId != null) {
+                updateUnreadNotificationsCount(userId);
+            }
+        });
+    }
+
     public void refreshNotifications() {
         loadNotifications();
     }

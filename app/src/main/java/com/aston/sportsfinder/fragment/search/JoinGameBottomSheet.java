@@ -68,11 +68,8 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
                     "\nTime: " + selectedGame.getTime();
 
             Notification notification = new Notification(0, userId, message, System.currentTimeMillis(), false, selectedGame.getId());
-            DatabaseClient.getInstance(getContext()).getAppDatabase().notificationDao().insertNotification(notification);
-            Log.d("SSS", "Notification created for game ID: " + selectedGame.getId());
-
             NotificationsViewModel viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
-            viewModel.refreshNotifications();
+            viewModel.insertNotifications(notification);
         });
     }
 
