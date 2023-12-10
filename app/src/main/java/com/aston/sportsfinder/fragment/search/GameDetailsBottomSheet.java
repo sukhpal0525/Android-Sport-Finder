@@ -82,13 +82,9 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         }
 
         viewModel = new ViewModelProvider(this).get(SearchViewModel.class);
-        viewModel.fetchWeatherData(game).observe(getViewLifecycleOwner(), weatherResponse -> {
-            if (weatherResponse != null) {
-                displayWeatherInfo(weatherResponse);
-            } else {
-                tvWeatherInfo.setText("Weather data not available.");
-            }
-        });
+        viewModel.fetchWeatherData(game).observe(getViewLifecycleOwner(), weatherResponse ->
+                viewModel.displayWeatherInfo(weatherResponse, view.findViewById(R.id.tvWeatherInfo)));
+
         return view;
     }
 
@@ -99,25 +95,5 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         // Close bottom sheet
         ImageView ivClose = view.findViewById(R.id.ivClose);
         ivClose.setOnClickListener(v -> dismiss());
-    }
-
-    public void displayWeatherInfo(WeatherResponse weatherResponse) {
-        TextView tvWeatherInfo = getView().findViewById(R.id.tvWeatherInfo);
-
-        // Update text view with weather data
-        if (weatherResponse != null && weatherResponse.getWeatherData() != null) {
-            WeatherData weatherData = weatherResponse.getWeatherData().get(0);
-            WeatherData.WeatherMain main = weatherData.getMain();
-            WeatherData.WeatherDescription description = weatherData.getWeather().get(0);
-
-            String weatherInfo =
-                    "Temperature: " + main.getTemp() + "°C\n" +
-                    "Condition: " + description.getMainDescription() + "\n" +
-                    "Description: " + description.getDescription();
-
-            tvWeatherInfo.setText(weatherInfo);
-        } else {
-            tvWeatherInfo.setText("Weather data not available.");
-        }
     }
 }
