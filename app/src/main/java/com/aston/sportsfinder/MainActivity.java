@@ -9,6 +9,7 @@ import com.aston.sportsfinder.util.DatabaseClient;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -32,13 +33,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNav, navController);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            Log.d("SSS", "Navigated to: " + destination.getLabel());
+            String label = destination.getLabel().toString();
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(label);
+            Log.d("SSS", "Navigated to: " + label);
         });
         NotificationsViewModel viewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
         viewModel.getUnreadNotificationsCount().observe(this, this::updateNotificationsBadge);
     }
 
-    public void updateNotificationsBadge(Integer notificationAmount) {
+    public void updateNotificationsBadge(int notificationAmount) {
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
         BadgeDrawable badge = bottomNav.getOrCreateBadge(R.id.navigation_notifications);
         if (notificationAmount > 0) {
