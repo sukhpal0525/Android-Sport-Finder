@@ -32,12 +32,25 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(bottomNav, navController);
 
+        // Explicitly handle navigation for bottom nav
+        bottomNav.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home || itemId == R.id.navigation_search ||
+                    itemId == R.id.navigation_notifications || itemId == R.id.navigation_settings) {
+                Log.d("SSS", "Navigated to: " + item.getTitle());
+                navController.navigate(itemId);
+                return true;
+            }
+            return false;
+        });
+
+        // Change action bar title based on the current fragment's name
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             String label = destination.getLabel().toString();
             ActionBar actionBar = getSupportActionBar();
             actionBar.setTitle(label);
-            Log.d("SSS", "Navigated to: " + label);
         });
+
         NotificationsViewModel viewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
         viewModel.getUnreadNotificationsCount().observe(this, this::updateNotificationsBadge);
     }
