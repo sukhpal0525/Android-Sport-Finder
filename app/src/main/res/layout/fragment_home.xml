@@ -53,9 +53,12 @@
             android:layout_marginTop="32dp"
             android:textSize="14sp"
             android:drawableEnd="@drawable/ic_search_black_24dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             app:layout_constraintTop_toBottomOf="@id/locationText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
     <TextView
