@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <!-- Large title "Welcome" -->
+    <!-- Big title -->
     <TextView
         android:id="@+id/welcomeTitle"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         android:textStyle="bold"
         android:layout_marginTop="32dp"/>
 
-    <!-- Smaller grey text "USA, New York" -->
+    <!-- Location -->
     <TextView
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/welcomeTitle"
         android:layout_marginTop="4dp"/>
 
-    <!-- Downwards Arrow Icon -->
+<!--    Down arrow-->
     <ImageView
         android:id="@+id/downArrow"
         android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@id/callToActionTitle"
         android:layout_marginTop="4dp"/>
 
-    <!-- Horizontal ScrollView for Cards -->
+    <!-- HorizontalScrollView for Cards -->
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="0dp"
@@ -96,54 +96,84 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!-- Card 1 -->
+            <!-- FOOTBALL CARD -->
             <FrameLayout
                 android:layout_width="150dp"
                 android:layout_height="160dp"
-                android:background="@drawable/border_background_card"
+                android:background="@drawable/orange_card"
                 android:layout_marginEnd="8dp">
 
                 <TextView
-                    android:id="@+id/card1Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Upcoming Match"
-                    android:layout_gravity="top|center_horizontal"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/card1Description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Soccer: Local League"
-                    android:layout_gravity="center"
-                    android:padding="8dp"/>
-
-                <TextView
-                    android:id="@+id/card1Date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="July 20, 2023"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="FOOTBALL"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
             </FrameLayout>
 
-            <!-- Card 2 -->
+
+            <!-- BASEBALL CARD -->
             <FrameLayout
                 android:layout_width="150dp"
                 android:layout_height="160dp"
-                android:background="@drawable/border_background_card"
+                android:background="@drawable/red_card"
                 android:layout_marginEnd="8dp">
-                <!-- Add content inside each card -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/baseballIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/circle_red"
+                        android:src="@drawable/baseline_sports_baseball_24"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Title "BASEBALL" -->
+                    <TextView
+                        android:id="@+id/tvBaseball"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BASEBALL"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Subtitle "Tap to Find" -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to Find"
+                        android:textSize="14sp"
+                        android:textColor="#505050" />
+
+                </LinearLayout>
             </FrameLayout>
 
-            <!-- Card 3 -->
+
+
+            <!-- RUGBY CARD -->
             <FrameLayout
                 android:layout_width="150dp"
                 android:layout_height="160dp"
-                android:background="@drawable/border_background_card">
-                <!-- Add content inside each card -->
+                android:background="@drawable/blue_card">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="RUGBY"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
             </FrameLayout>
 
         </LinearLayout>
@@ -197,14 +227,34 @@
 
 
     <TextView
-        android:id="@+id/gameType"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTeamNames"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sport: "
         android:textSize="14sp"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/yourNextGameText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvGameDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/yourNextGameText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/tvWeatherInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tvGameDetails"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
