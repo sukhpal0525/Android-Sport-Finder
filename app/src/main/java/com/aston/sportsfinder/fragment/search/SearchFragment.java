@@ -77,21 +77,12 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         bottomSheet.show(getChildFragmentManager(), "GameDetailsBottomSheet");
     }
 
-    private void showErrorBottomSheet() {
-        SearchErrorBottomSheet bottomSheet = SearchErrorBottomSheet.newInstance();
-        bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
-    }
-
     public void getGamesFromDatabase() {
         Log.d("SSS", "Fetching games from database for query: " + searchQuery);
         asyncTaskExecutor.execute(() -> {
             List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().searchGames(searchQuery);
             getActivity().runOnUiThread(() -> {
-                if (games.isEmpty()) {
-                    showErrorBottomSheet();
-                } else {
-                    showGamesOnMap(games);
-                }
+                showGamesOnMap(games);
             });
         });
     }
