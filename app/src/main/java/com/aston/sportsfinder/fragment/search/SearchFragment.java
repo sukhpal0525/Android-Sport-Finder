@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.databinding.FragmentSearchBinding;
@@ -30,6 +33,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     private FragmentSearchBinding binding;
     private GoogleMap mMap;
     private ExecutorService asyncTaskExecutor;
+    private String searchQuery;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,11 +45,18 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
+        Log.d("SSS", "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
+
+        if (getArguments() != null) {
+            searchQuery = getArguments().getString("query", "");
+        }
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
     }
 
     public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -66,15 +77,22 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         bottomSheet.show(getChildFragmentManager(), "GameDetailsBottomSheet");
     }
 
+    private void showErrorBottomSheet() {
+        SearchErrorBottomSheet bottomSheet = SearchErrorBottomSheet.newInstance();
+        bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
+    }
+
     public void getGamesFromDatabase() {
+        Log.d("SSS", "Fetching games from database for query: " + searchQuery);
         asyncTaskExecutor.execute(() -> {
-            List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().getAllGames();
-            if(getActivity() != null) {
-                getActivity().runOnUiThread(() -> {
+            List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().searchGames(searchQuery);
+            getActivity().runOnUiThread(() -> {
+                if (games.isEmpty()) {
+                    showErrorBottomSheet();
+                } else {
                     showGamesOnMap(games);
-                    Log.d("TEST", "Number of games fetched: " + games.size());
-                });
-            }
+                }
+            });
         });
     }
 

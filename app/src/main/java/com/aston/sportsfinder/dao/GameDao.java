@@ -1,5 +1,6 @@
 package com.aston.sportsfinder.dao;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -31,4 +32,7 @@ public interface GameDao {
 
     @Query("SELECT * FROM Game WHERE userId = :userId ORDER BY date, time LIMIT 2")
     List<Game> getUpcomingGames(int userId);
+
+    @Query("SELECT * FROM Game WHERE (:query IS NULL OR team1 LIKE '%' || :query || '%' OR team2 LIKE '%' || :query || '%' OR gameType LIKE '%' || :query || '%')")
+    List<Game> searchGames(@Nullable String query);
 }
