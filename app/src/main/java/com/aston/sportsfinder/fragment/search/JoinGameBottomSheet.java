@@ -63,7 +63,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
     public void insertNotification(int userId) {
         asyncTaskExecutor.execute(() -> {
-            String message = "Joined game: " + selectedGame.getTeam1() + " vs " + selectedGame.getTeam2() +
+            String message = selectedGame.getTeam1() + " vs " + selectedGame.getTeam2() +
                     "\nDate: " + selectedGame.getDate() +
                     "\nTime: " + selectedGame.getTime();
 
