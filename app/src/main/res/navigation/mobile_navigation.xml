@@ -36,6 +36,19 @@
         android:label="@string/title_my_games"
         tools:layout="@layout/fragment_notifications"/>
 
+    <!--             NOTIFICATION DETAILS            -->
+    <fragment
+        android:id="@+id/navigation_notification_details"
+        android:name="com.aston.sportsfinder.fragment.notifications.NotificationDetailsFragment"
+        android:label="@string/title_notification_details"
+        tools:layout="@layout/fragment_game_details">
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
+    </fragment>
+
+
+
     <!--                  SETTINGS                   -->
     <fragment
         android:id="@+id/navigation_settings"

@@ -22,6 +22,7 @@ public class NotificationsViewModel extends AndroidViewModel {
 
     private final MediatorLiveData<List<Notification>> notificationsLiveData = new MediatorLiveData<>();
     private final MutableLiveData<Integer> unreadNotificationsCount = new MutableLiveData<>();
+    private final MutableLiveData<Integer> selectedGameId = new MutableLiveData<>();
     private final NotificationDao notificationDao;
     private final UserDao userDao;
     private final ExecutorService asyncTaskExecutor;
@@ -43,10 +44,6 @@ public class NotificationsViewModel extends AndroidViewModel {
                 updateUnreadNotificationsCount(userId);
             }
         });
-    }
-
-    public void refreshNotifications() {
-        loadNotifications();
     }
 
     public void loadNotifications() {
@@ -85,4 +82,8 @@ public class NotificationsViewModel extends AndroidViewModel {
     public LiveData<Integer> getUnreadNotificationsCount() {
         return unreadNotificationsCount;
     }
+
+    public void selectGameId(int gameId) { selectedGameId.setValue(gameId); }
+
+    public LiveData<Integer> getSelectedGameId() { return selectedGameId; }
 }

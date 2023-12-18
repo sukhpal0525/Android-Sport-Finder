@@ -35,4 +35,7 @@ public interface GameDao {
 
     @Query("SELECT * FROM Game WHERE (:query IS NULL OR team1 LIKE '%' || :query || '%' OR team2 LIKE '%' || :query || '%' OR gameType LIKE '%' || :query || '%')")
     List<Game> searchGames(@Nullable String query);
+
+    @Query("SELECT * FROM Game WHERE id = :gameId")
+    Game getGameById(int gameId);
 }

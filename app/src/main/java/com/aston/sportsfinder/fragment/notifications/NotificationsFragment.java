@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.databinding.FragmentNotificationsBinding;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsAdapter;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
-import com.aston.sportsfinder.util.DatabaseClient;
 
 public class NotificationsFragment extends Fragment {
 
@@ -24,6 +25,16 @@ public class NotificationsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
+
+        adapter = new NotificationsAdapter(gameId -> {
+            viewModel.selectGameId(gameId);
+            NavHostFragment.findNavController(this).navigate(R.id.navigation_notification_details);
+        });
+
+        binding.notificationsRecyclerView.setAdapter(adapter);
+        //This is just so the recycler view knows how to position the notification items
+        binding.notificationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return binding.getRoot();
     }
 
@@ -31,12 +42,6 @@ public class NotificationsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new NotificationsAdapter();
-        binding.notificationsRecyclerView.setAdapter(adapter);
-        //This is just so the recycler view knows how to position the notification items
-        binding.notificationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication())).get(NotificationsViewModel.class);
         viewModel.getNotifications().observe(getViewLifecycleOwner(), notifications -> {
             Log.d("SSS", "Notifications received: " + notifications.size());
             if (notifications != null && !notifications.isEmpty()) {
