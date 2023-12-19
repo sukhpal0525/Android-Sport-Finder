@@ -6,7 +6,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <!-- Map Fragment -->
+    <!-- Map -->
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -17,25 +17,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Search Bar -->
+    <!-- Search bar -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/search_bar"
-        android:drawableEnd="@android:drawable/ic_btn_speak_now"
+        android:drawableEnd="@drawable/ic_search_black_24dp"
         android:drawablePadding="12dp"
         android:hint="Search for a team name..."
-        android:paddingStart="16dp"
-        android:paddingEnd="12dp"
-        android:elevation="4dp"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:padding="12dp"
         android:textSize="14sp"
         android:textColorHint="#7E7D7D"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
