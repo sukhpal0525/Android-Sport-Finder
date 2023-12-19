@@ -23,4 +23,7 @@ public interface NotificationDao {
 
     @Query("SELECT COUNT(*) FROM Notification WHERE userId = :userId AND isRead = 0")
     int getUnreadNotificationCount(int userId);
+
+    @Query("DELETE FROM Notification WHERE userId = :userId AND gameId = :gameId")
+    void removeGameNotification(int userId, int gameId);
 }

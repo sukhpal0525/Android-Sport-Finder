@@ -1,0 +1,79 @@
+package com.aston.sportsfinder.fragment.search;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.aston.sportsfinder.R;
+import com.aston.sportsfinder.dao.GameDao;
+import com.aston.sportsfinder.dao.NotificationDao;
+import com.aston.sportsfinder.model.Game;
+import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
+import com.aston.sportsfinder.util.DatabaseClient;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.util.concurrent.ExecutorService;
+
+public class LeaveGameBottomSheet extends BottomSheetDialogFragment {
+
+    private Game selectedGame;
+    private ExecutorService asyncTaskExecutor;
+    private NotificationsViewModel viewModel;
+
+    public static LeaveGameBottomSheet newInstance(Game game) {
+        LeaveGameBottomSheet fragment = new LeaveGameBottomSheet();
+        fragment.selectedGame = game;
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        asyncTaskExecutor = DatabaseClient.getInstance(requireContext()).executorService;
+        viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_leave_game_bottom_sheet, container, false);
+
+        Button btnCancel = view.findViewById(R.id.btnCancel);
+        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+
+        btnCancel.setOnClickListener(v -> dismiss());
+        btnConfirm.setOnClickListener(v -> leaveGame());
+
+        return view;
+    }
+
+    public void leaveGame() {
+        asyncTaskExecutor.execute(() -> {
+            Log.d("SSS", "Leaving game ID: " + selectedGame.getId());
+            Integer userId = DatabaseClient.getInstance(getContext()).getAppDatabase().userDao().getCurrentUserId();
+            GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
+            NotificationDao notificationDao = DatabaseClient.getInstance(getContext()).getAppDatabase().notificationDao();
+            if (gameDao.isGameJoined(selectedGame.getId(), userId)) {
+                gameDao.updateGameJoinStatus(selectedGame.getId(), false, userId);
+                notificationDao.removeGameNotification(userId, selectedGame.getId());
+                notify("You left this game.");
+                viewModel.loadNotifications();
+            } else {
+                notify("You aren't part of this game.");
+            }
+            dismiss();
+        });
+    }
+
+    public void notify(String message) {
+        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show());
+    }
+}

@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.dao.GameDao;
+import com.aston.sportsfinder.fragment.search.LeaveGameBottomSheet;
 import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
 import com.aston.sportsfinder.util.DatabaseClient;
@@ -37,6 +37,13 @@ public class NotificationDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game_details, container, false);
+
+        Button leaveGameButton = view.findViewById(R.id.buttonLeaveGame);
+
+        leaveGameButton.setOnClickListener(v -> {
+                LeaveGameBottomSheet bottomSheet = LeaveGameBottomSheet.newInstance(currentGame);
+                bottomSheet.show(getParentFragmentManager(), "LeaveGameBottomSheet");
+        });
 
         viewModel.getSelectedGameId().observe(getViewLifecycleOwner(), gameId -> {
             asyncTaskExecutor.execute(() -> {
