@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,10 +23,12 @@ public class NotificationsFragment extends Fragment {
     private FragmentNotificationsBinding binding;
     private NotificationsAdapter adapter;
     private NotificationsViewModel viewModel;
+    private TextView tvNoNotifications;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
+        tvNoNotifications = binding.getRoot().findViewById(R.id.tvNoNotifications);
 
         adapter = new NotificationsAdapter(gameId -> {
             viewModel.selectGameId(gameId);
@@ -46,6 +49,9 @@ public class NotificationsFragment extends Fragment {
             Log.d("SSS", "Notifications received: " + notifications.size());
             if (notifications != null && !notifications.isEmpty()) {
                 adapter.setNotifications(notifications);
+                tvNoNotifications.setVisibility(View.GONE);
+            } else {
+                tvNoNotifications.setVisibility(View.VISIBLE);
             }
         });
     }
