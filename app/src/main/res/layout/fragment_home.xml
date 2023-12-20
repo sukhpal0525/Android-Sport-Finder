@@ -28,8 +28,7 @@
         android:textSize="14sp"
         android:textColor="#787878"
         app:layout_constraintStart_toStartOf="@+id/welcomeTitle"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTitle"
-        android:layout_marginTop="4dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTitle" />
 
 <!--    Down arrow-->
     <ImageView
@@ -81,10 +80,11 @@
         android:textSize="14sp"
         android:textColor="#787878"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/callToActionTitle"
-        android:layout_marginTop="4dp"/>
+        app:layout_constraintTop_toBottomOf="@id/callToActionTitle" />
 
-    <!-- HorizontalScrollView for Cards -->
+
+
+
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="0dp"
@@ -101,24 +101,56 @@
 
             <!-- FOOTBALL CARD -->
             <FrameLayout
+                android:id="@+id/footballFrame"
                 android:layout_width="150dp"
                 android:layout_height="160dp"
                 android:background="@drawable/orange_card"
                 android:layout_marginEnd="8dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="FOOTBALL"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/footballIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/circle_red"
+                        android:src="@drawable/baseline_sports_soccer_24"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Title "BASEBALL" -->
+                    <TextView
+                        android:id="@+id/tvFootball"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Football"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to Find"
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
             </FrameLayout>
+
+
+
+
 
 
             <!-- BASEBALL CARD -->
             <FrameLayout
+                android:id="@+id/baseballFrame"
                 android:layout_width="150dp"
                 android:layout_height="160dp"
                 android:background="@drawable/red_card"
@@ -144,19 +176,18 @@
                         android:id="@+id/tvBaseball"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BASEBALL"
+                        android:text="Baseball"
                         android:textStyle="bold"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textColor="@android:color/black"
                         android:layout_marginTop="8dp" />
 
-                    <!-- Subtitle "Tap to Find" -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tap to Find"
                         android:textSize="14sp"
-                        android:textColor="#505050" />
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
             </FrameLayout>
@@ -165,19 +196,94 @@
 
             <!-- RUGBY CARD -->
             <FrameLayout
+                android:id="@+id/rugbyFrame"
                 android:layout_width="150dp"
                 android:layout_height="160dp"
-                android:background="@drawable/blue_card">
+                android:background="@drawable/blue_card"
+                android:layout_marginEnd="8dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="RUGBY"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/rugbyIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/blue_circle"
+                        android:src="@drawable/baseline_sports_football_24"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Title "RUGBY" -->
+                    <TextView
+                        android:id="@+id/tvRugby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rugby"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to Find"
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
             </FrameLayout>
+
+
+
+
+            <!-- TENNIS CARD -->
+            <FrameLayout
+                android:id="@+id/tennisFrame"
+                android:layout_width="150dp"
+                android:layout_height="160dp"
+                android:background="@drawable/green_card"
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/tennisIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/green_circle"
+                        android:src="@drawable/baseline_sports_tennis_24"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Title "BASEBALL" -->
+                    <TextView
+                        android:id="@+id/tvTennis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tennis"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to Find"
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+            </FrameLayout>
+
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -224,8 +330,7 @@
         android:textSize="14sp"
         android:textColor="#787878"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yourNextGameTitle"
-        android:layout_marginTop="4dp"/>
+        app:layout_constraintTop_toBottomOf="@id/yourNextGameTitle" />
 
 
 
