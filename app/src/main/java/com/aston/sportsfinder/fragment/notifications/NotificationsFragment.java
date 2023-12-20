@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,15 +25,21 @@ public class NotificationsFragment extends Fragment {
     private NotificationsAdapter adapter;
     private NotificationsViewModel viewModel;
     private TextView tvNoNotifications;
+    private Button btnFindMatch;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
         tvNoNotifications = binding.getRoot().findViewById(R.id.tvNoNotifications);
+        btnFindMatch = binding.getRoot().findViewById(R.id.btnFindMatch);
 
         adapter = new NotificationsAdapter(gameId -> {
             viewModel.selectGameId(gameId);
             NavHostFragment.findNavController(this).navigate(R.id.navigation_notification_details);
+        });
+
+        btnFindMatch.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.navigation_search);
         });
 
         binding.notificationsRecyclerView.setAdapter(adapter);
@@ -52,6 +59,7 @@ public class NotificationsFragment extends Fragment {
                 tvNoNotifications.setVisibility(View.GONE);
             } else {
                 tvNoNotifications.setVisibility(View.VISIBLE);
+                btnFindMatch.setVisibility(View.VISIBLE);
             }
         });
     }

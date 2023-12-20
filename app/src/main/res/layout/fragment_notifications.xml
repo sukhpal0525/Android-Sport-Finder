@@ -17,7 +17,7 @@
             android:id="@+id/welcomeMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Notifications"
+            android:text="Your Joined Games"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,12 +29,22 @@
             android:id="@+id/tvNoNotifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No notifications yet."
+            android:text="You haven't joined any games yet.\nGet started below:"
             android:visibility="gone"
             android:textSize="16sp"
             android:layout_marginTop="16dp"
             android:gravity="center_horizontal"
             android:layout_gravity="center"/>
+
+        <!-- FIND A MATCH -->
+        <Button
+            android:id="@+id/btnFindMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FIND A MATCH"
+            android:background="@drawable/border_background"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notificationsRecyclerView"
