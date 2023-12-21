@@ -27,13 +27,14 @@
     <color name="searchBarColor">#E0E0E0</color>
 
     <!-- Dark -->
-    <color name="dark_primaryColor">#121212</color> <!-- Primary colour -->
+    <color name="dark_primaryColor">#121212</color>
     <color name="dark_primaryVariant">#1A1A1A</color>
     <color name="dark_secondaryColor">#333333</color>
     <color name="dark_secondaryVariant">#2B2B2B</color>
     <color name="dark_backgroundColor">#000000</color>
-    <color name="dark_cardColor">#242424</color> <!-- Card background -->
+    <color name="dark_cardColor">#242424</color>
     <color name="dark_actionBarColor">#181818</color>
-    <color name="light_gray">#D3D3D3</color> <!-- Secondary text -->
+    <color name="light_gray">#D3D3D3</color>
     <color name="dark_searchBarColor">#242424</color>
+
 </resources>

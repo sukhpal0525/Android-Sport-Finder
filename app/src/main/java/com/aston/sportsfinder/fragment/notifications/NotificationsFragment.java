@@ -15,9 +15,14 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aston.sportsfinder.R;
+import com.aston.sportsfinder.dao.GameDao;
 import com.aston.sportsfinder.databinding.FragmentNotificationsBinding;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsAdapter;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
+import com.aston.sportsfinder.util.DatabaseClient;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class NotificationsFragment extends Fragment {
 
@@ -32,10 +37,13 @@ public class NotificationsFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
         tvNoNotifications = binding.getRoot().findViewById(R.id.tvNoNotifications);
         btnFindMatch = binding.getRoot().findViewById(R.id.btnFindMatch);
+        ExecutorService asyncTaskExecutor = DatabaseClient.getInstance(getContext()).executorService;
+        GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
 
-        adapter = new NotificationsAdapter(gameId -> {
+        adapter = new NotificationsAdapter(gameDao, asyncTaskExecutor, gameId -> {
             viewModel.selectGameId(gameId);
-            NavHostFragment.findNavController(this).navigate(R.id.navigation_notification_details);
+            NavHostFragment.findNavController(NotificationsFragment.this)
+                    .navigate(R.id.navigation_notification_details);
         });
 
         btnFindMatch.setOnClickListener(v -> {
@@ -59,7 +67,6 @@ public class NotificationsFragment extends Fragment {
                 tvNoNotifications.setVisibility(View.GONE);
             } else {
                 tvNoNotifications.setVisibility(View.VISIBLE);
-                btnFindMatch.setVisibility(View.VISIBLE);
             }
         });
     }

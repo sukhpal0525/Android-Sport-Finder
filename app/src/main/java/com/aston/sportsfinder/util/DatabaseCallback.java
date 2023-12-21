@@ -38,18 +38,18 @@ public class DatabaseCallback extends RoomDatabase.Callback {
                 gameDao.insertGame(new Game("Football", "Liverpool", "Barcelona", 3, 5, false, false, "334 Furman St", "Brooklyn", "NY", "USA", 40.7006, -73.9946, "2023-10-21", "16:00"));
 
                 gameDao.insertGame(new Game("Baseball", "England", "France", 3, 1, false, false, "Silver Lake Park", "Staten Island", "NY", "USA", 40.6259, -74.0917, "2023-10-24", "13:00"));
-                gameDao.insertGame(new Game("Baseball", "Germany", "France", 3, 2, false, false, "McCarren Park", "Brooklyn", "NY", "USA", 40.7203, -73.9516, "2023-10-26", "14:30"));
-                gameDao.insertGame(new Game("Baseball", "Spain", "Italy", 4, 2, false, false, "95 Prospect Park W", "Brooklyn", "NY", "USA", 40.6619, -73.9797, "2023-10-27", "10:00"));
+                gameDao.insertGame(new Game("Baseball", "Germany", "Russia", 3, 2, false, false, "McCarren Park", "Brooklyn", "NY", "USA", 40.7203, -73.9516, "2023-10-26", "14:30"));
 
                 gameDao.insertGame(new Game("Rugby", "USA", "France", 1, 4, false, false, "1410 Richmond Terrace", "Staten Island", "NY", "USA", 40.6404, -74.1357, "2023-10-24", "13:00"));
                 gameDao.insertGame(new Game("Rugby", "PSG", "Valencia", 1, 3, false, false, "Flushing Meadows Park", "Queens", "NY", "USA", 40.7405, -73.8407, "2023-11-07", "18:30"));
                 gameDao.insertGame(new Game("Rugby", "England", "USA", 1, 1, false, false, "1 E 161 St", "The Bronx", "NY", "USA", 40.8296, -73.9262, "2023-10-23", "15:30"));
 
-                gameDao.insertGame(new Game("Tennis", "Russia", "Italy", 1, 1, false, false, "McCarren Park", "Brooklyn", "NY", "USA", 40.7210, -73.9520, "2023-10-27", "10:00"));
+                gameDao.insertGame(new Game("Tennis", "Japan", "England", 1, 1, false, false, "McCarren Park", "Brooklyn", "NY", "USA", 40.7210, -73.9520, "2023-10-27", "10:00"));
 
-                gameDao.insertGame(new Game("Hockey", "Russia", "Italy", 1, 0, false, false, "Sunset Park", "Brooklyn", "NY", "USA", 40.6455, -74.0124, "2023-10-27", "10:00"));
+                gameDao.insertGame(new Game("Hockey", "Germany", "France", 1, 0, false, false, "Sunset Park", "Brooklyn", "NY", "USA", 40.6455, -74.0124, "2023-10-27", "10:00"));
 
-                gameDao.insertGame(new Game("Cricket", "Russia", "Italy", 1, 3, false, false, "Flushing Meadows Corona Park", "Queens", "NY", "USA", 40.7410, -73.8410, "2023-10-27", "10:00"));
+                gameDao.insertGame(new Game("Cricket", "Spain", "Poland", 4, 2, false, false, "95 Prospect Park W", "Brooklyn", "NY", "USA", 40.6619, -73.9797, "2023-10-27", "10:00"));
+//                gameDao.insertGame(new Game("Cricket", "Spain", "Poland", 1, 3, false, false, "Flushing Meadows Corona Park", "Queens", "NY", "USA", 40.7410, -73.8410, "2023-10-27", "10:00"));
             }
         });
     }

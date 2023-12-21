@@ -285,6 +285,102 @@
             </FrameLayout>
 
 
+
+
+            <!-- HOCKEY CARD -->
+            <FrameLayout
+                android:id="@+id/hockeyFrame"
+                android:layout_width="150dp"
+                android:layout_height="160dp"
+                android:background="@drawable/purple_card"
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/hockeyIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/purple_circle"
+                        android:src="@drawable/baseline_sports_hockey_24"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Title "BASEBALL" -->
+                    <TextView
+                        android:id="@+id/tvHockey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hockey"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to Find"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+
+
+
+
+            <!-- CRICKET CARD -->
+            <FrameLayout
+                android:id="@+id/cricketFrame"
+                android:layout_width="150dp"
+                android:layout_height="160dp"
+                android:background="@drawable/brown_card"
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/cricketIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/brown_circle"
+                        android:src="@drawable/baseline_sports_cricket_24"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Title "BASEBALL" -->
+                    <TextView
+                        android:id="@+id/tvCricket"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cricket"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to Find"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+
+
         </LinearLayout>
     </HorizontalScrollView>
 

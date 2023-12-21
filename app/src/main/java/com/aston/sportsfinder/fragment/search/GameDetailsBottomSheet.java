@@ -52,7 +52,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         String scoreText = game.isStarted() ? "Score: " + game.getScore1() + " - " + game.getScore2() : "(Not started)";
         tvScore.setText(scoreText);
 
-        // Update join button based on game isJoined and isStarted value
+        // update join button based on game isJoined and isStarted
         if (game.isStarted()) {
             tvStatus.setText("Status: Ended");
             btnAction.setText("Ended");
