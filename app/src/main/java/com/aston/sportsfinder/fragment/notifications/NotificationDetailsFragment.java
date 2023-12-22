@@ -55,7 +55,7 @@ public class NotificationDetailsFragment extends Fragment {
         return view;
     }
 
-    private void updateUIWithGameDetails(Game game) {
+    public void updateUIWithGameDetails(Game game) {
         TextView textViewGameType = getView().findViewById(R.id.tvGameType);
         TextView textViewTeams = getView().findViewById(R.id.tvTeams);
         TextView textViewDateTime = getView().findViewById(R.id.tvDateTime);

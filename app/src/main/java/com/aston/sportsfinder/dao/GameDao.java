@@ -38,4 +38,7 @@ public interface GameDao {
 
     @Query("SELECT * FROM Game WHERE id = :gameId")
     Game getGameById(int gameId);
+
+    @Query("SELECT * FROM Game WHERE gameType = :gameType")
+    List<Game> getGamesByType(String gameType);
 }
