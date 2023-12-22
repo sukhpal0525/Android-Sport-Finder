@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,12 +53,28 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         searchBar = view.findViewById(R.id.searchBar);
+        FrameLayout footballFrame = view.findViewById(R.id.footballFrame);
+        FrameLayout baseballFrame = view.findViewById(R.id.baseballFrame);
+        FrameLayout rugbyFrame = view.findViewById(R.id.rugbyFrame);
+        FrameLayout tennisFrame = view.findViewById(R.id.tennisFrame);
+        FrameLayout hockeyFrame = view.findViewById(R.id.hockeyFrame);
+        FrameLayout cricketFrame = view.findViewById(R.id.cricketFrame);
+
 
         Button searchButton = view.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(view);
             navController.navigate(R.id.navigation_search);
         });
+
+        // Framelayouts:
+        footballFrame.setOnClickListener(v -> searchForGame("Football"));
+        baseballFrame.setOnClickListener(v -> searchForGame("Baseball"));
+        rugbyFrame.setOnClickListener(v -> searchForGame("Baseball"));
+        tennisFrame.setOnClickListener(v -> searchForGame("Tennis"));
+        hockeyFrame.setOnClickListener(v -> searchForGame("Hockey"));
+        cricketFrame.setOnClickListener(v -> searchForGame("Cricket"));
+        //
 
         ImageView downArrow = view.findViewById(R.id.downArrow);
         downArrow.setColorFilter(Color.parseColor("#787878"));
@@ -94,10 +109,9 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void fetchWeatherData(Game game) {
-        viewModel.fetchWeatherData(game).observe(getViewLifecycleOwner(), weatherResponse -> {
-            viewModel.displayWeatherInfo(weatherResponse, tvWeatherInfo);
-        });
+    public void fetchWeatherData(Game game) {
+        viewModel.fetchWeatherData(game).observe(getViewLifecycleOwner(), weatherResponse ->
+                viewModel.displayWeatherInfo(weatherResponse, tvWeatherInfo));
     }
 
 
@@ -120,7 +134,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void searchForGame(String query) {
+    public void searchForGame(String query) {
         asyncTaskExecutor.execute(() -> {
             List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().searchGames(query);
             getActivity().runOnUiThread(() -> {
