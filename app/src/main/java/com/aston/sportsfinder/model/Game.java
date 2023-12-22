@@ -32,6 +32,17 @@ public class Game implements Serializable {
     private String date;
     private String time;
 
+    // new
+    private String organizerName;
+    private int capacity;
+    private int currentPlayerCount;
+    private String skillLevel;
+    private String equipmentNeeded;
+    private String duration;
+    private String ageGroup;
+    private double registrationFee;
+    private String additionalNotes;
+
     public int getId() {
         return id;
     }
@@ -168,7 +179,79 @@ public class Game implements Serializable {
         this.time = time;
     }
 
-    public Game(String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time) {
+    public String getOrganizerName() {
+        return organizerName;
+    }
+
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getCurrentPlayerCount() {
+        return currentPlayerCount;
+    }
+
+    public void setCurrentPlayerCount(int currentPlayerCount) {
+        this.currentPlayerCount = currentPlayerCount;
+    }
+
+    public String getSkillLevel() {
+        return skillLevel;
+    }
+
+    public void setSkillLevel(String skillLevel) {
+        this.skillLevel = skillLevel;
+    }
+
+    public String getEquipmentNeeded() {
+        return equipmentNeeded;
+    }
+
+    public void setEquipmentNeeded(String equipmentNeeded) {
+        this.equipmentNeeded = equipmentNeeded;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
+    }
+
+    public double getRegistrationFee() {
+        return registrationFee;
+    }
+
+    public void setRegistrationFee(double registrationFee) {
+        this.registrationFee = registrationFee;
+    }
+
+    public String getAdditionalNotes() {
+        return additionalNotes;
+    }
+
+    public void setAdditionalNotes(String additionalNotes) {
+        this.additionalNotes = additionalNotes;
+    }
+
+    public Game(String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time, String organizerName, int capacity, int currentPlayerCount, String skillLevel, String equipmentNeeded, String duration, String ageGroup, double registrationFee, String additionalNotes) {
         this.gameType = gameType;
         this.team1 = team1;
         this.team2 = team2;
@@ -184,6 +267,15 @@ public class Game implements Serializable {
         this.longitude = longitude;
         this.date = date;
         this.time = time;
+        this.organizerName = organizerName;
+        this.capacity = capacity;
+        this.currentPlayerCount = currentPlayerCount;
+        this.skillLevel = skillLevel;
+        this.equipmentNeeded = equipmentNeeded;
+        this.duration = duration;
+        this.ageGroup = ageGroup;
+        this.registrationFee = registrationFee;
+        this.additionalNotes = additionalNotes;
     }
 }
 //  Foreign key (Game --> User)
