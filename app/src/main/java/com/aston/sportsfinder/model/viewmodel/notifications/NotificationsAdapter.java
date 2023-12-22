@@ -4,23 +4,31 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aston.sportsfinder.R;
+import com.aston.sportsfinder.dao.GameDao;
+import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdapter.NotificationViewHolder> {
 
     private List<Notification> notifications = new ArrayList<>();
     private final OnNotificationClickListener clickListener;
+    private GameDao gameDao;
+    private ExecutorService asyncTaskExecutor;
 
-    public NotificationsAdapter(OnNotificationClickListener clickListener) {
+    public NotificationsAdapter(GameDao gameDao, ExecutorService asyncTaskExecutor, OnNotificationClickListener clickListener) {
+        this.gameDao = gameDao;
+        this.asyncTaskExecutor = asyncTaskExecutor;
         this.clickListener = clickListener;
     }
 
@@ -29,20 +37,14 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_notification, parent, false);
-        return new NotificationViewHolder(view, clickListener);
+        return new NotificationViewHolder(view, clickListener, gameDao);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         Notification notification = notifications.get(position);
-        holder.bind(notification);
+        holder.bind(notification, asyncTaskExecutor);
         Log.d("SSS", "Notification: " + notification.getMessage());
-
-        if (position == notifications.size() - 1) {
-            holder.bottomDivider.setVisibility(View.VISIBLE);
-        } else {
-            holder.bottomDivider.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -57,25 +59,46 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
     static class NotificationViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView textViewNotification;
+        private final TextView tvGameTitle, tvLocation, tvSportType, tvDateTime;
         private Notification notification;
-        View bottomDivider;
+        private final Button btnViewDetails;
+        private final GameDao gameDao;
 
-        NotificationViewHolder(View itemView, OnNotificationClickListener listener) {
+        NotificationViewHolder(View itemView, OnNotificationClickListener listener, GameDao gameDao) {
             super(itemView);
-            textViewNotification = itemView.findViewById(R.id.textViewNotification);
-            bottomDivider = itemView.findViewById(R.id.bottomDivider);
+            this.gameDao = gameDao;
+            tvGameTitle = itemView.findViewById(R.id.tvGameTitle);
+            tvLocation = itemView.findViewById(R.id.tvLocation);
+            tvSportType = itemView.findViewById(R.id.tvSportType);
+            tvDateTime = itemView.findViewById(R.id.tvDateTime);
+            btnViewDetails = itemView.findViewById(R.id.btnViewDetails);
 
             itemView.setOnClickListener(v -> {
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
                     listener.onNotificationClick(notification.getGameId());
                 }
             });
+            btnViewDetails.setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onNotificationClick(notification.getGameId());
+                }
+            });
         }
 
-        void bind(Notification notification) {
+        void bind(Notification notification, ExecutorService asyncTaskExecutor) {
             this.notification = notification;
-            textViewNotification.setText(notification.getMessage());
+
+            asyncTaskExecutor.execute(() -> {
+                Game game = gameDao.getGameById(notification.getGameId());
+                if (game != null) {
+                    itemView.post(() -> {
+                        tvGameTitle.setText(game.getTeam1() + " vs " + game.getTeam2());
+                        tvLocation.setText(game.getStreet() + ", " + game.getCity());
+                        tvSportType.setText(game.getGameType());
+                        tvDateTime.setText(game.getDate() + " " + game.getTime());
+                    });
+                }
+            });
         }
     }
     public interface OnNotificationClickListener { void onNotificationClick(int gameId); }

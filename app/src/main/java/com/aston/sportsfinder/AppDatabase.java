@@ -10,7 +10,7 @@ import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.Notification;
 import com.aston.sportsfinder.model.User;
 
-@Database(entities = {Game.class, User.class, Notification.class}, version = 49, exportSchema = false)
+@Database(entities = {Game.class, User.class, Notification.class}, version = 50, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract GameDao gameDao();

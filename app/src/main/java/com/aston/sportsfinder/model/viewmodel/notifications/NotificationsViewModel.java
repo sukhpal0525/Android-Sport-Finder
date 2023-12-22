@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.aston.sportsfinder.dao.NotificationDao;
 import com.aston.sportsfinder.dao.UserDao;
+import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.Notification;
 import com.aston.sportsfinder.util.DatabaseClient;
 
