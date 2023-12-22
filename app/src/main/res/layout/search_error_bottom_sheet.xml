@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minHeight="250dp"
     android:padding="16dp"
-    android:layout_marginBottom="56dp">
+    android:layout_marginBottom="8dp">
 
     <View
         android:id="@+id/viewHandle"
@@ -22,11 +23,9 @@
         android:layout_height="24dp"
         android:src="@drawable/ic_outline_close_24"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/viewHandle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp" />
 
     <TextView
         android:id="@+id/tvSearchFailTitle"
@@ -36,7 +35,17 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/viewHandle"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/ivErrorIcon"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:src="@drawable/baseline_error_outline_24"
+        app:layout_constraintTop_toBottomOf="@id/tvSearchFailTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/tvMessage"
@@ -45,32 +54,20 @@
         android:text="That team name or sport doesn't exist."
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tvSearchFailTitle"
+        app:layout_constraintTop_toBottomOf="@id/ivErrorIcon"
         android:layout_marginTop="16dp"/>
 
-
-
-    <LinearLayout
+    <Button
+        android:id="@+id/btnConfirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="32dp"
+        android:text="Confirm"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tvMessage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-
-
-        <Button
-            android:id="@+id/btnConfirm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Confirm"
-            android:textColor="@color/white"
-            android:layout_marginEnd="8dp"/>
-
-    </LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
