@@ -12,6 +12,8 @@ import com.aston.sportsfinder.api.WeatherResponse;
 import com.aston.sportsfinder.api.WeatherService;
 import com.aston.sportsfinder.model.Game;
 
+import org.apache.commons.text.WordUtils;
+
 public class SearchViewModel extends ViewModel {
 
     private SearchRepository searchRepository;
@@ -34,8 +36,23 @@ public class SearchViewModel extends ViewModel {
 
             String weatherInfo =
                     main.getTemp() + "°C " + "(" + description.getMainDescription() + ")";
-
             tvWeatherInfo.setText(weatherInfo);
+        } else {
+            tvWeatherInfo.setText("Weather data not available.");
+        }
+    }
+
+    public void displayDetailedWeatherInfo(WeatherResponse weatherResponse, TextView tvWeatherInfo) {
+        // A bit more detailed weather data
+        if (weatherResponse != null && weatherResponse.getWeatherData() != null) {
+            WeatherData weatherData = weatherResponse.getWeatherData().get(0);
+            WeatherData.WeatherMain main = weatherData.getMain();
+            WeatherData.WeatherDescription description = weatherData.getWeather().get(0);
+
+            String detailedWeatherInfo = main.getTemp() + "°C " +
+                    "\nMain: " + description.getMainDescription() +
+                    "\nDescription: " + WordUtils.capitalizeFully(description.getDescription());
+            tvWeatherInfo.setText(detailedWeatherInfo);
         } else {
             tvWeatherInfo.setText("Weather data not available.");
         }
