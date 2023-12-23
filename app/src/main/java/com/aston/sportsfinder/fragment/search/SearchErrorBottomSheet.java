@@ -35,8 +35,6 @@ public class SearchErrorBottomSheet extends BottomSheetDialogFragment {
 
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener(v -> dismiss());
-        btnConfirm.setBackgroundColor(Color.RED);
-        btnConfirm.setTextColor(Color.WHITE);
 
         TextView tvMessage = view.findViewById(R.id.tvMessage);
         tvMessage.setText("That game does not exist.");

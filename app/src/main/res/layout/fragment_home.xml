@@ -24,7 +24,7 @@
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="USA, New York"
+        android:text="England, UK"
         android:textSize="14sp"
         android:textColor="#787878"
         app:layout_constraintStart_toStartOf="@+id/welcomeTitle"

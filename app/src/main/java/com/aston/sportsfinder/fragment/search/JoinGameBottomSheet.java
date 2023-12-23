@@ -75,19 +75,13 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
     public void joinGame() {
         asyncTaskExecutor.execute(() -> {
-            try {
                 Log.d("SSS", "Button clicked for game ID: " + selectedGame.getId());
                 Integer userId = DatabaseClient.getInstance(getContext()).getAppDatabase().userDao().getCurrentUserId();
-
                 if (userId != null && !selectedGame.isStarted()) {
                     processGameJoin(userId);
                 } else {
-                    notify("Cannot join, game already started or User ID is null");
+                    Log.d("SSS", "Can't join, game already started/joined");
                 }
-            } catch (Exception e) {
-                Log.e("SSS", "Error joining game", e);
-                notify("Error joining game");
-            }
             dismiss();
         });
     }
@@ -97,13 +91,19 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
         if (!gameDao.isGameJoined(selectedGame.getId(), userId)) {
             gameDao.updateGameJoinStatus(selectedGame.getId(), true, userId);
             insertNotification(userId);
-            notify("Joined game successfully!");
+            showJoinSuccessBottomSheet();
         } else {
-            notify("You have already joined this game.");
+            showJoinFailBottomSheet();
         }
     }
 
-    public void notify(String message) {
-        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show());
+    public void showJoinSuccessBottomSheet() {
+        JoinSuccessBottomSheet bottomSheet = new JoinSuccessBottomSheet();
+        bottomSheet.show(getParentFragmentManager(), "JoinSuccessBottomSheet");
+    }
+
+    public void showJoinFailBottomSheet() {
+        JoinFailBottomSheet bottomSheet = new JoinFailBottomSheet();
+        bottomSheet.show(getParentFragmentManager(), "JoinFailBottomSheet");
     }
 }

@@ -67,16 +67,22 @@ public class LeaveGameBottomSheet extends BottomSheetDialogFragment {
             if (gameDao.isGameJoined(selectedGame.getId(), userId)) {
                 gameDao.updateGameJoinStatus(selectedGame.getId(), false, userId);
                 notificationDao.removeGameNotification(userId, selectedGame.getId());
-                notify("You left this game.");
+                showLeaveSuccessBottomSheet();
                 viewModel.loadNotifications();
             } else {
-                notify("You aren't part of this game.");
+                showLeaveFailBottomSheet();
             }
             dismiss();
         });
     }
 
-    public void notify(String message) {
-        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show());
+    public void showLeaveSuccessBottomSheet() {
+        LeaveSuccessBottomSheet bottomSheet = new LeaveSuccessBottomSheet();
+        bottomSheet.show(getParentFragmentManager(), "LeaveSuccessBottomSheet");
+    }
+
+    public void showLeaveFailBottomSheet() {
+        LeaveFailBottomSheet bottomSheet = new LeaveFailBottomSheet();
+        bottomSheet.show(getParentFragmentManager(), "LeaveFailBottomSheet");
     }
 }

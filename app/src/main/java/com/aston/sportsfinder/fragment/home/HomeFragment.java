@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void showErrorBottomSheet() {
-        SearchErrorBottomSheet bottomSheet = SearchErrorBottomSheet.newInstance();
+        SearchErrorBottomSheet bottomSheet = new SearchErrorBottomSheet();
         bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
     }
 }

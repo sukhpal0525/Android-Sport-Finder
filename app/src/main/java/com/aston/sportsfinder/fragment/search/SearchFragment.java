@@ -156,7 +156,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             }
             Marker marker = mMap.addMarker(markerOptions);
             marker.setTag(game);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 10));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 6));
         }
     }
 }
