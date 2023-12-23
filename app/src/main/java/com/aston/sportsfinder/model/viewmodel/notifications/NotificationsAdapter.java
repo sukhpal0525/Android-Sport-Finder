@@ -1,5 +1,6 @@
 package com.aston.sportsfinder.model.viewmodel.notifications;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +97,17 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                         tvLocation.setText(game.getStreet() + ", " + game.getCity());
                         tvSportType.setText(game.getGameType());
                         tvDateTime.setText(game.getDate() + " " + game.getTime());
+
+                        View colorIndicator = itemView.findViewById(R.id.viewGameTypeColor);
+                        String gameType = game.getGameType();
+                        if ("Football".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#FAD7A0"));
+                        } else if ("Baseball".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#F1948A"));
+                        } else if ("Rugby".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#AED6F1"));
+                        } else if ("Tennis".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#83F383"));
+                        } else if ("Hockey".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#D8BFD8"));
+                        } else if ("Cricket".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#80CBC4"));
+                        } else { colorIndicator.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                        }
                     });
                 }
             });
