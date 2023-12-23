@@ -36,7 +36,6 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
         tvNoNotifications = binding.getRoot().findViewById(R.id.tvNoNotifications);
-        btnFindMatch = binding.getRoot().findViewById(R.id.btnFindMatch);
         ExecutorService asyncTaskExecutor = DatabaseClient.getInstance(getContext()).executorService;
         GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
 
@@ -44,10 +43,6 @@ public class NotificationsFragment extends Fragment {
             viewModel.selectGameId(gameId);
             NavHostFragment.findNavController(NotificationsFragment.this)
                     .navigate(R.id.navigation_notification_details);
-        });
-
-        btnFindMatch.setOnClickListener(v -> {
-            NavHostFragment.findNavController(this).navigate(R.id.navigation_search);
         });
 
         binding.notificationsRecyclerView.setAdapter(adapter);

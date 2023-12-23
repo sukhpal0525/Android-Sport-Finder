@@ -1,56 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <LinearLayout
+    <!--    TITLE: Notifications    -->
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Joined Games"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/tvNoNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You haven't joined any games yet.\nGet started below:"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"/>
+
+    <!-- FIND A MATCH -->
+    <EditText
+        android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_margin="16dp"
+        android:background="@drawable/search_bar"
+        android:drawableEnd="@drawable/ic_search_black_24dp"
+        android:drawablePadding="12dp"
+        android:hint="Search for game type..."
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:textColorHint="#7E7D7D" />
 
-        <!--    TITLE: Notifications    -->
-        <TextView
-            android:id="@+id/welcomeMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Joined Games"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="32dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notificationsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="72dp"/>
 
-        <TextView
-            android:id="@+id/tvNoNotifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="You haven't joined any games yet.\nGet started below:"
-            android:visibility="gone"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center"/>
-
-        <!-- FIND A MATCH -->
-        <Button
-            android:id="@+id/btnFindMatch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FIND A MATCH"
-            android:background="@drawable/border_background"
-            android:layout_marginTop="16dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notificationsRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="32dp"
-            android:paddingBottom="72dp"/>
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>
