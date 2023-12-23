@@ -33,7 +33,7 @@ public class Game implements Serializable {
     private String time;
 
     // new
-    private String organizerName;
+    private String organiserName;
     private int capacity;
     private int currentPlayerCount;
     private String skillLevel;
@@ -179,12 +179,12 @@ public class Game implements Serializable {
         this.time = time;
     }
 
-    public String getOrganizerName() {
-        return organizerName;
+    public String getOrganiserName() {
+        return organiserName;
     }
 
-    public void setOrganizerName(String organizerName) {
-        this.organizerName = organizerName;
+    public void setOrganiserName(String organiserName) {
+        this.organiserName = organiserName;
     }
 
     public int getCapacity() {
@@ -239,6 +239,10 @@ public class Game implements Serializable {
         return registrationFee;
     }
 
+    public String getFormatRegistrationFee() {
+        return String.format("%.2f", registrationFee);
+    }
+
     public void setRegistrationFee(double registrationFee) {
         this.registrationFee = registrationFee;
     }
@@ -251,7 +255,7 @@ public class Game implements Serializable {
         this.additionalNotes = additionalNotes;
     }
 
-    public Game(String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time, String organizerName, int capacity, int currentPlayerCount, String skillLevel, String equipmentNeeded, String duration, String ageGroup, double registrationFee, String additionalNotes) {
+    public Game(String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time, String organiserName, int capacity, int currentPlayerCount, String skillLevel, String equipmentNeeded, String duration, String ageGroup, double registrationFee, String additionalNotes) {
         this.gameType = gameType;
         this.team1 = team1;
         this.team2 = team2;
@@ -267,7 +271,7 @@ public class Game implements Serializable {
         this.longitude = longitude;
         this.date = date;
         this.time = time;
-        this.organizerName = organizerName;
+        this.organiserName = organiserName;
         this.capacity = capacity;
         this.currentPlayerCount = currentPlayerCount;
         this.skillLevel = skillLevel;
