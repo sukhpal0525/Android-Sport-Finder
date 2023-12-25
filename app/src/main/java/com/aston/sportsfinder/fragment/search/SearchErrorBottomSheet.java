@@ -1,19 +1,17 @@
 package com.aston.sportsfinder.fragment.search;
 
-        import android.graphics.Color;
-        import android.os.Bundle;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-
-        import com.aston.sportsfinder.R;
-        import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.aston.sportsfinder.R;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class SearchErrorBottomSheet extends BottomSheetDialogFragment {
 

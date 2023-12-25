@@ -66,7 +66,7 @@ public class LeaveGameBottomSheet extends BottomSheetDialogFragment {
             NotificationDao notificationDao = DatabaseClient.getInstance(getContext()).getAppDatabase().notificationDao();
             if (gameDao.isGameJoined(selectedGame.getId(), userId)) {
                 gameDao.updateGameJoinStatus(selectedGame.getId(), false, userId);
-                notificationDao.removeGameNotification(userId, selectedGame.getId());
+                notificationDao.removeNotification(userId, selectedGame.getId());
                 showLeaveSuccessBottomSheet();
                 viewModel.loadNotifications();
             } else {

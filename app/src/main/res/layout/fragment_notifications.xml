@@ -2,31 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
-
-    <!--    TITLE: Notifications    -->
-    <TextView
-        android:id="@+id/welcomeMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Joined Games"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="32dp"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:id="@+id/tvNoNotifications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You haven't joined any games yet.\nGet started below:"
-        android:visibility="gone"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:layout_gravity="center"/>
 
     <!-- FIND A MATCH -->
     <EditText
@@ -43,6 +22,59 @@
         android:padding="12dp"
         android:textSize="14sp"
         android:textColorHint="#7E7D7D" />
+
+    <LinearLayout
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@drawable/rounded_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/baseline_cancel_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESET SEARCH"
+        android:textColor="@color/white"
+        android:layout_marginStart="8dp"
+        android:textAppearance="?android:attr/textAppearanceButton" />
+</LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/tvNoNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You haven't joined any games yet.\nGet started below:"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:layout_marginTop="128dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btnNoNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:text="FIND A MATCH"
+        android:layout_gravity="center"
+        android:background="@drawable/border_background"
+        app:layout_constraintTop_toBottomOf="@id/tvNoNotifications"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notificationsRecyclerView"
