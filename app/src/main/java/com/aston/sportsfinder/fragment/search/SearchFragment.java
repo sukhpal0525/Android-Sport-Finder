@@ -19,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.databinding.FragmentSearchBinding;
 import com.aston.sportsfinder.model.Game;
+import com.aston.sportsfinder.model.viewmodel.game.GameViewModel;
 import com.aston.sportsfinder.util.DatabaseClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,6 +41,9 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     private ExecutorService asyncTaskExecutor;
     private String searchQuery;
     private EditText searchBar;
+    private GameViewModel gamesViewModel;
+    private List<Game> latestGames;
+    private boolean isMapInitialized = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +57,14 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         Log.d("SSS", "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
-        searchBar = view.findViewById(R.id.searchBar);
+        gamesViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+        gamesViewModel.getGamesLiveData().observe(getViewLifecycleOwner(), games -> {
+            latestGames = games;
+            if (mMap != null) {
+                // Show games only if map is ready
+                showGamesOnMap(games);
+            }
+        });        searchBar = view.findViewById(R.id.searchBar);
 
         searchBar.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -85,7 +96,9 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
 
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
-
+        if (latestGames != null) {
+            showGamesOnMap(latestGames);
+        }
         mMap.setOnMarkerClickListener(marker -> {
             Game game = (Game) marker.getTag();
             if (game != null) {
@@ -94,11 +107,6 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             return false;
         });
         getGamesFromDatabase();
-    }
-
-    public void showGameDetailsBottomSheet(Game game) {
-        GameDetailsBottomSheet bottomSheet = GameDetailsBottomSheet.newInstance(game);
-        bottomSheet.show(getChildFragmentManager(), "GameDetailsBottomSheet");
     }
 
     public void getGamesFromDatabase() {
@@ -142,6 +150,11 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
     }
 
+    public void showGameDetailsBottomSheet(Game game) {
+        GameDetailsBottomSheet bottomSheet = GameDetailsBottomSheet.newInstance(game);
+        bottomSheet.show(getChildFragmentManager(), "GameDetailsBottomSheet");
+    }
+
     public void showGamesOnMap(List<Game> games) {
         mMap.clear();
         for (Game game : games) {
@@ -156,7 +169,11 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             }
             Marker marker = mMap.addMarker(markerOptions);
             marker.setTag(game);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 6));
+
+            if (!isMapInitialized) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 6));
+                isMapInitialized = true;
+            }
         }
     }
 }

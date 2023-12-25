@@ -21,16 +21,19 @@ import com.aston.sportsfinder.api.WeatherService;
 import com.aston.sportsfinder.dao.GameDao;
 import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.Notification;
+import com.aston.sportsfinder.model.viewmodel.game.GameViewModel;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
 import com.aston.sportsfinder.util.DatabaseClient;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
     private Game selectedGame;
     private ExecutorService asyncTaskExecutor;
+    private GameViewModel gamesViewModel;
 
     public static JoinGameBottomSheet newInstance(Game game) {
         JoinGameBottomSheet fragment = new JoinGameBottomSheet();
@@ -42,6 +45,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         asyncTaskExecutor = DatabaseClient.getInstance(requireContext()).executorService;
+        gamesViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
     }
 
     @Override
@@ -86,10 +90,23 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
         });
     }
 
+//    public void processGameJoin(int userId) {
+//        GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
+//        if (!gameDao.isGameJoined(selectedGame.getId(), userId)) {
+//            gameDao.updateGameJoinStatus(selectedGame.getId(), true, userId);
+//            insertNotification(userId);
+//            showJoinSuccessBottomSheet();
+//        } else {
+//            showJoinFailBottomSheet();
+//        }
+//    }
+
     public void processGameJoin(int userId) {
         GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
         if (!gameDao.isGameJoined(selectedGame.getId(), userId)) {
             gameDao.updateGameJoinStatus(selectedGame.getId(), true, userId);
+            List<Game> updatedGames = gameDao.getAllGames();
+            getActivity().runOnUiThread(() -> gamesViewModel.updateGames(updatedGames));
             insertNotification(userId);
             showJoinSuccessBottomSheet();
         } else {

@@ -41,4 +41,5 @@ public interface GameDao {
 
     @Query("SELECT * FROM Game WHERE gameType = :gameType")
     List<Game> getGamesByType(String gameType);
+
 }
