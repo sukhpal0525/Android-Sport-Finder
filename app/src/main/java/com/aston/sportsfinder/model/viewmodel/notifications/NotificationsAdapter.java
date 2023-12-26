@@ -26,6 +26,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     private final OnNotificationClickListener clickListener;
     private GameDao gameDao;
     private ExecutorService asyncTaskExecutor;
+    private boolean isListView = false;
 
     public NotificationsAdapter(GameDao gameDao, ExecutorService asyncTaskExecutor, OnNotificationClickListener clickListener) {
         this.gameDao = gameDao;
@@ -44,8 +45,13 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         Notification notification = notifications.get(position);
-        holder.bind(notification, asyncTaskExecutor);
+        holder.bind(notification, asyncTaskExecutor, isListView);
         Log.d("SSS", "Notification: " + notification.getMessage());
+    }
+
+    public void setListView(boolean listView) {
+        isListView = listView;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -86,7 +92,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             });
         }
 
-        void bind(Notification notification, ExecutorService asyncTaskExecutor) {
+        void bind(Notification notification, ExecutorService asyncTaskExecutor, boolean isListView) {
             this.notification = notification;
 
             asyncTaskExecutor.execute(() -> {
@@ -94,10 +100,33 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                 if (game != null) {
                     itemView.post(() -> {
                         tvGameTitle.setText(game.getTeam1() + " vs " + game.getTeam2());
-                        tvLocation.setText(game.getStreet() + ", " + game.getCity());
-                        tvSportType.setText(game.getGameType());
-                        tvDateTime.setText(game.getDate() + " " + game.getTime());
-
+                        if (tvSportType != null) {
+                            tvSportType.setText(game.getGameType());
+                        }
+                        // Visibility for the list view items
+                        if (isListView) {
+                            // Hide the location, date/time, and the view details button for list view
+                            if (tvLocation != null) tvLocation.setVisibility(View.GONE);
+                            if (tvDateTime != null) tvDateTime.setVisibility(View.GONE);
+                            btnViewDetails.setVisibility(View.GONE);
+                            // Hide the grey bars
+                            itemView.findViewById(R.id.bar1).setVisibility(View.GONE);
+                            itemView.findViewById(R.id.bar2).setVisibility(View.GONE);
+                        } else {
+                            // tv Visibility for card view (show all)
+                            if (tvLocation != null) {
+                                tvLocation.setVisibility(View.VISIBLE);
+                                tvLocation.setText(game.getStreet() + ", " + game.getCity());
+                            }
+                            if (tvDateTime != null) {
+                                tvDateTime.setVisibility(View.VISIBLE);
+                                tvDateTime.setText(game.getDate() + " at " + game.getTime());
+                            }
+                            btnViewDetails.setVisibility(View.VISIBLE);
+                            // Show bars
+                            itemView.findViewById(R.id.bar1).setVisibility(View.VISIBLE);
+                            itemView.findViewById(R.id.bar2).setVisibility(View.VISIBLE);
+                        }
                         View colorIndicator = itemView.findViewById(R.id.viewGameTypeColor);
                         String gameType = game.getGameType();
                         if ("Football".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#FAD7A0"));

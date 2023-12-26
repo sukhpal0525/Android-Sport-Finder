@@ -42,6 +42,7 @@ public class NotificationsFragment extends Fragment {
     private NotificationsViewModel viewModel;
     private TextView tvNoNotifications;
     private Button btnNoNotifications;
+    private boolean isListView = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
@@ -57,6 +58,12 @@ public class NotificationsFragment extends Fragment {
             NavHostFragment.findNavController(NotificationsFragment.this)
                     .navigate(R.id.navigation_notification_details);
         });
+
+        Button btnCardView = binding.btnCardView;
+        Button btnListView = binding.btnListView;
+
+        btnCardView.setOnClickListener(v -> setViewType(false));
+        btnListView.setOnClickListener(v -> setViewType(true));
 
         binding.notificationsRecyclerView.setAdapter(adapter);
         //This is just so the recycler view knows how to position the notification items
@@ -120,6 +127,13 @@ public class NotificationsFragment extends Fragment {
     private void showErrorBottomSheet() {
         SearchErrorBottomSheet bottomSheet = SearchErrorBottomSheet.newInstance();
         bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
+    }
+
+    public void setViewType(boolean listView) {
+        isListView = listView;
+        if (adapter != null) {
+            adapter.setListView(isListView);
+        }
     }
 
     @Override
