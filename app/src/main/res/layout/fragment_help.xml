@@ -37,7 +37,7 @@
                 android:id="@+id/tvNavigation2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Use the bottom global navigation bar to quickly navigate to the &quot;Home&quot;, &quot;Search&quot;, &quot;My Games&quot;, and &quot;Help&quot; screens."
+                android:text="Use the bottom global navigation bar to quickly navigate to the &quot;Home&quot;, &quot;Search&quot;, &quot;My Games&quot;, and &quot;Help&quot; screen."
                 android:textAppearance="?attr/textAppearanceBody1" />
 
         </LinearLayout>
