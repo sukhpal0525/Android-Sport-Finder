@@ -100,14 +100,10 @@ public class NotificationsFragment extends Fragment {
 
         viewModel.getNotifications().observe(getViewLifecycleOwner(), notifications -> {
             Log.d("SSS", "Notifications received: " + notifications.size());
-            if (notifications != null && !notifications.isEmpty()) {
+            if (notifications != null) {
                 adapter.setNotifications(notifications);
-                tvNoNotifications.setVisibility(View.GONE);
-                btnNoNotifications.setVisibility(View.GONE);
-            } else {
-                tvNoNotifications.setVisibility(View.VISIBLE);
-                btnNoNotifications.setVisibility(View.VISIBLE);
-
+                tvNoNotifications.setVisibility(notifications.isEmpty() ? View.VISIBLE : View.GONE);
+                btnNoNotifications.setVisibility(notifications.isEmpty() ? View.VISIBLE : View.GONE);
             }
         });
 
