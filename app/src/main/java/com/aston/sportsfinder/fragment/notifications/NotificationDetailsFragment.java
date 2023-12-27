@@ -86,11 +86,11 @@ public class NotificationDetailsFragment extends Fragment {
         textViewOrganiserName.setText("Organiser: " + game.getOrganiserName());
         textViewCapacity.setText("Capacity: " + game.getCapacity() + " (Current: " + game.getCurrentPlayerCount() + ")");
         textViewSkillLevel.setText("Skill Level: " + game.getSkillLevel());
-        textViewEquipmentNeeded.setText("Equipment Needed: " + game.getEquipmentNeeded());
+        textViewEquipmentNeeded.setText("Equipment: " + game.getEquipmentNeeded());
         textViewDuration.setText("Duration: " + game.getDuration());
         fetchWeatherData(game);
         textViewAgeGroup.setText("Age Group: " + game.getAgeGroup());
-        textViewRegistrationFee.setText("Registration Fee: " + "£" + game.getFormatRegistrationFee());
-        textViewAdditionalNotes.setText("Notes: " + game.getAdditionalNotes());
+        textViewRegistrationFee.setText("Join Fee: " + "£" + game.getFormatRegistrationFee());
+        textViewAdditionalNotes.setText("Comments: " + game.getAdditionalNotes());
     }
 }

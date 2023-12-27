@@ -18,33 +18,26 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvGameType"
+                android:id="@+id/tvNavigation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Game Details"
+                android:text="Navigation Help"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <TextView
-                android:id="@+id/tvTeams"
+                android:id="@+id/tvNavigation1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Teams"
+                android:text="1) How do I navigate?"
                 android:textAppearance="?attr/textAppearanceBody1" />
 
             <TextView
-                android:id="@+id/tvDateTime"
+                android:id="@+id/tvNavigation2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date and Time"
-                android:textAppearance="?attr/textAppearanceBody1" />
-
-            <TextView
-                android:id="@+id/tvLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="Use the bottom global navigation bar to quickly navigate to the &quot;Home&quot;, &quot;Search&quot;, &quot;My Games&quot;, and &quot;Help&quot; screens."
                 android:textAppearance="?attr/textAppearanceBody1" />
 
         </LinearLayout>
@@ -64,76 +57,58 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvOrganiserName"
+                android:id="@+id/tvFindGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Organiser Name"
-                android:textAppearance="?attr/textAppearanceBody1" />
-
-            <TextView
-                android:id="@+id/tvCapacity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Capacity"
-                android:textAppearance="?attr/textAppearanceBody1" />
-
-
-            <TextView
-                android:id="@+id/tvSkillLevel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Skill Level"
-                android:textAppearance="?attr/textAppearanceBody1" />
-
-            <TextView
-                android:id="@+id/tvEquipmentNeeded"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Equipment Needed"
-                android:textAppearance="?attr/textAppearanceBody1" />
-
-            <TextView
-                android:id="@+id/tvDuration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Duration"
-                android:textAppearance="?attr/textAppearanceBody1" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="4dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/tvWeatherTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weather"
+                android:text="General Usage"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textAppearance="?attr/textAppearanceTitleLarge" />
+                android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <TextView
-                android:id="@+id/tvWeatherInfo"
+                android:id="@+id/tvFindGame1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceBody1"
-                android:layout_marginTop="8dp"/>
+                android:text="1) How do I find a game?"
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tvFindGame2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Navigate to  &quot;Search&quot;, select a marker that meets your criteria for a game.\n"
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tvFindGame3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2) How do I join a game?"
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tvFindGame4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tap &quot;Join Game&quot; on the corresponding map marker and tap &quot;Confirm&quot;\n"
+                android:textAppearance="?attr/textAppearanceBody1" />
+            
+            <TextView
+                android:id="@+id/tvFindGame5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3) How do I leave a game?"
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tvFindGame6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Navigate to &quot;My Games&quot;, find the game to leave, tap it or on the options button and tap &quot;Leave Game&quot;"
+                android:textAppearance="?attr/textAppearanceBody1" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -150,35 +125,44 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvAgeGroup"
+                android:id="@+id/tvGameQuery0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Age Group"
+                android:text="Shortcuts"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+            <TextView
+                android:id="@+id/tvGameQuery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1) What shortcuts into the app can I use?"
                 android:textAppearance="?attr/textAppearanceBody1" />
 
             <TextView
-                android:id="@+id/tvRegistrationFee"
+                android:id="@+id/tvGameQuery1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registration Fee"
+                android:text="\u2022 Use the clear entry points in the Home screen, such as &quot;Find a Match&quot;."
                 android:textAppearance="?attr/textAppearanceBody1" />
 
             <TextView
-                android:id="@+id/tvAdditionalNotes"
+                android:id="@+id/tvGameQuery2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Additional Notes"
+                android:text="\u2022 Use the color coded sport cards to quickly find by sport type."
                 android:textAppearance="?attr/textAppearanceBody1" />
+
+            <TextView
+                android:id="@+id/tvGameQuery3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\u2022 Use the search bar at &quot;Home&quot; for a shortcut to finding a specific game."
+                android:textAppearance="?attr/textAppearanceBody1" />
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
-    <Button
-        android:id="@+id/buttonLeaveGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Leave Game"
-        android:backgroundTint="@color/red"
-        android:layout_marginTop="16dp"/>
 
 </LinearLayout>

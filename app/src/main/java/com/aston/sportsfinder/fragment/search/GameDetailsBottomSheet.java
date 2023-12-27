@@ -44,7 +44,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         TextView tvStatus = view.findViewById(R.id.tvStatus);
         Button btnAction = view.findViewById(R.id.btnAction);
 
-        tvGameType.setText("Type: " + game.getGameType());
+        tvGameType.setText("Sport: " + game.getGameType());
         tvTeamInfo.setText(game.getTeam1() + " vs " + game.getTeam2());
         tvScore.setText("(Score: " + game.getScore1() + " - " + game.getScore2() + ")");
         tvGameDetails.setText("Location: " + game.getStreet() + ", " + game.getCity() + "\nDate: " + game.getDate() + "\nTime: " + game.getTime());
