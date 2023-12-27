@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -64,12 +66,17 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         notifyDataSetChanged();
     }
 
+
+
+
     static class NotificationViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tvGameTitle, tvLocation, tvSportType, tvDateTime;
         private Notification notification;
         private final Button btnViewDetails;
         private final GameDao gameDao;
+        private ImageView ivOptions;
+
 
         NotificationViewHolder(View itemView, OnNotificationClickListener listener, GameDao gameDao) {
             super(itemView);
@@ -79,6 +86,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             tvSportType = itemView.findViewById(R.id.tvSportType);
             tvDateTime = itemView.findViewById(R.id.tvDateTime);
             btnViewDetails = itemView.findViewById(R.id.btnViewDetails);
+            ivOptions = itemView.findViewById(R.id.ivOptions);
 
             itemView.setOnClickListener(v -> {
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
@@ -89,6 +97,16 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
                     listener.onNotificationClick(notification.getGameId());
                 }
+            });
+
+            ivOptions.setOnClickListener(v -> {
+                PopupMenu popup = new PopupMenu(v.getContext(), ivOptions);
+                popup.getMenu().add("Leave Game");
+                popup.setOnMenuItemClickListener(item -> {
+                        listener.onLeaveGameClicked(notification);
+                    return true;
+                });
+                popup.show();
             });
         }
 
@@ -142,5 +160,5 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             });
         }
     }
-    public interface OnNotificationClickListener { void onNotificationClick(int gameId); }
+    public interface OnNotificationClickListener { void onNotificationClick(int gameId); void onLeaveGameClicked(Notification notification);}
 }

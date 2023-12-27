@@ -21,6 +21,7 @@ import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.dao.GameDao;
 import com.aston.sportsfinder.dao.NotificationDao;
 import com.aston.sportsfinder.databinding.FragmentNotificationsBinding;
+import com.aston.sportsfinder.fragment.search.LeaveGameBottomSheet;
 import com.aston.sportsfinder.fragment.search.SearchErrorBottomSheet;
 import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.Notification;
@@ -41,22 +42,30 @@ public class NotificationsFragment extends Fragment {
     private NotificationsAdapter adapter;
     private NotificationsViewModel viewModel;
     private TextView tvNoNotifications;
-    private Button btnNoNotifications;
     private boolean isListView = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
         tvNoNotifications = binding.getRoot().findViewById(R.id.tvNoNotifications);
-        btnNoNotifications = binding.getRoot().findViewById(R.id.btnNoNotifications);
         asyncTaskExecutor = DatabaseClient.getInstance(getContext()).executorService;
         GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
         notificationDao = DatabaseClient.getInstance(getContext()).getAppDatabase().notificationDao();
 
-        adapter = new NotificationsAdapter(gameDao, asyncTaskExecutor, gameId -> {
-            viewModel.selectGameId(gameId);
-            NavHostFragment.findNavController(NotificationsFragment.this)
-                    .navigate(R.id.navigation_notification_details);
+        adapter = new NotificationsAdapter(gameDao, asyncTaskExecutor, new NotificationsAdapter.OnNotificationClickListener() {
+            @Override
+            public void onNotificationClick(int gameId) {
+                viewModel.selectGameId(gameId);
+                NavHostFragment.findNavController(NotificationsFragment.this)
+                        .navigate(R.id.navigation_notification_details);
+            }
+            @Override
+            public void onLeaveGameClicked(Notification notification) {
+                asyncTaskExecutor.execute(() -> {
+                    Game game = gameDao.getGameById(notification.getGameId());
+                        showLeaveGameBottomSheet(game);
+                });
+            }
         });
 
         Button btnCardView = binding.btnCardView;
@@ -82,6 +91,11 @@ public class NotificationsFragment extends Fragment {
         LinearLayout btnReset = view.findViewById(R.id.btnReset);
         btnReset.setOnClickListener(v -> {
             NavHostFragment.findNavController(this).navigate(R.id.navigation_notifications);
+        });
+
+        Button btnNoNotifications = view.findViewById(R.id.btnNoNotifications);
+        btnNoNotifications.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.navigation_search);
         });
 
         viewModel.getNotifications().observe(getViewLifecycleOwner(), notifications -> {
@@ -127,6 +141,11 @@ public class NotificationsFragment extends Fragment {
     private void showErrorBottomSheet() {
         SearchErrorBottomSheet bottomSheet = SearchErrorBottomSheet.newInstance();
         bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
+    }
+
+    private void showLeaveGameBottomSheet(Game game) {
+        LeaveGameBottomSheet leaveGameBottomSheet = LeaveGameBottomSheet.newInstance(game);
+        leaveGameBottomSheet.show(getChildFragmentManager(), "LeaveGameBottomSheet");
     }
 
     public void setViewType(boolean listView) {

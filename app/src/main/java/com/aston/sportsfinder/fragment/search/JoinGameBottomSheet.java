@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.api.RetrofitClient;
@@ -59,10 +60,13 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
         ImageView ivClose = view.findViewById(R.id.ivClose);
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        Button btnCancel = view.findViewById(R.id.btnCancel);
 
         // Listeners
         ivClose.setOnClickListener(v -> dismiss());
         btnConfirm.setOnClickListener(v -> joinGame());
+        btnCancel.setOnClickListener(v -> { dismiss();
+        });
     }
 
     public void insertNotification(int userId) {
