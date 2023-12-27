@@ -49,11 +49,11 @@
 
 
 
-    <!--                  SETTINGS                   -->
+    <!--                  HELP                   -->
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.aston.sportsfinder.fragment.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_notifications"/>
+        android:id="@+id/navigation_help"
+        android:name="com.aston.sportsfinder.fragment.help.HelpFragment"
+        android:label="@string/title_help"
+        tools:layout="@layout/fragment_help"/>
 
 </navigation>

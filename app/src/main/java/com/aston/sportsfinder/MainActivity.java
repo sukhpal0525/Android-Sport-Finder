@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home || itemId == R.id.navigation_search ||
-                    itemId == R.id.navigation_notifications || itemId == R.id.navigation_settings) {
+                    itemId == R.id.navigation_notifications || itemId == R.id.navigation_help) {
                 Log.d("SSS", "Navigated to: " + item.getTitle());
                 navController.navigate(itemId);
                 return true;
