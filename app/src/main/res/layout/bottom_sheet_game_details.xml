@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Join Game"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:padding="12dp"
         android:textColor="@color/white"
         android:textStyle="bold"/>
