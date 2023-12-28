@@ -2,17 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:padding="16dp">
 
     <!-- FIND A MATCH -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:background="@drawable/search_bar"
         android:drawableEnd="@drawable/ic_search_black_24dp"
         android:drawablePadding="12dp"
@@ -21,67 +18,77 @@
         android:inputType="text"
         android:padding="12dp"
         android:textSize="14sp"
-        android:textColorHint="#7E7D7D" />
+        android:textColorHint="#7E7D7D"
+        android:layout_marginBottom="16dp"/>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingRight="16dp">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
 
-<!--        Button reset -->
+        <!-- Reset button -->
         <LinearLayout
             android:id="@+id/btnReset"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:paddingStart="4dp"
-            android:paddingEnd="16dp"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/white_box"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginEnd="40dp">
+            android:paddingStart="4dp"
+            android:paddingEnd="8dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/baseline_cancel_24" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_outline_close_24" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceButton" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/viewTypeRadioGroup"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="RESET"
-            android:textColor="@color/white"
-            android:layout_marginStart="8dp"
-            android:textAppearance="?android:attr/textAppearanceButton" />
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <!-- card view button -->
+            <RadioButton
+                android:id="@+id/btnCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Detailed"
+                android:background="@drawable/white_box"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:layout_marginEnd="8dp" />
+
+            <!-- list view button -->
+            <RadioButton
+                android:id="@+id/btnListView"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Simple"
+                android:background="@drawable/white_box"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="4dp" />
+        </RadioGroup>
     </LinearLayout>
-
-    <!-- Spacer (push to the right) -->
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-    <!-- Button for card view -->
-    <Button
-        android:id="@+id/btnCardView"
-        android:layout_width="80dp"
-        android:layout_height="36dp"
-        android:text="Card View"
-        android:layout_marginEnd="8dp"/>
-
-    <!-- Button for list view -->
-    <Button
-        android:id="@+id/btnListView"
-        android:layout_width="80dp"
-        android:layout_height="36dp"
-        android:text="List View"/>
-</LinearLayout>
-
-
-
 
     <TextView
         android:id="@+id/tvNoNotifications"
@@ -90,28 +97,22 @@
         android:text="You haven't joined any games yet.\nGet started below:"
         android:visibility="gone"
         android:textSize="16sp"
-        android:layout_marginTop="128dp"
         android:gravity="center_horizontal"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/btnNoNotifications"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
         android:text="FIND A MATCH"
         android:layout_gravity="center"
         android:background="@drawable/border_background"
-        app:layout_constraintTop_toBottomOf="@id/tvNoNotifications"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        android:layout_marginTop="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notificationsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingBottom="72dp"/>
-
+        android:layout_weight="1" />
 </LinearLayout>

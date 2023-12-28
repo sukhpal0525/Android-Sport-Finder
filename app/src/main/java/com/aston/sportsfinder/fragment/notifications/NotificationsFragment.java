@@ -9,6 +9,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -68,8 +70,17 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-        Button btnCardView = binding.btnCardView;
-        Button btnListView = binding.btnListView;
+        RadioGroup viewTypeRadioGroup = binding.getRoot().findViewById(R.id.viewTypeRadioGroup);
+        RadioButton btnCardView = binding.getRoot().findViewById(R.id.btnCardView);
+        RadioButton btnListView = binding.getRoot().findViewById(R.id.btnListView);
+        btnCardView.setChecked(true);
+        viewTypeRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.btnCardView) {
+                setViewType(false);
+            } else if (checkedId == R.id.btnListView) {
+                setViewType(true);
+            }
+        });
 
         btnCardView.setOnClickListener(v -> setViewType(false));
         btnListView.setOnClickListener(v -> setViewType(true));
@@ -83,6 +94,7 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
 //        Button btnReset = view.findViewById(R.id.btnReset);
 //        btnReset.setOnClickListener(v -> { NavHostFragment.findNavController(this).navigate(R.id.navigation_notifications);
