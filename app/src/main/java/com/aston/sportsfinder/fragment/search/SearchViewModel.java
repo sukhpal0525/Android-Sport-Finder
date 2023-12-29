@@ -50,7 +50,7 @@ public class SearchViewModel extends ViewModel {
             WeatherData.WeatherDescription description = weatherData.getWeather().get(0);
 
             String detailedWeatherInfo = main.getTemp() + "°C " +
-                    "\nMain: " + description.getMainDescription() +
+                    "(" + description.getMainDescription() + ")" +
                     "\nDescription: " + WordUtils.capitalizeFully(description.getDescription());
             tvWeatherInfo.setText(detailedWeatherInfo);
         } else {

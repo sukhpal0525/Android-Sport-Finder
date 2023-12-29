@@ -126,8 +126,7 @@
                 android:id="@+id/tvWeatherInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceBody1"
-                android:layout_marginTop="8dp"/>
+                android:textAppearance="?attr/textAppearanceBody1" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -179,13 +178,6 @@
                 android:text="Equipment Needed"
                 android:textAppearance="?attr/textAppearanceBody1" />
 
-
-            <TextView
-                android:id="@+id/tvAgeGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Age Group"
-                android:textAppearance="?attr/textAppearanceBody1" />
 
             <TextView
                 android:id="@+id/tvRegistrationFee"

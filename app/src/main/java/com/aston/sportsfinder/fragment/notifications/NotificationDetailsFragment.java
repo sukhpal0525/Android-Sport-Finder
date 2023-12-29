@@ -75,7 +75,6 @@ public class NotificationDetailsFragment extends Fragment {
         TextView textViewEquipmentNeeded = getView().findViewById(R.id.tvEquipmentNeeded);
         TextView textViewDuration = getView().findViewById(R.id.tvDuration);
         tvWeatherInfo = getView().findViewById(R.id.tvWeatherInfo);
-        TextView textViewAgeGroup = getView().findViewById(R.id.tvAgeGroup);
         TextView textViewRegistrationFee = getView().findViewById(R.id.tvRegistrationFee);
         TextView textViewAdditionalNotes = getView().findViewById(R.id.tvAdditionalNotes);
 
@@ -89,7 +88,6 @@ public class NotificationDetailsFragment extends Fragment {
         textViewEquipmentNeeded.setText("Equipment: " + game.getEquipmentNeeded());
         textViewDuration.setText("Duration: " + game.getDuration());
         fetchWeatherData(game);
-        textViewAgeGroup.setText("Age Group: " + game.getAgeGroup());
         textViewRegistrationFee.setText("Join Fee: " + "£" + game.getFormatRegistrationFee());
         textViewAdditionalNotes.setText("Comments: " + game.getAdditionalNotes());
     }
