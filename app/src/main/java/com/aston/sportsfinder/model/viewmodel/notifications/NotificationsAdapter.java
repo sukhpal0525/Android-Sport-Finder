@@ -145,15 +145,15 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                             itemView.findViewById(R.id.bar1).setVisibility(View.VISIBLE);
                             itemView.findViewById(R.id.bar2).setVisibility(View.VISIBLE);
                         }
-                        View colorIndicator = itemView.findViewById(R.id.viewGameTypeColor);
+                        View rectangle = itemView.findViewById(R.id.viewGameTypeColor);
                         String gameType = game.getGameType();
-                        if ("Football".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#FAD7A0"));
-                        } else if ("Baseball".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#F1948A"));
-                        } else if ("Rugby".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#AED6F1"));
-                        } else if ("Tennis".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#83F383"));
-                        } else if ("Hockey".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#D8BFD8"));
-                        } else if ("Cricket".equals(gameType)) { colorIndicator.setBackgroundColor(Color.parseColor("#80CBC4"));
-                        } else { colorIndicator.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                        if ("Football".equals(gameType)) { rectangle.setBackgroundColor(Color.parseColor("#FAD7A0"));
+                        } else if ("Baseball".equals(gameType)) { rectangle.setBackgroundColor(Color.parseColor("#F1948A"));
+                        } else if ("Rugby".equals(gameType)) { rectangle.setBackgroundColor(Color.parseColor("#AED6F1"));
+                        } else if ("Tennis".equals(gameType)) { rectangle.setBackgroundColor(Color.parseColor("#83F383"));
+                        } else if ("Hockey".equals(gameType)) { rectangle.setBackgroundColor(Color.parseColor("#D8BFD8"));
+                        } else if ("Cricket".equals(gameType)) { rectangle.setBackgroundColor(Color.parseColor("#80CBC4"));
+                        } else { rectangle.setBackgroundColor(Color.parseColor("#D3D3D3"));
                         }
                     });
                 }
