@@ -30,7 +30,7 @@ public interface GameDao {
     @Query("SELECT COUNT(id) FROM Game WHERE id = :gameId AND userId = :userId AND isJoined = 1")
     boolean isGameJoined(int gameId, int userId);
 
-    @Query("SELECT * FROM Game WHERE userId = :userId ORDER BY date, time LIMIT 2")
+    @Query("SELECT * FROM Game WHERE userId = :userId AND isJoined = 1 ORDER BY date, time LIMIT 2")
     List<Game> getUpcomingGames(int userId);
 
     @Query("SELECT * FROM Game WHERE (:query IS NULL OR team1 LIKE '%' || :query || '%' OR team2 LIKE '%' || :query || '%' OR gameType LIKE '%' || :query || '%')")
