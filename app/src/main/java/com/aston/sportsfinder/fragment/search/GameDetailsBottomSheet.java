@@ -58,7 +58,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         tvTeamInfo.setText(game.getTeam1() + " vs " + game.getTeam2());
         tvScore.setText("(Score: " + game.getScore1() + " - " + game.getScore2() + ")");
         tvGameDetails.setText("Location: " + game.getStreet() + ", " + game.getCity() + "\nDate: " + game.getDate() + "\nTime: " + game.getTime());
-        tvWeatherInfo.setText("Temperature:\nCondition:\nDescription:");
+//        tvWeatherInfo.setText("Temperature:\nCondition:\nDescription:");
         String scoreText = game.isStarted() ? "Score: " + game.getScore1() + " - " + game.getScore2() : "(Not started)";
         tvScore.setText(scoreText);
 
