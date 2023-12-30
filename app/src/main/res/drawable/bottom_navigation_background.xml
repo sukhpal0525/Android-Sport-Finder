@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#D0D0D0" />
+            <size android:height="1dp" />
+        </shape>
+    </item>
+    <!-- nav background -->
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="?android:attr/windowBackground" />
+        </shape>
+    </item>
+</layer-list>
