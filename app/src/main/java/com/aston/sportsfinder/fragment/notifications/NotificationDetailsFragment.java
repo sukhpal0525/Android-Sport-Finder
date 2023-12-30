@@ -88,7 +88,7 @@ public class NotificationDetailsFragment extends Fragment {
         textViewEquipmentNeeded.setText("Equipment: " + game.getEquipmentNeeded());
         textViewDuration.setText("Duration: " + game.getDuration());
         fetchWeatherData(game);
-        textViewRegistrationFee.setText("Join Fee: " + "£" + game.getFormatRegistrationFee());
+        textViewRegistrationFee.setText("Join Fee: " + "£" + game.getRegistrationFee());
         textViewAdditionalNotes.setText("Comments: " + game.getAdditionalNotes());
     }
 }

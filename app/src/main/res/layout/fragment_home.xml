@@ -423,13 +423,11 @@
         android:id="@+id/yourNextGameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You have a game starting soon:"
+        android:text=""
         android:textSize="14sp"
         android:textColor="#787878"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/yourNextGameTitle" />
-
-
 
     <TextView
         android:id="@+id/tvTeamNames"

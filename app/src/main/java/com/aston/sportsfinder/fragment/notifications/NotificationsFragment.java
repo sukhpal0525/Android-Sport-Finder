@@ -95,10 +95,10 @@ public class NotificationsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-//        Button btnReset = view.findViewById(R.id.btnReset);
-//        btnReset.setOnClickListener(v -> { NavHostFragment.findNavController(this).navigate(R.id.navigation_notifications);
-//        });
+        Button createGameButton = binding.btnCreateGame;
+        createGameButton.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.navigation_create_game);
+        });
 
         LinearLayout btnReset = view.findViewById(R.id.btnReset);
         btnReset.setOnClickListener(v -> {

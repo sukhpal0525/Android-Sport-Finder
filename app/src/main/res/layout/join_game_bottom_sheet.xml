@@ -42,7 +42,7 @@
         android:id="@+id/tvJoinInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Are you sure you want to join this match?"
+        android:text="Are you sure you want to join this game?"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/tvJoinTitle"

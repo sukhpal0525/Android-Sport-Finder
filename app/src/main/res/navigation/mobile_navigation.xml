@@ -56,4 +56,11 @@
         android:label="@string/title_help"
         tools:layout="@layout/fragment_help"/>
 
+    <!--                  CREATE GAME                   -->
+    <fragment
+        android:id="@+id/navigation_create_game"
+        android:name="com.aston.sportsfinder.fragment.game.GameCreateFragment"
+        android:label="@string/title_help"
+        tools:layout="@layout/fragment_create_game"/>
+
 </navigation>

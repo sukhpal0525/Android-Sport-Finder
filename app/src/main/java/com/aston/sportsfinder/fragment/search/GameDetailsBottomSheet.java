@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,13 +19,19 @@ import androidx.lifecycle.ViewModelProvider;
 import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.api.WeatherData;
 import com.aston.sportsfinder.api.WeatherResponse;
+import com.aston.sportsfinder.dao.GameDao;
+import com.aston.sportsfinder.fragment.game.GameDeleteBottomSheet;
 import com.aston.sportsfinder.model.Game;
+import com.aston.sportsfinder.util.DatabaseClient;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.util.concurrent.ExecutorService;
 
 public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
 
     private Game game;
     private SearchViewModel viewModel;
+    ImageButton btnEditGame, btnDeleteGame;
 
     public static GameDetailsBottomSheet newInstance(Game game) {
         GameDetailsBottomSheet fragment = new GameDetailsBottomSheet();
@@ -35,6 +42,9 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bottom_sheet_game_details, container, false);
+        btnEditGame = view.findViewById(R.id.btnEditGame);
+        btnDeleteGame = view.findViewById(R.id.btnDeleteGame);
+
 
         TextView tvGameType = view.findViewById(R.id.tvGameType);
         TextView tvGameDetails = view.findViewById(R.id.tvGameDetails);
@@ -72,7 +82,28 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
             btnAction.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.green_light));
         }
 
-        // Listener for game joining
+        Log.d("SSS", "IsCreatedByUser: " + game.isCreatedByUser());
+        if (game.isCreatedByUser() == true) {
+            btnEditGame.setVisibility(View.VISIBLE);
+            btnDeleteGame.setVisibility(View.VISIBLE);
+        } else {
+            btnEditGame.setVisibility(View.GONE);
+            btnDeleteGame.setVisibility(View.GONE);
+        }
+
+//        if (game.isCreatedByUser()) {
+//            Button btnEditGame = view.findViewById(R.id.btnEditGame);
+//            Button btnDeleteGame = view.findViewById(R.id.btnDeleteGame);
+//
+//            btnEditGame.setVisibility(View.VISIBLE);
+//            btnDeleteGame.setVisibility(View.VISIBLE);
+//            btnEditGame.setOnClickListener(v -> {
+//            });
+//            btnDeleteGame.setOnClickListener(v -> {
+//            });
+//        }
+
+//         Listener for game joining
         if (!game.isStarted()) {
             btnAction.setOnClickListener(v -> {
                 dismiss();
@@ -95,5 +126,11 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         // Close bottom sheet
         ImageView ivClose = view.findViewById(R.id.ivClose);
         ivClose.setOnClickListener(v -> dismiss());
+
+        btnDeleteGame.setOnClickListener(v -> {
+            dismiss();
+            GameDeleteBottomSheet deleteBottomSheet = GameDeleteBottomSheet.newInstance(game);
+            deleteBottomSheet.show(getParentFragmentManager(), "GameDeleteBottomSheet");
+        });
     }
 }

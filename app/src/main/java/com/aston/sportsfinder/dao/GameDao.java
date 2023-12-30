@@ -7,6 +7,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
 import com.aston.sportsfinder.model.Game;
 
@@ -20,6 +21,12 @@ public interface GameDao {
 
     @Insert
     void insertGame(Game game);
+
+    @Update
+    void updateGame(Game game);
+
+    @Delete
+    void deleteGame(Game game);
 
     @Query("SELECT COUNT(id) FROM Game")
     int countGames();

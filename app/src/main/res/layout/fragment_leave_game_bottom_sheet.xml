@@ -32,7 +32,7 @@
         android:id="@+id/tvLeaveTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm Leave"
+        android:text="Confirm Game Leave"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/viewHandle"
@@ -42,10 +42,20 @@
         android:id="@+id/tvLeaveInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Are you sure you want to leave this match?\nYou will have to re-join it again if desired."
+        android:text="Are you sure you want to leave this game?"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/tvLeaveTitle"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvLeaveInfo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You will have to re-join it again (if desired)."
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvLeaveInfo"
         android:layout_marginTop="16dp"/>
 
     <LinearLayout
@@ -53,7 +63,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/tvLeaveInfo"
+        app:layout_constraintTop_toBottomOf="@id/tvLeaveInfo1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"

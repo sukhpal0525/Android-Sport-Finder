@@ -16,6 +16,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
 
+    <ImageButton
+        android:id="@+id/btnEditGame"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/white_box"
+        android:src="@drawable/baseline_edit_26"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/viewHandle"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeleteGame"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnDeleteGame"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/white_box"
+        android:src="@drawable/baseline_delete_forever_26"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/btnEditGame"
+        app:layout_constraintStart_toEndOf="@+id/btnEditGame" />
+
     <ImageView
         android:id="@+id/ivClose"
         android:layout_width="24dp"
@@ -101,6 +123,8 @@
         android:padding="12dp"
         android:textColor="@color/white"
         android:textStyle="bold"/>
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

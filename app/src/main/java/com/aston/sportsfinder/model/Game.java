@@ -32,16 +32,16 @@ public class Game implements Serializable {
     private String date;
     private String time;
 
-    // new
     private String organiserName;
-    private int capacity;
+    private String capacity;
     private int currentPlayerCount;
     private String skillLevel;
     private String equipmentNeeded;
     private String duration;
     private String ageGroup;
-    private double registrationFee;
+    private String registrationFee;
     private String additionalNotes;
+    private boolean isCreatedByUser;
 
     public int getId() {
         return id;
@@ -187,11 +187,11 @@ public class Game implements Serializable {
         this.organiserName = organiserName;
     }
 
-    public int getCapacity() {
+    public String getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 
@@ -235,15 +235,11 @@ public class Game implements Serializable {
         this.ageGroup = ageGroup;
     }
 
-    public double getRegistrationFee() {
+    public String getRegistrationFee() {
         return registrationFee;
     }
 
-    public String getFormatRegistrationFee() {
-        return String.format("%.2f", registrationFee);
-    }
-
-    public void setRegistrationFee(double registrationFee) {
+    public void setRegistrationFee(String registrationFee) {
         this.registrationFee = registrationFee;
     }
 
@@ -255,7 +251,15 @@ public class Game implements Serializable {
         this.additionalNotes = additionalNotes;
     }
 
-    public Game(String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time, String organiserName, int capacity, int currentPlayerCount, String skillLevel, String equipmentNeeded, String duration, double registrationFee, String additionalNotes) {
+    public boolean isCreatedByUser() {
+        return isCreatedByUser;
+    }
+
+    public void setCreatedByUser(boolean createdByUser) {
+        isCreatedByUser = createdByUser;
+    }
+
+    public Game(String gameType, String team1, String team2, int score1, int score2, boolean isJoined, boolean isStarted, String street, String city, String state, String country, double latitude, double longitude, String date, String time, String organiserName, String capacity, int currentPlayerCount, String skillLevel, String equipmentNeeded, String duration, String registrationFee, String additionalNotes, boolean isCreatedByUser) {
         this.gameType = gameType;
         this.team1 = team1;
         this.team2 = team2;
@@ -279,6 +283,7 @@ public class Game implements Serializable {
         this.duration = duration;
         this.registrationFee = registrationFee;
         this.additionalNotes = additionalNotes;
+        this.isCreatedByUser = isCreatedByUser;
     }
 }
 //  Foreign key (Game --> User)

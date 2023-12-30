@@ -5,6 +5,7 @@ import static com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ToggleButton;
@@ -62,12 +64,13 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     private ExecutorService asyncTaskExecutor;
     private String searchQuery;
     private EditText searchBar;
-    private GameViewModel gamesViewModel;
+    private GameViewModel gameViewModel;
     private List<Game> latestGames;
     private boolean isMapInitialized = false;
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+    private ImageButton createGameButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -83,14 +86,20 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
         RadioGroup sportsRadioGroup = view.findViewById(R.id.sportsRadioGroup);
         RadioButton buttonAll = view.findViewById(R.id.buttonAll);
-        gamesViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
-        gamesViewModel.getGamesLiveData().observe(getViewLifecycleOwner(), games -> {
+        gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+        gameViewModel.getGamesLiveData().observe(getViewLifecycleOwner(), games -> {
             latestGames = games;
             if (mMap != null) {
                 // Show games only if map is ready
                 showGamesOnMap(games);
             }
         });
+
+        createGameButton = binding.btnCreateGame;
+        createGameButton.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.navigation_create_game);
+        });
+
         searchBar = view.findViewById(R.id.searchBar);
         searchBar.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -116,18 +125,10 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
                 filterGamesByType("Hockey");
             }
         });
-
-
 //        binding.buttonFootball.setOnClickListener(v -> searchForGame("Football"));
-//        binding.buttonBaseball.setOnClickListener(v -> searchForGame("Baseball"));
-//        binding.buttonRugby.setOnClickListener(v -> searchForGame("Rugby"));
 
 //        view.findViewById(R.id.buttonAll).setOnClickListener(v -> searchForGame(""));
 //        view.findViewById(R.id.buttonFootball).setOnClickListener(v -> filterGamesByType("Football"));
-//        view.findViewById(R.id.buttonBaseball).setOnClickListener(v -> filterGamesByType("Baseball"));
-//        view.findViewById(R.id.buttonRugby).setOnClickListener(v -> filterGamesByType("Rugby"));
-//        view.findViewById(R.id.buttonTennis).setOnClickListener(v -> filterGamesByType("Tennis"));
-//        view.findViewById(R.id.buttonHockey).setOnClickListener(v -> filterGamesByType("Hockey"));
 
         if (getArguments() != null) {
             searchQuery = getArguments().getString("query", "");
@@ -167,6 +168,14 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             return false;
         });
         getGamesFromDatabase();
+        mMap.setOnMapClickListener(latLng -> {
+            Log.d("SSS", "LatLng: " + latLng.latitude + ", " + latLng.longitude);
+            if (gameViewModel.isLocationSelectionMode()) {
+                gameViewModel.setSelectedLocation(latLng);
+                gameViewModel.setLocationSelectionMode(false);
+                NavHostFragment.findNavController(this).popBackStack();
+            }
+        });
     }
 
     public void getGamesFromDatabase() {
@@ -214,7 +223,11 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
                     .position(loc)
                     .title(game.getTeam1() + " vs " + game.getTeam2());
 
-            if (game.isJoined()) {
+            if (game.isCreatedByUser() && game.isJoined()) {
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            } else if (game.isCreatedByUser()) {
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+            } else if (game.isJoined()) {
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
             }
             Marker marker = mMap.addMarker(markerOptions);
