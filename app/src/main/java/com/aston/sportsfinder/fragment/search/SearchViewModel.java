@@ -17,7 +17,7 @@ import org.apache.commons.text.WordUtils;
 public class SearchViewModel extends ViewModel {
 
     private SearchRepository searchRepository;
-    private static final String API_KEY = "dc30793e6a621969d4560be369d8cef1";
+    private static final String API_KEY = "ead55837c57cbeba862f405699d3b769";
 
     public SearchViewModel() {
         searchRepository = new SearchRepository();

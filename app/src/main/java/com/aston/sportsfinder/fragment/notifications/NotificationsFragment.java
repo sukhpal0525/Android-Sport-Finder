@@ -95,11 +95,6 @@ public class NotificationsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button createGameButton = binding.btnCreateGame;
-        createGameButton.setOnClickListener(v -> {
-            NavHostFragment.findNavController(this).navigate(R.id.navigation_create_game);
-        });
-
         LinearLayout btnReset = view.findViewById(R.id.btnReset);
         btnReset.setOnClickListener(v -> {
             NavHostFragment.findNavController(this).navigate(R.id.navigation_notifications);
@@ -146,12 +141,12 @@ public class NotificationsFragment extends Fragment {
         });
     }
 
-    private void showErrorBottomSheet() {
+    public void showErrorBottomSheet() {
         SearchErrorBottomSheet bottomSheet = SearchErrorBottomSheet.newInstance();
         bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
     }
 
-    private void showLeaveGameBottomSheet(Game game) {
+    public void showLeaveGameBottomSheet(Game game) {
         LeaveGameBottomSheet leaveGameBottomSheet = LeaveGameBottomSheet.newInstance(game);
         leaveGameBottomSheet.show(getChildFragmentManager(), "LeaveGameBottomSheet");
     }

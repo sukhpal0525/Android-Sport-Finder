@@ -66,7 +66,7 @@ public class GameDeleteBottomSheet extends BottomSheetDialogFragment {
         btnCancel.setOnClickListener(v -> dismiss());
     }
 
-    private void deleteGame() {
+    public void deleteGame() {
         asyncTaskExecutor.execute(() -> {
             gameDao.deleteGame(game);
             List<Game> updatedGames = gameDao.getAllGames();

@@ -25,7 +25,6 @@
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="@+id/viewHandle"
         app:layout_constraintEnd_toStartOf="@+id/btnDeleteGame"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
@@ -36,7 +35,8 @@
         android:src="@drawable/baseline_delete_forever_26"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="@+id/btnEditGame"
-        app:layout_constraintStart_toEndOf="@+id/btnEditGame" />
+        app:layout_constraintStart_toEndOf="@+id/btnEditGame"
+        android:layout_marginLeft="4dp"/>
 
     <ImageView
         android:id="@+id/ivClose"
@@ -89,21 +89,34 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:gravity="left"/>
 
-        <TextView
-        android:id="@+id/tvGameDetails"
+    <TextView
+        android:id="@+id/tvLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Location: Street, City\nDate: Date\nTime: Time"
+        android:text="Location"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <TextView
-        android:id="@+id/tvWeatherInfo"
+        android:id="@+id/tvDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text=""
+        android:text="Date"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+   <TextView
+       android:id="@+id/tvTime"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Time"
+       android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+   <TextView
+       android:id="@+id/tvWeatherInfo"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="16dp"
+       android:text=""
+       android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <TextView
         android:id="@+id/tvStatus"
@@ -119,7 +132,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Join Game"
-        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:textSize="18sp"
         android:padding="12dp"
         android:textColor="@color/white"
         android:textStyle="bold"/>

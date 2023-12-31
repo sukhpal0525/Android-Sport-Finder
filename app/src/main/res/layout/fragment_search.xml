@@ -166,8 +166,8 @@
 
         <ImageButton
             android:id="@+id/btnCreateGame"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:background="@drawable/white_box"
             android:src="@drawable/baseline_add_32"
             app:layout_constraintBottom_toBottomOf="@id/toggle_location"
