@@ -15,13 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.api.WeatherData;
 import com.aston.sportsfinder.api.WeatherResponse;
 import com.aston.sportsfinder.dao.GameDao;
 import com.aston.sportsfinder.fragment.game.GameDeleteBottomSheet;
+import com.aston.sportsfinder.fragment.game.GameDeleteErrorBottomSheet;
 import com.aston.sportsfinder.model.Game;
+import com.aston.sportsfinder.model.viewmodel.game.GameViewModel;
 import com.aston.sportsfinder.util.DatabaseClient;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -47,7 +51,9 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
 
 
         TextView tvGameType = view.findViewById(R.id.tvGameType);
-        TextView tvGameDetails = view.findViewById(R.id.tvGameDetails);
+        TextView tvLocation = view.findViewById(R.id.tvLocation);
+        TextView tvDate = view.findViewById(R.id.tvDate);
+        TextView tvTime = view.findViewById(R.id.tvTime);
         TextView tvTeamInfo = view.findViewById(R.id.tvTeamInfo);
         TextView tvScore = view.findViewById(R.id.tvScore);
         TextView tvWeatherInfo = view.findViewById(R.id.tvWeatherInfo);
@@ -57,7 +63,9 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         tvGameType.setText("Sport: " + game.getGameType());
         tvTeamInfo.setText(game.getTeam1() + " vs " + game.getTeam2());
         tvScore.setText("(Score: " + game.getScore1() + " - " + game.getScore2() + ")");
-        tvGameDetails.setText("Location: " + game.getStreet() + ", " + game.getCity() + "\nDate: " + game.getDate() + "\nTime: " + game.getTime());
+        tvLocation.setText("Location: " + game.getStreet() + ", " + game.getCity());
+        tvDate.setText("Date: " + game.getDate());
+        tvTime.setText("Time: " + game.getTime());
 //        tvWeatherInfo.setText("Temperature:\nCondition:\nDescription:");
         String scoreText = game.isStarted() ? "Score: " + game.getScore1() + " - " + game.getScore2() : "(Not started)";
         tvScore.setText(scoreText);
@@ -91,19 +99,7 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
             btnDeleteGame.setVisibility(View.GONE);
         }
 
-//        if (game.isCreatedByUser()) {
-//            Button btnEditGame = view.findViewById(R.id.btnEditGame);
-//            Button btnDeleteGame = view.findViewById(R.id.btnDeleteGame);
-//
-//            btnEditGame.setVisibility(View.VISIBLE);
-//            btnDeleteGame.setVisibility(View.VISIBLE);
-//            btnEditGame.setOnClickListener(v -> {
-//            });
-//            btnDeleteGame.setOnClickListener(v -> {
-//            });
-//        }
-
-//         Listener for game joining
+//         Listen for game joining
         if (!game.isStarted()) {
             btnAction.setOnClickListener(v -> {
                 dismiss();
@@ -128,9 +124,31 @@ public class GameDetailsBottomSheet extends BottomSheetDialogFragment {
         ivClose.setOnClickListener(v -> dismiss());
 
         btnDeleteGame.setOnClickListener(v -> {
-            dismiss();
-            GameDeleteBottomSheet deleteBottomSheet = GameDeleteBottomSheet.newInstance(game);
-            deleteBottomSheet.show(getParentFragmentManager(), "GameDeleteBottomSheet");
+            if (game.isJoined()) {
+                dismiss();
+                showGameDeleteErrorBottomSheet();
+            } else {
+                dismiss();
+                GameDeleteBottomSheet deleteBottomSheet = GameDeleteBottomSheet.newInstance(game);
+                deleteBottomSheet.show(getParentFragmentManager(), "GameDeleteBottomSheet");
+            }
         });
+
+        btnEditGame.setOnClickListener(v -> {
+            GameViewModel gameViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+            if (game != null) {
+                gameViewModel.setSelectedGame(game);
+                NavController navController = NavHostFragment.findNavController(this);
+                navController.navigate(R.id.action_navigation_search_to_gameEditFragment);
+            } else {
+                Log.d("SSS", "Game doesn't exist");
+            }
+            dismiss();
+        });
+    }
+
+    public void showGameDeleteErrorBottomSheet() {
+        GameDeleteErrorBottomSheet bottomSheet = GameDeleteErrorBottomSheet.newInstance();
+        bottomSheet.show(getChildFragmentManager(), "GameDeleteErrorBottomSheet");
     }
 }

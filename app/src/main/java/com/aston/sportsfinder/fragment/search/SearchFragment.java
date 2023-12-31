@@ -10,12 +10,14 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ToggleButton;
@@ -96,8 +98,14 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         });
 
         createGameButton = binding.btnCreateGame;
-        createGameButton.setOnClickListener(v -> {
-            NavHostFragment.findNavController(this).navigate(R.id.navigation_create_game);
+        binding.btnCreateGame.setOnClickListener(v -> {
+            PopupMenu popup = new PopupMenu(getContext(), v);
+            popup.getMenu().add("Create a Game");
+            popup.setOnMenuItemClickListener(item -> {
+                NavHostFragment.findNavController(this).navigate(R.id.navigation_create_game);
+                return true;
+            });
+            popup.show();
         });
 
         searchBar = view.findViewById(R.id.searchBar);
@@ -160,6 +168,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         if (latestGames != null) {
             showGamesOnMap(latestGames);
         }
+        mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.setOnMarkerClickListener(marker -> {
             Game game = (Game) marker.getTag();
             if (game != null) {

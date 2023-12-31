@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GameViewModel extends ViewModel {
     private MutableLiveData<List<Game>> gamesLiveData = new MutableLiveData<>();
-    private final MutableLiveData<Integer> selectedGameId = new MutableLiveData<>();
+    private final MutableLiveData<Game> selectedGame = new MutableLiveData<>();
     private final MutableLiveData<Game> newGameLiveData = new MutableLiveData<>();
     private final MutableLiveData<LatLng> selectedLocation = new MutableLiveData<>();
     private final MutableLiveData<Boolean> locationSelectionMode = new MutableLiveData<>(false);
@@ -25,8 +25,12 @@ public class GameViewModel extends ViewModel {
         return gamesLiveData;
     }
 
-    public LiveData<Integer> getSelectedGameId() {
-        return selectedGameId;
+    public void setSelectedGame(Game game) {
+        selectedGame.setValue(game);
+    }
+
+    public LiveData<Game> getSelectedGame() {
+        return selectedGame;
     }
 
     public void setNewGame(Game game) {

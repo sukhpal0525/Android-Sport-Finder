@@ -117,13 +117,13 @@ public class HomeFragment extends Fragment {
 
     public void checkForUpcomingGame(List<Game> games) {
         if (games.isEmpty()) {
-            yourNextGameText.setText("You don't have any upcoming games");
+            yourNextGameText.setText("You don't have an upcoming game");
             tvTeamNames.setText("");
             tvGameDetails.setText("");
             tvWeatherInfo.setText("");
         } else {
             Game nextGame = games.get(0);
-            yourNextGameText.setText("You have a game starting soon:");
+//            yourNextGameText.setText("You have a game starting soon:");
             tvTeamNames.setText(nextGame.getTeam1() + " vs " + nextGame.getTeam2());
             String gameDetails =
                     "Type: " + nextGame.getGameType() + "\n" +

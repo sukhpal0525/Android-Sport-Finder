@@ -2,7 +2,6 @@ package com.aston.sportsfinder;
 
 import android.location.LocationRequest;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 
 import com.aston.sportsfinder.model.Notification;
@@ -19,8 +18,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.aston.sportsfinder.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,9 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Change action bar title based on the current fragment's name
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            String label = destination.getLabel().toString();
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle(label);
+            if (destination.getLabel() != null) {
+                String label = destination.getLabel().toString();
+                ActionBar actionBar = getSupportActionBar();
+                if (actionBar != null) {
+                    actionBar.setTitle(label);
+                }
+            }
         });
 
         NotificationsViewModel viewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);

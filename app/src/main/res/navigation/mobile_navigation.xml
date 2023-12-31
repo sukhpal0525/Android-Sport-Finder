@@ -27,6 +27,9 @@
         android:name="com.aston.sportsfinder.fragment.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_navigation_search_to_gameEditFragment"
+            app:destination="@id/navigation_edit_game" />
     </fragment>
 
     <!--                NOTIFICATIONS                -->
@@ -60,7 +63,23 @@
     <fragment
         android:id="@+id/navigation_create_game"
         android:name="com.aston.sportsfinder.fragment.game.GameCreateFragment"
-        android:label="@string/title_help"
+        android:label=""
         tools:layout="@layout/fragment_create_game"/>
+
+
+
+<!--                    EDIT GAME WITH ACTION               -->
+
+    <fragment
+        android:id="@+id/gameDetailsBottomSheet"
+        android:name="com.aston.sportsfinder.fragment.search.GameDetailsBottomSheet">
+        <action
+            android:id="@+id/action_gameDetailsBottomSheet_to_gameEditFragment"
+            app:destination="@id/navigation_edit_game" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_edit_game"
+        android:name="com.aston.sportsfinder.fragment.game.GameEditFragment" />
 
 </navigation>

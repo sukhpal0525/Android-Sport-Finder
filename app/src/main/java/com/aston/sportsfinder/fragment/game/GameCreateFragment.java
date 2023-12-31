@@ -1,5 +1,7 @@
 package com.aston.sportsfinder.fragment.game;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,7 +23,12 @@ import com.aston.sportsfinder.fragment.search.SearchErrorBottomSheet;
 import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.viewmodel.game.GameViewModel;
 import com.aston.sportsfinder.util.DatabaseClient;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 
 public class GameCreateFragment extends Fragment {
@@ -38,13 +47,15 @@ public class GameCreateFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+
         EditText etGameType = view.findViewById(R.id.etGameType);
         EditText etTeam1 = view.findViewById(R.id.etTeam1);
         EditText etTeam2 = view.findViewById(R.id.etTeam2);
         EditText etCapacity = view.findViewById(R.id.etCapacity);
         EditText etDate = view.findViewById(R.id.etDate);
         EditText etTime = view.findViewById(R.id.etTime);
-        EditText etLocation = view.findViewById(R.id.etLocation);
+        EditText etStreet = view.findViewById(R.id.etStreet);
+        EditText etCity = view.findViewById(R.id.etCity);
         EditText etLatitude = view.findViewById(R.id.etLatitude);
         EditText etLongitude = view.findViewById(R.id.etLongitude);
         EditText etDuration = view.findViewById(R.id.etDuration);
@@ -53,6 +64,16 @@ public class GameCreateFragment extends Fragment {
         EditText etEquipmentNeeded = view.findViewById(R.id.etEquipmentNeeded);
         EditText etRegistrationFee = view.findViewById(R.id.etRegistrationFee);
         EditText etAdditionalNotes = view.findViewById(R.id.etAdditionalNotes);
+
+        etGameType.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(getContext(), v);
+            popupMenu.getMenu().add("Football"); popupMenu.getMenu().add("Baseball"); popupMenu.getMenu().add("Rugby"); popupMenu.getMenu().add("Tennis"); popupMenu.getMenu().add("Hockey"); popupMenu.getMenu().add("Cricket");
+            popupMenu.setOnMenuItemClickListener(item -> {
+                etGameType.setText(item.getTitle());
+                return true;
+            });
+            popupMenu.show();
+        });
 
         Button saveButton = view.findViewById(R.id.saveGame);
         saveButton.setOnClickListener(v -> {
@@ -73,7 +94,9 @@ public class GameCreateFragment extends Fragment {
             }
             double latitude = 0.0;
             double longitude = 0.0;
-            String location = etLocation.getText().toString();
+            String street = etStreet.getText().toString();
+            String city = etCity.getText().toString();
+
 
             latitude = Double.parseDouble(etLatitude.getText().toString());
             longitude = Double.parseDouble(etLongitude.getText().toString());
@@ -88,7 +111,7 @@ public class GameCreateFragment extends Fragment {
             String additionalNotes = etAdditionalNotes.getText().toString();
 
 
-            Game newGame = new Game(gameType, team1, team2, 0, 0, false, false, "", "", "", "", latitude, longitude, date, time, organiserName, capacity, 0, skillLevel, equipmentNeeded, duration, registrationFee, additionalNotes, true);
+            Game newGame = new Game(gameType, team1, team2, 0, 0, false, false, street, city, "", "", latitude, longitude, date, time, organiserName, capacity, 0, skillLevel, equipmentNeeded, duration, registrationFee, additionalNotes, true);
             asyncTaskExecutor.execute(() -> {
                 gameViewModel.setNewGame(newGame);
                 gameDao.insertGame(newGame);
@@ -97,6 +120,12 @@ public class GameCreateFragment extends Fragment {
                 });
             });
         });
+
+        etTime.setOnClickListener(v -> showTimePicker());
+        etDate.setOnClickListener(v -> showDatePicker());
+
+        Button btnCancel = view.findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(v -> NavHostFragment.findNavController(this).navigate(R.id.navigation_search));
 
         Button selectLocationButton = view.findViewById(R.id.selectLocationButton);
         selectLocationButton.setOnClickListener(v -> {
@@ -120,11 +149,32 @@ public class GameCreateFragment extends Fragment {
         return view;
     }
 
-    private void showGameCreateSuccessBottomSheet() {
+    public void showTimePicker() {
+        MaterialTimePicker timePicker = new MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)).setMinute(Calendar.getInstance().get(Calendar.MINUTE)).setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK).build();
+        timePicker.addOnPositiveButtonClickListener(dialog -> {
+            String formattedTime = String.format("%02d:%02d", timePicker.getHour(), timePicker.getMinute());
+            EditText etTime = getView().findViewById(R.id.etTime);
+            etTime.setText(formattedTime);
+        });
+        timePicker.show(getParentFragmentManager(), "TimePicker");
+    }
+
+    public void showDatePicker() {
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker().build();
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            Calendar calendar = Calendar.getInstance();
+            String formattedDate = String.format("%04d-%02d-%02d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+            EditText etDate = getView().findViewById(R.id.etDate);
+            etDate.setText(formattedDate);
+        });
+        datePicker.show(getParentFragmentManager(), "DatePicker");
+    }
+
+    public void showGameCreateSuccessBottomSheet() {
         GameCreateSuccessBottomSheet bottomSheet = GameCreateSuccessBottomSheet.newInstance();
         bottomSheet.show(getChildFragmentManager(), "GameCreateSuccessBottomSheet");
     }
-    private void showGameCreateFailBottomSheet() {
+    public void showGameCreateFailBottomSheet() {
         GameCreateFailBottomSheet bottomSheet = GameCreateFailBottomSheet.newInstance();
         bottomSheet.show(getChildFragmentManager(), "GameCreateFailBottomSheet");
     }
