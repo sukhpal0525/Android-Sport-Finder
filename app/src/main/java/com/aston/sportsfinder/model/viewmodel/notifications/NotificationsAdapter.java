@@ -1,6 +1,7 @@
 package com.aston.sportsfinder.model.viewmodel.notifications;
 
 import android.graphics.Color;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.aston.sportsfinder.R;
 import com.aston.sportsfinder.dao.GameDao;
 import com.aston.sportsfinder.model.Game;
 import com.aston.sportsfinder.model.Notification;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +78,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         private final Button btnViewDetails;
         private final GameDao gameDao;
         private ImageView ivOptions;
+        ShimmerFrameLayout shimmerFrameLayout;
 
 
         NotificationViewHolder(View itemView, OnNotificationClickListener listener, GameDao gameDao) {
@@ -87,6 +90,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             tvDateTime = itemView.findViewById(R.id.tvDateTime);
             btnViewDetails = itemView.findViewById(R.id.btnViewDetails);
             ivOptions = itemView.findViewById(R.id.ivOptions);
+            shimmerFrameLayout = itemView.findViewById(R.id.shimmer);
 
             itemView.setOnClickListener(v -> {
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
@@ -111,6 +115,17 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         }
 
         void bind(Notification notification, ExecutorService asyncTaskExecutor, boolean isListView) {
+            shimmerFrameLayout.startShimmer();
+            itemView.setEnabled(false);
+            btnViewDetails.setEnabled(false);
+
+            new Handler().postDelayed(() -> {
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setShimmer(null);
+                itemView.setEnabled(true);
+                btnViewDetails.setEnabled(true);
+            }, 2250);
+
             this.notification = notification;
 
             asyncTaskExecutor.execute(() -> {
