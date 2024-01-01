@@ -40,6 +40,10 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-paging:$room_version"
 
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+
     implementation 'org.apache.commons:commons-text:1.11.0'
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.7.1"
     implementation 'com.google.android.gms:play-services-maps:18.1.0'

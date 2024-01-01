@@ -49,4 +49,6 @@ public interface GameDao {
     @Query("SELECT * FROM Game WHERE gameType = :gameType")
     List<Game> getGamesByType(String gameType);
 
+    @Query("SELECT * FROM Game WHERE team1 = :team1 AND team2 = :team2 AND latitude = :latitude AND longitude = :longitude")
+    Game getGameByDetails(String team1, String team2, double latitude, double longitude);
 }

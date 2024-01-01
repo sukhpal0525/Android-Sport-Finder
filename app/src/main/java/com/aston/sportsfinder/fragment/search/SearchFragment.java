@@ -131,6 +131,8 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
                 filterGamesByType("Tennis");
             } else if (checkedId == R.id.buttonHockey) {
                 filterGamesByType("Hockey");
+            } else if (checkedId == R.id.buttonCricket) {
+                filterGamesByType("Cricket");
             }
         });
 //        binding.buttonFootball.setOnClickListener(v -> searchForGame("Football"));
@@ -202,7 +204,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().searchGames(query);
             getActivity().runOnUiThread(() -> {
                 if (games.isEmpty()) {
-                    showErrorBottomSheet();
+                    showSearchErrorBottomSheet();
                 } else {
                     showGamesOnMap(games);
                 }
@@ -215,7 +217,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             List<Game> games = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao().getGamesByType(gameType);
             getActivity().runOnUiThread(() -> {
                 if (games.isEmpty()) {
-                    showErrorBottomSheet();
+                    showSearchErrorBottomSheet();
                 } else {
                     showGamesOnMap(games);
                 }
@@ -306,7 +308,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    public void showErrorBottomSheet() {
+    public void showSearchErrorBottomSheet() {
         SearchErrorBottomSheet bottomSheet = SearchErrorBottomSheet.newInstance();
         bottomSheet.show(getChildFragmentManager(), "SearchErrorBottomSheet");
     }

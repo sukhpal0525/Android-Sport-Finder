@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_home">
     </fragment>
 
-    <!--                   DASHBOARD                 -->
+<!--                       DASHBOARD-->
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_dashboard"-->
 <!--        android:name="com.aston.sportsfinder.fragment.dashboard.DashboardFragment"-->
@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/navigation_create_game"
         android:name="com.aston.sportsfinder.fragment.game.GameCreateFragment"
-        android:label=""
+        android:label="Create Game"
         tools:layout="@layout/fragment_create_game"/>
 
 
@@ -80,6 +80,6 @@
 
     <fragment
         android:id="@+id/navigation_edit_game"
-        android:name="com.aston.sportsfinder.fragment.game.GameEditFragment" />
-
+        android:name="com.aston.sportsfinder.fragment.game.GameEditFragment"
+        android:label="Edit Game" />
 </navigation>

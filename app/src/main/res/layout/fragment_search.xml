@@ -143,6 +143,20 @@
                 android:paddingStart="4dp"
                 android:paddingEnd="8dp"
                 android:layout_marginStart="16dp" />
+
+            <RadioButton
+                android:id="@+id/buttonCricket"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Cricket"
+                android:background="@drawable/white_box"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="8dp"
+                android:layout_marginStart="16dp" />
         </RadioGroup>
     </HorizontalScrollView>
     </LinearLayout>
