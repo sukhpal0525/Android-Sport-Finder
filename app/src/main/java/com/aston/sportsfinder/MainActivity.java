@@ -7,7 +7,6 @@ import android.util.Log;
 import com.aston.sportsfinder.model.Notification;
 import com.aston.sportsfinder.model.viewmodel.notifications.NotificationsViewModel;
 import com.aston.sportsfinder.util.DatabaseClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
