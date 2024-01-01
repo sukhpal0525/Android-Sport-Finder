@@ -13,4 +13,4 @@
             Notes:
 
 Unable to see the Google Map?
-- Wipe data for the virtual device.
+- Wipe data from the virtual device.
