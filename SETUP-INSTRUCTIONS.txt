@@ -9,3 +9,8 @@
     - Select SportsFinder.app.main
 - Apply and OK
 - Run
+
+            Notes:
+
+Unable to see the Google Map?
+- Wipe data for the virtual device.
