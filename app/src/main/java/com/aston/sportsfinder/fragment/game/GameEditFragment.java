@@ -27,6 +27,7 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 
 public class GameEditFragment extends Fragment {
@@ -102,6 +103,9 @@ public class GameEditFragment extends Fragment {
         saveButton.setOnClickListener(v -> {
             updateGameDetails();
         });
+
+        etTime.setOnClickListener(v -> showTimePicker());
+        etDate.setOnClickListener(v -> showDatePicker());
     }
 
     public void updateUIWithGameDetails(Game game) {
@@ -150,8 +154,6 @@ public class GameEditFragment extends Fragment {
                     showGameEditSuccessBottomSheet();
                 });
             });
-            etTime.setOnClickListener(v -> showTimePicker());
-            etDate.setOnClickListener(v -> showDatePicker());
         } else {
             Log.e("SSS", "Invalid game. Couldnt update game.");
         }
@@ -171,8 +173,8 @@ public class GameEditFragment extends Fragment {
         MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker().build();
         datePicker.addOnPositiveButtonClickListener(selection -> {
             Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(selection);
             String formattedDate = String.format("%04d-%02d-%02d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
-            EditText etDate = getView().findViewById(R.id.etDate);
             etDate.setText(formattedDate);
         });
         datePicker.show(getParentFragmentManager(), "DatePicker");
