@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
         // Framelayouts:
         footballFrame.setOnClickListener(v -> searchForGame("Football"));
         baseballFrame.setOnClickListener(v -> searchForGame("Baseball"));
-        rugbyFrame.setOnClickListener(v -> searchForGame("Baseball"));
+        rugbyFrame.setOnClickListener(v -> searchForGame("Rugby"));
         tennisFrame.setOnClickListener(v -> searchForGame("Tennis"));
         hockeyFrame.setOnClickListener(v -> searchForGame("Hockey"));
         cricketFrame.setOnClickListener(v -> searchForGame("Cricket"));
