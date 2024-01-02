@@ -32,13 +32,13 @@ import java.util.concurrent.ExecutorService;
 
 public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
-    private Game selectedGame;
+    private Game game;
     private ExecutorService asyncTaskExecutor;
     private GameViewModel gamesViewModel;
 
     public static JoinGameBottomSheet newInstance(Game game) {
         JoinGameBottomSheet fragment = new JoinGameBottomSheet();
-        fragment.selectedGame = game;
+        fragment.game = game;
         return fragment;
     }
 
@@ -71,11 +71,11 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
     public void insertNotification(int userId) {
         asyncTaskExecutor.execute(() -> {
-            String message = selectedGame.getTeam1() + " vs " + selectedGame.getTeam2() +
-                    "\nDate: " + selectedGame.getDate() +
-                    "\nTime: " + selectedGame.getTime();
+            String message = game.getTeam1() + " vs " + game.getTeam2() +
+                    "\nDate: " + game.getDate() +
+                    "\nTime: " + game.getTime();
 
-            Notification notification = new Notification(0, userId, message, System.currentTimeMillis(), false, selectedGame.getId());
+            Notification notification = new Notification(0, userId, message, System.currentTimeMillis(), false, game.getId());
             NotificationsViewModel viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
             viewModel.insertNotifications(notification);
         });
@@ -83,9 +83,9 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
     public void joinGame() {
         asyncTaskExecutor.execute(() -> {
-                Log.d("SSS", "Button clicked for game ID: " + selectedGame.getId());
+                Log.d("SSS", "Button clicked for game ID: " + game.getId());
                 Integer userId = DatabaseClient.getInstance(getContext()).getAppDatabase().userDao().getCurrentUserId();
-                if (userId != null && !selectedGame.isStarted()) {
+                if (userId != null && !game.isStarted()) {
                     processGameJoin(userId);
                 } else {
                     Log.d("SSS", "Can't join, game already started/joined");
@@ -107,8 +107,8 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
 
     public void processGameJoin(int userId) {
         GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
-        if (!gameDao.isGameJoined(selectedGame.getId(), userId)) {
-            gameDao.updateGameJoinStatus(selectedGame.getId(), true, userId);
+        if (!gameDao.isGameJoined(game.getId(), userId)) {
+            gameDao.updateGameJoinStatus(game.getId(), true, userId);
             List<Game> updatedGames = gameDao.getAllGames();
             getActivity().runOnUiThread(() -> gamesViewModel.updateGames(updatedGames));
             insertNotification(userId);

@@ -160,13 +160,12 @@ public class GameEditFragment extends Fragment {
     }
 
     public void showTimePicker() {
-        MaterialTimePicker timePicker = new MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)).setMinute(Calendar.getInstance().get(Calendar.MINUTE)).setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK).build();
+        Calendar now = Calendar.getInstance();
+        MaterialTimePicker timePicker = new MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).setHour(now.get(Calendar.HOUR_OF_DAY)).setMinute(now.get(Calendar.MINUTE)).setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK).build();
         timePicker.addOnPositiveButtonClickListener(dialog -> {
-            String formattedTime = String.format("%02d:%02d", timePicker.getHour(), timePicker.getMinute());
-            EditText etTime = getView().findViewById(R.id.etTime);
-            etTime.setText(formattedTime);
+            etTime.setText(String.format("%02d:%02d", timePicker.getHour(), timePicker.getMinute()));
         });
-        timePicker.show(getParentFragmentManager(), "TimePicker");
+        timePicker.show(getParentFragmentManager(), "");
     }
 
     public void showDatePicker() {
@@ -174,10 +173,9 @@ public class GameEditFragment extends Fragment {
         datePicker.addOnPositiveButtonClickListener(selection -> {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(selection);
-            String formattedDate = String.format("%04d-%02d-%02d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
-            etDate.setText(formattedDate);
+            etDate.setText(String.format("%02d-%02d-%04d", calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR)));
         });
-        datePicker.show(getParentFragmentManager(), "DatePicker");
+        datePicker.show(getParentFragmentManager(), "");
     }
 
     public void showGameEditSuccessBottomSheet() {

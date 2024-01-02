@@ -25,13 +25,13 @@ import java.util.concurrent.ExecutorService;
 
 public class LeaveGameBottomSheet extends BottomSheetDialogFragment {
 
-    private Game selectedGame;
+    private Game game;
     private ExecutorService asyncTaskExecutor;
     private NotificationsViewModel viewModel;
 
     public static LeaveGameBottomSheet newInstance(Game game) {
         LeaveGameBottomSheet fragment = new LeaveGameBottomSheet();
-        fragment.selectedGame = game;
+        fragment.game = game;
         return fragment;
     }
 
@@ -60,13 +60,13 @@ public class LeaveGameBottomSheet extends BottomSheetDialogFragment {
 
     public void leaveGame() {
         asyncTaskExecutor.execute(() -> {
-            Log.d("SSS", "Leaving game ID: " + selectedGame.getId());
+            Log.d("SSS", "Leaving game ID: " + game.getId());
             Integer userId = DatabaseClient.getInstance(getContext()).getAppDatabase().userDao().getCurrentUserId();
             GameDao gameDao = DatabaseClient.getInstance(getContext()).getAppDatabase().gameDao();
             NotificationDao notificationDao = DatabaseClient.getInstance(getContext()).getAppDatabase().notificationDao();
-            if (gameDao.isGameJoined(selectedGame.getId(), userId)) {
-                gameDao.updateGameJoinStatus(selectedGame.getId(), false, userId);
-                notificationDao.removeNotification(userId, selectedGame.getId());
+            if (gameDao.isGameJoined(game.getId(), userId)) {
+                gameDao.updateGameJoinStatus(game.getId(), false, userId);
+                notificationDao.removeNotification(userId, game.getId());
                 showLeaveSuccessBottomSheet();
                 viewModel.loadNotifications();
             } else {

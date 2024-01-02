@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textAppearance="?attr/textAppearanceBody1"
-                    android:hint="YY/MM-DD"
+                    android:hint="DD/MM/YYYY"
                     android:focusable="false"
                     android:cursorVisible="false"/>
             </LinearLayout>
