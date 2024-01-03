@@ -73,7 +73,7 @@
             android:id="@+id/tvMessagePart2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View more details in "
+            android:text="You can view more details in "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
@@ -83,6 +83,13 @@
             android:text="My Games"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvMessagePart4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="."
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
     </LinearLayout>
 
