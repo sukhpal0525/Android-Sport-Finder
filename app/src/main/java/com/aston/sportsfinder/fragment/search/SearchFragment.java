@@ -68,7 +68,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
     private EditText searchBar;
     private GameViewModel gameViewModel;
     private List<Game> latestGames;
-    private boolean isMapInitialized = false;
+    private boolean isMapInitialised = false;
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
@@ -244,9 +244,9 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             Marker marker = mMap.addMarker(markerOptions);
             marker.setTag(game);
 
-            if (!isMapInitialized) {
+            if (!isMapInitialised) {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 6));
-                isMapInitialized = true;
+                isMapInitialised = true;
             }
         }
     }
@@ -270,10 +270,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
             });
 
     protected void createLocationRequest() {
-        locationRequest = new LocationRequest.Builder(10000)
-                .setMinUpdateIntervalMillis(2000)
-                .setPriority(PRIORITY_HIGH_ACCURACY)
-                .build();
+        locationRequest = new LocationRequest.Builder(2000).setMinUpdateIntervalMillis(500).setPriority(PRIORITY_HIGH_ACCURACY).build();
     }
 
     private void setupLocationCallback() {

@@ -3,6 +3,10 @@ CS3MDD Coursework
 
        Setup Instructions:
 
+1. Import in Android Studio
+- Unzip the .zip file.
+- Import "android-app" in Android Studio.
+
 1. Set local SDK
 - File -> Project Structure -> SDK Location
 - Set local.properties.
@@ -28,3 +32,6 @@ For some reason, weather data isn't visible on my desktop, but it is on my lapto
 If it isnt visible for you please do the following:
 - Wipe data from the virtual device.
 - Re-run the app.
+
+Want to reset all app data?
+- Uninstall the app.
