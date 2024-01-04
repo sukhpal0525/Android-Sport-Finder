@@ -35,6 +35,7 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
     private Game game;
     private ExecutorService asyncTaskExecutor;
     private GameViewModel gamesViewModel;
+    private NotificationsViewModel viewModel;
 
     public static JoinGameBottomSheet newInstance(Game game) {
         JoinGameBottomSheet fragment = new JoinGameBottomSheet();
@@ -47,6 +48,8 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
         super.onCreate(savedInstanceState);
         asyncTaskExecutor = DatabaseClient.getInstance(requireContext()).executorService;
         gamesViewModel = new ViewModelProvider(requireActivity()).get(GameViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
+
     }
 
     @Override
@@ -76,7 +79,6 @@ public class JoinGameBottomSheet extends BottomSheetDialogFragment {
                     "\nTime: " + game.getTime();
 
             Notification notification = new Notification(0, userId, message, System.currentTimeMillis(), false, game.getId());
-            NotificationsViewModel viewModel = new ViewModelProvider(requireActivity()).get(NotificationsViewModel.class);
             viewModel.insertNotifications(notification);
         });
     }

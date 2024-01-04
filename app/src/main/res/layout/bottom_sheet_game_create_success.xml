@@ -86,7 +86,7 @@
         android:layout_marginEnd="16dp">
 
         <Button
-            android:id="@+id/btnConfirm"
+            android:id="@+id/btnCreatedConfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

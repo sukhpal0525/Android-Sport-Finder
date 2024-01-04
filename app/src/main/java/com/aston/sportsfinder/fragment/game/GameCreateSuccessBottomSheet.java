@@ -40,7 +40,7 @@ public class GameCreateSuccessBottomSheet extends BottomSheetDialogFragment {
         ImageView ivClose = view.findViewById(R.id.ivClose);
         ivClose.setOnClickListener(v -> dismiss());
 
-        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        Button btnConfirm = view.findViewById(R.id.btnCreatedConfirm);
         btnConfirm.setOnClickListener(v -> NavHostFragment.findNavController(this).navigate(R.id.navigation_search));
     }
 

@@ -96,7 +96,7 @@ public class GameEditFragment extends Fragment {
             etLongitude.setText(String.valueOf(latLng.longitude));
             currentGame.setLatitude(latLng.latitude);
             currentGame.setLongitude(latLng.longitude);
-            Log.d("SSS", "Selected location - Latitude: " + latLng.latitude + ", Longitude: " + latLng.longitude);
+            Log.d("SSS", "Selected latitude: " + latLng.latitude + ", longitude: " + latLng.longitude);
         });
 
         Button saveButton = view.findViewById(R.id.saveGame);

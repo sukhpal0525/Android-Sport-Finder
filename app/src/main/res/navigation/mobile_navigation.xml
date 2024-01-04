@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/navigation_notification_details"
         android:name="com.aston.sportsfinder.fragment.notifications.NotificationDetailsFragment"
-        android:label="@string/title_notification_details"
+        android:label="My Games  »  Game Info"
         tools:layout="@layout/fragment_game_details">
         <argument
             android:name="gameId"
@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/navigation_create_game"
         android:name="com.aston.sportsfinder.fragment.game.GameCreateFragment"
-        android:label="Create Game"
+        android:label="Search  »  Create Game"
         tools:layout="@layout/fragment_create_game"/>
 
 
@@ -81,5 +81,5 @@
     <fragment
         android:id="@+id/navigation_edit_game"
         android:name="com.aston.sportsfinder.fragment.game.GameEditFragment"
-        android:label="Edit Game" />
+        android:label="Search  »  Edit Game" />
 </navigation>
