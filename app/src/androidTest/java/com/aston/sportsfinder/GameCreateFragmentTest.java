@@ -88,22 +88,22 @@ public class GameCreateFragmentTest {
         }
     }
 
-//    @Test
-//    public void testGameSearchResults() throws InterruptedException {
-//        // Navigate to the search fragment
-//        onView(withId(R.id.navigation_search)).perform(click());
-//
-//        // Enter a query and perform a search
-//        String searchQuery = "Football";
-//        onView(withId(R.id.searchBar)).perform(typeText(searchQuery), pressImeActionButton());
-//
-//        Thread.sleep(2000);
-//
-//        // Get games from database matching the search query
-//        List<Game> expectedGames = gameDao.searchGames(searchQuery);
-//
-//        // Check if the result is valid
-//        assertNotNull(expectedGames);
-//        assertTrue(!expectedGames.isEmpty());
-//    }
+    @Test
+    public void testGameSearchResults() throws InterruptedException {
+        // Navigate to the search fragment
+        onView(withId(R.id.navigation_search)).perform(click());
+
+        // Enter a query and perform a search
+        String searchQuery = "Football";
+        onView(withId(R.id.searchBar)).perform(typeText(searchQuery), pressImeActionButton());
+
+        Thread.sleep(2000);
+
+        // Get games from database matching the search query
+        List<Game> expectedGames = gameDao.searchGames(searchQuery);
+
+        // Check if the result is valid
+        assertNotNull(expectedGames);
+        assertTrue(!expectedGames.isEmpty());
+    }
 }
