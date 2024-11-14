@@ -48,8 +48,8 @@ public class DatabaseCallback extends RoomDatabase.Callback {
                 gameDao.insertGame(new Game("Hockey", "USA", "France", 1, 4, false, false, "Bute Park", "Cardiff", "Wales", "UK", 51.4841, -3.1869, "15-01-2024", "13:00", "Sukhpal", "30", 25, "Intermediate", "Hockey sticks, Pucks, Protective gear", "60 minutes", "0.00", "Standard hockey rules", false));
 
                 gameDao.insertGame(new Game("Tennis", "Japan", "France", 1, 1, false, false, "Mill Road", "Cambridge", "Cambridgeshire", "England", 52.1989, 0.1374, "15-01-2024", "10:00", "Sukhpal","4", 4, "Intermediate","Tennis rackets, Tennis balls","1-2 hours", "0.00","Standard tennis rules, friendly match", false));
-                //                gameDao.insertGame(new Game("Cricket", "Spain", "Poland", 1, 3, false, false, "Flushing Meadows Corona Park", "Queens", "NY", "USA", 40.7410, -73.8410, "2023-10-27", "10:00"));
             }
+            //  db.execSQL("INSERT INTO Game (gameType, team1, team2, isJoined, street, city, state, country, latitude, longitude, date, time) VALUES ('Football', 'Team A', 'Team B', 0, '456 Fulton St', 'Brooklyn', 'NY', 'USA', 40.6782, -73.9442, '2023-10-21', '16:00')");
         });
     }
 }
@@ -69,4 +69,3 @@ public class DatabaseCallback extends RoomDatabase.Callback {
 //      gameDao.insertGame(new Game(9, "Football", "Team A", "Team B", 2, 3, false, true, "19 19th St", "Queens", "NY", "USA", 40.7798, -73.9223, "2023-10-29", "15:45"));
 //      gameDao.insertGame(new Game(10, "Football", "Team A", "Team B", 2, 3, false, true, "Highland Park", "Brooklyn", "NY", "USA", 40.6894, -73.8807, "2023-10-30", "16:00"));
 
-//      db.execSQL("INSERT INTO Game (gameType, team1, team2, isJoined, street, city, state, country, latitude, longitude, date, time) VALUES ('Football', 'Team A', 'Team B', 0, '456 Fulton St', 'Brooklyn', 'NY', 'USA', 40.6782, -73.9442, '2023-10-21', '16:00')");
