@@ -27,9 +27,6 @@ public interface NotificationDao {
     @Query("DELETE FROM Notification WHERE userId = :userId AND gameId = :gameId")
     void removeNotification(int userId, int gameId);
 
-    @Query("SELECT Notification.* FROM Notification " +
-            "JOIN Game ON Notification.gameId = Game.id " +
-            "WHERE Notification.userId = :userId AND (" +
-            "Game.gameType || ' ' || Game.team1 || ' ' || Game.team2 LIKE '%' || :query || '%')")
+    @Query("SELECT Notification.* FROM Notification " + "JOIN Game ON Notification.gameId = Game.id " + "WHERE Notification.userId = :userId AND (" + "Game.gameType || ' ' || Game.team1 || ' ' || Game.team2 LIKE '%' || :query || '%')")
     List<Notification> searchForNotification(int userId, String query);
 }
