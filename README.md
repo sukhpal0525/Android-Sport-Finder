@@ -7,12 +7,12 @@ CS3MDD Coursework
 - Unzip the .zip file.
 - Import "android-app" in Android Studio.
 
-1. Set local SDK
+2. Set local SDK
 - File -> Project Structure -> SDK Location
 - Set local.properties.
 - Set "Compile SDK Version" to 34.
 
-2. Run app
+3. Run app
 - Click "Edit Configurations"
   - Click "Add New Configuration"
     - Select "Android App"
@@ -20,11 +20,18 @@ CS3MDD Coursework
 - Apply and OK
 - Run
 
+4. (Optional) Edit virtual device's location (for "Live Location" feature)
+- Change device's location in "Extended Controls" to the UK.
+(The default device location is San Francisco, USA)
+
             Notes:
 
-Unable to see the Google Map?
-- Wipe data from the virtual device.
-- Choose a virtual device with Play Store enabled.
+CAN'T SEE THE GOOGLE MAP?	<------
+(This is an emulator graphics rendering issue when using an emulator)
+(I even installed the SDK and an emulator via commandline-tools and it still has the same issue)
+(However, I've run my app from my phone countless times and I've never had this map issue).
+- Wipe Data from the virtual device.
+- Ensure you're using a virtual device with Play Store enabled.
 
 Unable to see weather data?
 For some reason, weather data isn't visible on my desktop, but it is on my laptop.
